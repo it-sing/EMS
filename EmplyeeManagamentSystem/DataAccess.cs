@@ -1,153 +1,238 @@
-﻿using System.Data;
+﻿using System;
+using System.Collections.Generic;
+using System.Data;
 using System.Data.SqlClient;
+using EmployeeManagamentSystem.Pattern;
+
 namespace DBProgrammingDemo9
 {
     internal class DataAccess
     {
+        private static SqlConnection OpenConnection()
+        {
+            SqlConnection conn = DBConnectionSingleton.Instance.GetConnection();
+            conn.Open();
+            return conn;
+        }
 
-        //private static string connectionString = ConfigurationManager.ConnectionStrings["AzureSQLConnStr"].ConnectionString;
-
-        /// <summary>
-        /// Queries a SQL Server database with a provided SELECT statement.
-        /// </summary>
-        /// <param name="sql">The SELECT SQL Statement to execute and query data</param>
-        /// <returns>DataTable containing results from the provided SQL statement</returns>
-        /// 
-        private static string server = "DESKTOP-89B3HBK\\SQLEXPRESS";
-        private static string database = "HRManagement";
-        private static string username = "sa";
-        private static string password = "admin"; // Replace with your actual password
-        private static string connectionString = $"Server={server};Database={database};User Id={username};Password={password};";
+        // ✅ Fetches a DataTable from SQL Query
         public static DataTable GetData(string sql)
         {
             try
             {
-                DataTable dt = new DataTable();
-
-                using (SqlConnection conn = new SqlConnection(connectionString))
+                using (SqlConnection conn = OpenConnection())
                 {
                     using (SqlCommand cmd = new SqlCommand(sql, conn))
                     {
                         using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
+                            DataTable dt = new DataTable();
                             da.Fill(dt);
+                            return dt;
                         }
                     }
                 }
-
-                return dt;
-
-
             }
-            //handle azure sql connection exception
             catch (SqlException ex)
             {
-
-                throw new Exception("An error occurred while connecting to the database. Please check your internet connection and try again.", ex);
-
+                throw new Exception("Database connection error occurred. Please check your connection and try again.", ex);
             }
-            //handle general exception
-            catch (Exception ex)
-            {
-                throw new Exception("An error occurred while connecting to the database. Please check your internet connection and try again.", ex);
-            }
-
         }
-        /// <summary>
-        /// Queries a SQL Server database with a provided collection of SELECT statements.
-        /// </summary>
-        /// <param name="sqlStatements">The SELECT SQL Statements to execute and query data</param>
-        /// <returns>DataSet containing results from the proivded SQL Statements. DataTables within the returned DataSet are in the order of the provided SQL statements</returns>
+
+        // ✅ Fetches a DataSet from multiple SQL Queries
         public static DataSet GetData(string[] sqlStatements)
         {
-            DataSet ds = new DataSet();
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                string sql = string.Join(";", sqlStatements);
-
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlConnection conn = OpenConnection())
                 {
-                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    DataSet ds = new DataSet();
+                    using (SqlCommand cmd = new SqlCommand(string.Join(";", sqlStatements), conn))
                     {
-                        for (int i = 0; i < sqlStatements.Length; i++)
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                         {
-                            da.TableMappings.Add(i.ToString(), $"Data{i}");
+                            for (int i = 0; i < sqlStatements.Length; i++)
+                            {
+                                da.TableMappings.Add($"Table{i}", $"Data{i}");
+                            }
+                            da.Fill(ds);
                         }
+                    }
+                    return ds;
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error executing multiple SQL statements.", ex);
+            }
+        }
 
-                        da.Fill(ds);
+        // ✅ Fetches a DataSet with Parameters
+        public static DataSet GetBy(string sql, Dictionary<string, object> parameters = null)
+        {
+            try
+            {
+                using (SqlConnection conn = OpenConnection())
+                {
+                    using (SqlCommand command = new SqlCommand(sql, conn))
+                    {
+                        if (parameters != null)
+                        {
+                            foreach (var param in parameters)
+                            {
+                                command.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
+                            }
+                        }
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            DataSet ds = new DataSet();
+                            adapter.Fill(ds);
+                            return ds;
+                        }
                     }
                 }
             }
-
-            return ds;
+            catch (SqlException ex)
+            {
+                throw new Exception("Error executing parameterized query.", ex);
+            }
         }
 
-        /// <summary>
-        /// Queries a SQL Server database for a scalar (single) value from the provided SELECT statement.
-        /// </summary>
-        /// <param name="sql">The SELECT SQL Statement to execute and query data for a scalar (single) value</param>
-        /// <returns>The scalar value of the result of the SQL Statement execution</returns>
-        public static object GetValue(string sql)
+        // ✅ Fetches a DataTable with SQL Parameters
+        public static DataTable GetByParameter(string sql, SqlParameter[] parameters)
         {
-            object returnValue;
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlConnection conn = OpenConnection())
                 {
-                    conn.Open();
-                    returnValue = cmd.ExecuteScalar();
-                    conn.Close();
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        if (parameters != null)
+                        {
+                            cmd.Parameters.AddRange(parameters);
+                        }
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            DataTable dt = new DataTable();
+                            da.Fill(dt);
+                            return dt;
+                        }
+                    }
                 }
             }
-
-            return returnValue;
+            catch (SqlException ex)
+            {
+                throw new Exception("Error executing query with SQL parameters.", ex);
+            }
         }
 
-        /// <summary>
-        /// Method to execute a SQL statement that does not return data (INSERT, UPDATE, DELETE)
-        /// 
-        /// </summary>
-        /// <returns>Number of rows affected by the SQL statement</returns>
+        // ✅ Fetches a Single Value
+        public static object GetValue(string sql)
+        {
+            try
+            {
+                using (SqlConnection conn = OpenConnection())
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return cmd.ExecuteScalar();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error retrieving scalar value.", ex);
+            }
+        }
+
+        // ✅ Executes INSERT, UPDATE, DELETE Queries
         public static int SendData(string sql)
         {
-            int rowsAffected = -1;
-
-            // TODO: Implement behaviour for executing C_UD of CRUD
-
-            using (SqlConnection conn = new SqlConnection(connectionString))
+            try
             {
-                SqlCommand cmd = new SqlCommand(sql, conn);
-                conn.Open();
-
-                rowsAffected = cmd.ExecuteNonQuery();
+                using (SqlConnection conn = OpenConnection())
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return cmd.ExecuteNonQuery();
+                    }
+                }
             }
-
-            return rowsAffected;
+            catch (SqlException ex)
+            {
+                throw new Exception("Error executing data modification command.", ex);
+            }
         }
 
-        /// <summary>
-        ///     This would address two issues:
-        ///     It would remove unnecessary newlines (\r\n) from the SQL statement
-        ///     It would remove whitespace from the beginning and end of the SQL statement
-        /// </summary>
-        /// 
+        // ✅ Updates Data with Parameters
+        public static int UpdateData(string sql, Dictionary<string, object> parameters)
+        {
+            try
+            {
+                using (SqlConnection conn = OpenConnection())
+                {
+                    using (SqlCommand command = new SqlCommand(sql, conn))
+                    {
+                        if (parameters != null)
+                        {
+                            foreach (var param in parameters)
+                            {
+                                command.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
+                            }
+                        }
+                        return command.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error updating data with parameters.", ex);
+            }
+        }
+
+        // ✅ Executes Batch Queries with Transaction Support
+        public static bool ExecuteTransaction(List<string> sqlStatements)
+        {
+            using (SqlConnection conn = OpenConnection())
+            {
+                SqlTransaction transaction = conn.BeginTransaction();
+
+                try
+                {
+                    foreach (var sql in sqlStatements)
+                    {
+                        using (SqlCommand cmd = new SqlCommand(sql, conn, transaction))
+                        {
+                            cmd.ExecuteNonQuery();
+                        }
+                    }
+                    transaction.Commit();
+                    return true;
+                }
+                catch (SqlException)
+                {
+                    transaction.Rollback();
+                    throw;
+                }
+            }
+        }
+
+        // ✅ Sanitizes SQL (Removes extra spaces)
         public static string SQLCleaner(string sql)
         {
-            // Remove all double spaces
-            while (sql.Contains("  "))
-            {
-                sql = sql.Replace("  ", " ");
+            if (string.IsNullOrEmpty(sql))
+                return sql;
 
-            }
-            return sql.Replace(Environment.NewLine, "");
+            return sql.Replace(Environment.NewLine, " ")
+                     .Replace("\t", " ")
+                     .Trim()
+                     .Replace("  ", " ");
         }
 
-        //replaces single quotes with two single quotes
+        // ✅ Escapes Single Quotes in SQL Queries
         public static string SQLFix(string sql)
         {
-            return sql.Replace("'", "''");
+            return string.IsNullOrEmpty(sql) ? sql : sql.Replace("'", "''");
         }
     }
 }

@@ -1,31 +1,45 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Data;
 
-namespace EmployeeManagamentSystem.Service
+namespace EmployeeManagamentSystem
 {
-    // Component
-    public interface IEmployeeComponent
+    public class EmployeeService
     {
-        void ShowDetails();
-    }
+        private EmployeeRepository _employeeRepository;
 
-    public class Employee : IEmployeeComponent
-    {
-        private string _name;
-        private string _position;
-
-        public Employee(string name, string position)
+        public EmployeeService()
         {
-            _name = name;
-            _position = position;
+            _employeeRepository = new EmployeeRepository();
         }
 
-        public void ShowDetails()
+        public DataTable Employees => _employeeRepository.GetAllEmployees();
+
+        public DataTable GetEmployeesByDepartment(int departmentId)
         {
-            Console.WriteLine($"Employee: {_name}, Position: {_position}");
+            return _employeeRepository.GetEmployeesByDepartment(departmentId);
         }
+        public DataRow GetEmployeeById(int employeeId)
+        {
+            DataTable dt = _employeeRepository.GetEmployeeById(employeeId);
+            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+        }
+
+        // Create a new employee
+        //public bool CreateEmployee(string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int departmentId, EmployeeRepository _employeeRepository)
+        //{
+        //    return _employeeRepository.CreateEmployee(firstName, lastName, email, dateOfBirth, employmentDate, departmentId);
+        //}
+
+        //// Update an existing employee
+        //public bool UpdateEmployee(int employeeId, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int departmentId)
+        //{
+        //    return _employeeRepository.UpdateEmployee(employeeId, firstName, lastName, email, dateOfBirth, employmentDate, departmentId);
+        //}
+
+        // Delete an employee by ID
+        //public bool DeleteEmployee(int employeeId)
+        //{
+        //    return _employeeRepository.DeleteEmployee(employeeId);
+        //}
     }
 }
+

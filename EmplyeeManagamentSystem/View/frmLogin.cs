@@ -1,32 +1,18 @@
-﻿using DBProgrammingDemo9;
+﻿using System;
+using System.Windows.Forms;
+using EmployeeManagamentSystem.Service;
 using EmployeeManagamentSystem.Util;
-using System.Data;
-using System.Data.SqlClient;
 
 namespace EmployeeManagamentSystem
 {
     public partial class frmLogin : Form
     {
+        private LoginService _loginService;
 
         public frmLogin()
         {
             InitializeComponent();
-           
-        }
-        private string GetRole(int userID)
-        {
-            string sql = "SELECT Role FROM Users WHERE UserID = @UserID";
-            // Create parameter collection and add the UserID parameter
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@UserID", userID)
-            };
-            DataTable dt = DataAccess.GetByparameter(sql, parameters);
-            if (dt.Rows.Count == 1)
-            {
-                return dt.Rows[0]["Role"].ToString();
-            }
-            return string.Empty;
+            _loginService = new LoginService();
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
@@ -36,34 +22,15 @@ namespace EmployeeManagamentSystem
                 string username = txtUsername.Text;
                 string password = txtPassword.Text;
 
-                string sql = "SELECT * FROM Users WHERE Username = @Username AND Password = @Password";
-                SqlParameter[] parameters = new SqlParameter[]
-                    {
-                        new SqlParameter("@Username", username),
-                        new SqlParameter("@Password", password)
-                    };
-                DataTable dt = DataAccess.GetByparameter(sql, parameters);
-
-                if (dt.Rows.Count == 1)
+                if (_loginService.ValidateUserCredentials(username, password, out int userID, out string role))
                 {
-                    int userID = Convert.ToInt32(dt.Rows[0]["UserID"]);
-
-                    string role = GetRole(userID);
-
                     if (role == "4")
                     {
-
-                        MessageBox.Show("Please waiting for admin approve!!", " ", MessageBoxButtons.OK);
-
-                        // Show user dashboard
-                        //UIUtilities.CurrentUserID = userID;
-                        //frmNotification frmNotification = new frmNotification();
-                        //frmNotification.Show();
-                        //this.Hide();
+                        MessageBox.Show("Please wait for admin approval.", " ", MessageBoxButtons.OK);
                     }
                     else
                     {
-                        // Show manager dashboard
+                        // Save the current user ID and show the manager dashboard
                         UIUtilities.CurrentUserID = userID;
                         frmEmployeeSystemManager frmEmployeeSystemManager = new frmEmployeeSystemManager();
                         frmEmployeeSystemManager.Show();
@@ -83,16 +50,14 @@ namespace EmployeeManagamentSystem
 
         private void lnkRegisterLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-
             frmRegister frmRegister = new frmRegister();
             frmRegister.Show();
-
             this.Hide();
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            //set default values
+            // Set default values
             txtUsername.Text = "admin";
             txtPassword.Text = "admin";
         }

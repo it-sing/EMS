@@ -1,18 +1,21 @@
-﻿using DBProgrammingDemo9;
+﻿using EmployeeManagamentSystem.Repositories;
+using EmployeeManagamentSystem.Services;
 using EmployeeManagamentSystem.Util;
+using System;
 using System.Data;
+using System.Windows.Forms;
 
 namespace EmployeeManagamentSystem
 {
     public partial class frmSalaries : Form
     {
-
         private int currentEmployeeID;
-        private decimal TAX_RATE = 0.15m;
+        private readonly SalaryService _salaryService;
 
         public frmSalaries()
         {
             InitializeComponent();
+            _salaryService = new SalaryService(new SalaryRepository()); // Inject repository into service
         }
 
         private void frmSalaries_Load(object sender, EventArgs e)
@@ -32,11 +35,7 @@ namespace EmployeeManagamentSystem
         {
             try
             {
-                string sqlString =
-                    $@"SELECT EmployeeID, 
-                        CONCAT(FirstName,' ', LastName) AS FullName 
-                        FROM Employees";
-                DataTable dtEmployees = DataAccess.GetData(sqlString);
+                DataTable dtEmployees = _salaryService.GetEmployees();
                 UIUtilities.BindComboBox(cboEmployees, dtEmployees, "FullName", "EmployeeID");
             }
             catch (Exception ex)
@@ -53,23 +52,13 @@ namespace EmployeeManagamentSystem
                 {
                     return;
                 }
-                string sqlString =
-                    $@"
-                        SELECT
-                            EmployeeID,
-                            CONCAT(FirstName,' ', LastName) as FullName,
-                            SalaryBeforeTax,
-                            TaxAmount,
-                            SalaryAfterTax
-                        FROM Employees
-                        WHERE EmployeeID = {currentEmployeeID}
-    ";
-                DataTable dtEmployees = DataAccess.GetData(sqlString);
+
+                currentEmployeeID = Convert.ToInt32(cboEmployees.SelectedValue);
+                DataTable dtEmployees = _salaryService.GetSalaryDetails(currentEmployeeID);
 
                 if (dtEmployees.Rows.Count == 1)
                 {
                     DataRow selectedEmployee = dtEmployees.Rows[0];
-                    string fullName = selectedEmployee["FullName"].ToString();
                     decimal salaryBeforeTax = selectedEmployee["SalaryBeforeTax"] != DBNull.Value ? Convert.ToDecimal(selectedEmployee["SalaryBeforeTax"]) : 0;
                     decimal taxAmount = selectedEmployee["TaxAmount"] != DBNull.Value ? Convert.ToDecimal(selectedEmployee["TaxAmount"]) : 0;
                     decimal salaryAfterTax = selectedEmployee["SalaryAfterTax"] != DBNull.Value ? Convert.ToDecimal(selectedEmployee["SalaryAfterTax"]) : 0;
@@ -78,12 +67,6 @@ namespace EmployeeManagamentSystem
                     txtSalaryBeforeTax.Text = salaryBeforeTax.ToString("C");
                     txtTaxAmount.Text = taxAmount.ToString("C");
                 }
-
-
-
-
-
-
             }
             catch (Exception ex)
             {
@@ -107,22 +90,9 @@ namespace EmployeeManagamentSystem
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-        private void NumericTextBox_Validating(object sender, System.ComponentModel.CancelEventArgs e)
-        {
-            TextBox txtBox = (TextBox)sender;
-            if (!decimal.TryParse(txtBox.Text, out decimal result))
-            {
-                e.Cancel = true;
-                errProvider.SetError(txtBox, "Please enter a valid number");
-            }
-            else
-            {
-                errProvider.SetError(txtBox, "");
-            }
-        }
+
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
             if (ValidateChildren(ValidationConstraints.Enabled))
             {
                 try
@@ -132,25 +102,12 @@ namespace EmployeeManagamentSystem
                         MessageBox.Show("Please select an employee", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
+
                     decimal salaryBeforeTax = Convert.ToDecimal(txtSalaryBeforeTax.Text);
-                    decimal taxAmount = salaryBeforeTax * TAX_RATE;
-                    decimal salaryAfterTax = salaryBeforeTax - taxAmount;
 
-                    txtTaxAmount.Text = taxAmount.ToString("C");
-                    txtSalaryAfterTax.Text = salaryAfterTax.ToString("C");
+                    bool salaryUpdated = _salaryService.UpdateSalary(currentEmployeeID, salaryBeforeTax);
 
-                    string sqlString = $@"
-                        UPDATE Employees
-                        SET
-                            SalaryBeforeTax = {salaryBeforeTax},
-                            TaxAmount = {taxAmount},
-                            SalaryAfterTax = {salaryAfterTax}
-                        WHERE EmployeeID = {currentEmployeeID}
-                    ";
-
-                    int recordAffected = DataAccess.SendData(sqlString);
-
-                    if (recordAffected == 1)
+                    if (salaryUpdated)
                     {
                         MessageBox.Show("Salary updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadSalaries();

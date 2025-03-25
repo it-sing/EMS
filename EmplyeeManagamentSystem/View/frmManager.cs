@@ -2,6 +2,7 @@
 using EmployeeManagamentSystem.Util;
 using System.ComponentModel;
 using System.Data;
+using System.Data.SqlClient;
 
 namespace EmployeeManagamentSystem
 {
@@ -127,7 +128,13 @@ namespace EmployeeManagamentSystem
                     UPDATE Employees SET DepartmentID = {departmentID} WHERE EmployeeID = {newManagerID};
                     UPDATE Departments SET ManagerID = {newManagerID} WHERE DepartmentID = {departmentID};
                 ";
-                int recordAffected = DataAccess.SendData(sqlString);
+                SqlParameter[] parameters = new SqlParameter[]
+       {
+                new SqlParameter("@DepartmentID", departmentID),
+                new SqlParameter("@ManagerID", newManagerID),
+       };
+
+                int recordAffected = DataAccess.SendData(sqlString, parameters);
 
                 if (recordAffected == 2)
                 {

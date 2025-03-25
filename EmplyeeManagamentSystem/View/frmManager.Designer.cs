@@ -58,7 +58,6 @@
             cboNewManager.Name = "cboNewManager";
             cboNewManager.Size = new Size(343, 28);
             cboNewManager.TabIndex = 11;
-            cboNewManager.Validating += cbo_Validating;
             // 
             // label1
             // 

@@ -97,7 +97,7 @@
             cboDepartments.Name = "cboDepartments";
             cboDepartments.Size = new Size(412, 39);
             cboDepartments.TabIndex = 35;
-            cboDepartments.Validating += cmb_Validating;
+            //cboDepartments.Validating += cmb_Validating;
             // 
             // label7
             // 
@@ -154,7 +154,7 @@
             txtEmail.Size = new Size(398, 38);
             txtEmail.TabIndex = 27;
             txtEmail.Tag = "Email";
-            txtEmail.Validating += txt_Validating;
+            //txtEmail.Validating += txt_Validating;
             // 
             // label4
             // 
@@ -186,7 +186,7 @@
             btnCancel.TabIndex = 23;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
-            btnCancel.Click += btnCancel_Click;
+            //btnCancel.Click += btnCancel_Click;
             // 
             // btnAdd
             // 
@@ -197,7 +197,7 @@
             btnAdd.TabIndex = 22;
             btnAdd.Text = "Add";
             btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
+            //btnAdd.Click += btnAdd_Click;
             // 
             // txtFirstname
             // 
@@ -207,7 +207,7 @@
             txtFirstname.Size = new Size(398, 38);
             txtFirstname.TabIndex = 17;
             txtFirstname.Tag = "First Name";
-            txtFirstname.Validating += txt_Validating;
+            //txtFirstname.Validating += txt_Validating;
             // 
             // label3
             // 
@@ -226,7 +226,7 @@
             txtLastName.Size = new Size(398, 38);
             txtLastName.TabIndex = 15;
             txtLastName.Tag = "Last Name";
-            txtLastName.Validating += txt_Validating;
+            //txtLastName.Validating += txt_Validating;
             // 
             // label2
             // 

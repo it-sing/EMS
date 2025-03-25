@@ -94,7 +94,6 @@
             txtUsername.Size = new Size(347, 55);
             txtUsername.TabIndex = 33;
             txtUsername.Tag = "First Name";
-            txtUsername.Validating += txt_Validating;
             // 
             // label7
             // 
@@ -149,7 +148,6 @@
             txtEmail.Size = new Size(347, 55);
             txtEmail.TabIndex = 27;
             txtEmail.Tag = "Email";
-            txtEmail.Validating += txt_Validating;
             // 
             // label4
             // 
@@ -169,7 +167,6 @@
             txtFirstname.Size = new Size(347, 55);
             txtFirstname.TabIndex = 17;
             txtFirstname.Tag = "First Name";
-            txtFirstname.Validating += txt_Validating;
             // 
             // label3
             // 
@@ -189,7 +186,6 @@
             txtLastName.Size = new Size(347, 55);
             txtLastName.TabIndex = 15;
             txtLastName.Tag = "Last Name";
-            txtLastName.Validating += txt_Validating;
             // 
             // label2
             // 

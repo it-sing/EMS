@@ -88,7 +88,6 @@ namespace EmployeeManagamentSystem.Util
 
         }
 
-
         public static string[]? GetCurrentUserPermission()
         {
             int currentUserId = UIUtilities.CurrentUserID;

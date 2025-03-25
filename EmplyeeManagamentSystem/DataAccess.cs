@@ -40,7 +40,7 @@ namespace DBProgrammingDemo9
         }
 
         // ✅ Fetches a DataSet from multiple SQL Queries
-        public static DataSet GetData(string[] sqlStatements)
+        public static DataSet GetMultiData(string[] sqlStatements)
         {
             try
             {
@@ -146,7 +146,7 @@ namespace DBProgrammingDemo9
         }
 
         // ✅ Executes INSERT, UPDATE, DELETE Queries
-        public static int SendData(string sql)
+        public static int SendData(string sql, SqlParameter[] parameters)
         {
             try
             {

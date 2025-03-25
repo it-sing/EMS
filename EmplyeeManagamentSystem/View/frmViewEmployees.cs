@@ -1,29 +1,31 @@
-﻿using DBProgrammingDemo9;
-using EmployeeManagamentSystem.Util;
+﻿using EmployeeManagamentSystem.Util;
+using System;
 using System.Data;
+using System.Windows.Forms;
 
 namespace EmployeeManagamentSystem
 {
     public partial class frmViewEmployees : Form
     {
+        private EmployeeService _employeeService;
+        private DepartmentService _departmentService;
+
         public frmViewEmployees()
         {
             InitializeComponent();
+            _employeeService = new EmployeeService();
+            _departmentService = new DepartmentService();
         }
 
         private void LoadDepartments()
         {
-            string sqlString = "SELECT * FROM Departments";
-
-            DataTable dtDepartments = DataAccess.GetData(sqlString);
-            //insert a new row at the at select index 1 that says all departments
+            DataTable dtDepartments = _departmentService.Departments;
+            // Insert a new row at the select index 1 that says "All Departments"
             DataRow dr = dtDepartments.NewRow();
             dr["DepartmentID"] = 0;
             dr["DepartmentName"] = "All Departments";
             dtDepartments.Rows.InsertAt(dr, 0);
             UIUtilities.BindComboBox(cboDepartment, dtDepartments, "DepartmentName", "DepartmentID");
-
-
         }
 
         private void frmViewEmployees_Load(object sender, EventArgs e)
@@ -34,16 +36,13 @@ namespace EmployeeManagamentSystem
                 toolStripStatusLabel2.Text = "";
                 LoadDepartments();
 
-                string sqlString = "SELECT * FROM Employees";
-                DataTable dtDepartments = DataAccess.GetData(sqlString);
-                dgvEmployees.DataSource = dtDepartments;
+                DataTable dtEmployees = _employeeService.Employees;
+                dgvEmployees.DataSource = dtEmployees;
 
                 dgvEmployees.Columns[0].HeaderText = "Employee ID";
-
                 dgvEmployees.AutoResizeColumns();
 
-                toolStripStatusLabel1.Text = "Total Employees: " + dtDepartments.Rows.Count;
-
+                toolStripStatusLabel1.Text = "Total Employees: " + dtEmployees.Rows.Count;
             }
             catch (Exception ex)
             {
@@ -61,19 +60,18 @@ namespace EmployeeManagamentSystem
                 {
                     return;
                 }
-                string sqlString = "SELECT * FROM Employees WHERE DepartmentID = " + cboDepartment.SelectedValue;
-                if (cboDepartment.SelectedIndex == 1)
-                {
-                    sqlString = "SELECT * FROM Employees";
-                }
-                DataTable dtDepartments = DataAccess.GetData(sqlString);
-                dgvEmployees.DataSource = dtDepartments;
+
+                int departmentId = Convert.ToInt32(cboDepartment.SelectedValue);
+                DataTable dtEmployees = departmentId == 0
+                    ? _employeeService.Employees
+                    : _employeeService.GetEmployeesByDepartment(departmentId);
+
+                dgvEmployees.DataSource = dtEmployees;
 
                 dgvEmployees.Columns[0].HeaderText = "Employee ID";
-
                 dgvEmployees.AutoResizeColumns();
-                toolStripStatusLabel1.Text = "Total Employees: " + dtDepartments.Rows.Count;
 
+                toolStripStatusLabel1.Text = "Total Employees: " + dtEmployees.Rows.Count;
             }
             catch (Exception ex)
             {
@@ -84,7 +82,6 @@ namespace EmployeeManagamentSystem
         private void dgvEmployees_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             try
-
             {
                 if (e.RowIndex == -1)
                 {
@@ -92,8 +89,6 @@ namespace EmployeeManagamentSystem
                 }
 
                 toolStripStatusLabel2.Text = "Record " + (e.RowIndex + 1) + " of " + dgvEmployees.Rows.Count;
-
-
             }
             catch (Exception ex)
             {

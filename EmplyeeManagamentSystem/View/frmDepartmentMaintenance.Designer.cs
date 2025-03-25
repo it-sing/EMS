@@ -147,7 +147,6 @@ namespace EmployeeManagamentSystem
             txtDescription.Size = new Size(564, 200);
             txtDescription.TabIndex = 3;
             txtDescription.Tag = "Department Description";
-            txtDescription.Validating += txt_Validating;
             // 
             // label2
             // 
@@ -166,7 +165,6 @@ namespace EmployeeManagamentSystem
             txtDepartmentName.Size = new Size(564, 38);
             txtDepartmentName.TabIndex = 1;
             txtDepartmentName.Tag = "Department Name";
-            txtDepartmentName.Validating += txt_Validating;
             // 
             // label1
             // 

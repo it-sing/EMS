@@ -64,7 +64,6 @@ namespace EmployeeManagamentSystem
             txtEmail.Size = new Size(357, 27);
             txtEmail.TabIndex = 10;
             txtEmail.Tag = "Email";
-            txtEmail.Validating += txt_Validating;
             // 
             // label3
             // 
@@ -84,7 +83,6 @@ namespace EmployeeManagamentSystem
             txtUsername.Size = new Size(357, 27);
             txtUsername.TabIndex = 8;
             txtUsername.Tag = "Username";
-            txtUsername.Validating += txt_Validating;
             // 
             // label2
             // 
@@ -116,7 +114,6 @@ namespace EmployeeManagamentSystem
             txtPassword.Size = new Size(357, 27);
             txtPassword.TabIndex = 13;
             txtPassword.Tag = "Password";
-            txtPassword.Validating += txt_Validating;
             // 
             // label4
             // 

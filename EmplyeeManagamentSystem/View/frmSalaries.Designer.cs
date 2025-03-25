@@ -92,7 +92,7 @@
             txtSalaryBeforeTax.Name = "txtSalaryBeforeTax";
             txtSalaryBeforeTax.Size = new Size(331, 27);
             txtSalaryBeforeTax.TabIndex = 17;
-            txtSalaryBeforeTax.Validating += NumericTextBox_Validating;
+            //txtSalaryBeforeTax.Validating += NumericTextBox_Validating;
             // 
             // txtTaxAmount
             // 

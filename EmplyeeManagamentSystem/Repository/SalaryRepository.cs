@@ -34,20 +34,24 @@ namespace EmployeeManagamentSystem.Repositories
 
         public int UpdateSalary(int employeeID, decimal salaryBeforeTax, decimal taxAmount, decimal salaryAfterTax)
         {
-            string sql = @"
-                UPDATE Employees
-                SET SalaryBeforeTax = @SalaryBeforeTax,
-                    TaxAmount = @TaxAmount,
-                    SalaryAfterTax = @SalaryAfterTax
-                WHERE EmployeeID = @EmployeeID";
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@SalaryBeforeTax", salaryBeforeTax),
-                new SqlParameter("@TaxAmount", taxAmount),
-                new SqlParameter("@SalaryAfterTax", salaryAfterTax),
-                new SqlParameter("@EmployeeID", employeeID)
-            };
-            return DataAccess.SendData(sql, parameters);
+            string sql = $@"
+                        UPDATE Employees
+                        SET
+                            SalaryBeforeTax = {salaryBeforeTax},
+                            TaxAmount = {taxAmount},
+                            SalaryAfterTax = {salaryAfterTax}
+                        WHERE EmployeeID = {employeeID}
+                    ";
+
+            //SqlParameter[] parameters = new SqlParameter[]
+            //{
+            //    new SqlParameter("@SalaryBeforeTax", salaryBeforeTax),
+            //    new SqlParameter("@TaxAmount", taxAmount),
+            //    new SqlParameter("@SalaryAfterTax", salaryAfterTax),
+            //    new SqlParameter("@EmployeeID", employeeID)
+            //};
+
+            return DataAccess.Send(sql);
         }
     }
 }

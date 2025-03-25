@@ -72,6 +72,7 @@ namespace EmployeeManagamentSystem
             {
                 new SqlParameter("@DepartmentName", departmentName),
                 new SqlParameter("@Description", description),
+                new SqlParameter("@DepartmentID", departmentId),
             };
 
             return DataAccess.SendData(sql, parameters);

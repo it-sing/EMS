@@ -3,11 +3,22 @@ using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Data;
 using DBProgrammingDemo9;
+using System.Diagnostics;
 
 namespace EmployeeManagamentSystem.Repository
 {
     public class UserRepository
     {
+        public string GetUserRole(int userID)
+        {
+            string sql = "SELECT Role FROM Users WHERE UserID = @UserID";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+            new SqlParameter("@UserID", userID)
+            };
+            DataTable dt = DataAccess.GetByParameter(sql, parameters);
+            return dt.Rows.Count == 1 ? dt.Rows[0]["Role"].ToString() : string.Empty;
+        }
         public DataTable GetUserByUsernameAndPassword(string username, string password)
         {
             string sql = "SELECT * FROM Users WHERE Username = @Username AND Password = @Password";
@@ -18,42 +29,25 @@ namespace EmployeeManagamentSystem.Repository
             };
             return DataAccess.GetByParameter(sql, parameters);
         }
-        public string GetRole(int userID)
-        {
-            string sql = "SELECT Role FROM Users WHERE UserID = @UserID";
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@UserID", userID)
-            };
-            DataTable dt = DataAccess.GetByParameter(sql, parameters);
-            if (dt.Rows.Count == 1)
-            {
-                return dt.Rows[0]["Role"].ToString();
-            }
-            return string.Empty;
-        }
 
         public DataTable GetUserById(int userId)
         {
-            string sql = @"
-                SELECT 
-                    EmployeeID, 
-                    FirstName, 
-                    LastName, 
-                    Email, 
-                    Username, 
-                    DateOfBirth, 
-                    EmploymentDate 
+            string sql = $@"
+                    SELECT
+                    EmployeeID,
+                    Employees.FirstName,
+                    Employees.LastName,
+                    Employees.Email,
+                    Users.Username,
+                    Employees.DateOfBirth,
+                    Employees.EmploymentDate
                 FROM Employees
-                INNER JOIN Users ON Employees.UserID = Users.UserID
-                WHERE Users.UserID = @UserID";
+                    INNER JOIN Users
+                    ON Employees.UserID = Users.UserID
+                WHERE Users.UserID = {userId};
+                 ";
 
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@UserID", userId)
-            };
-
-            return DataAccess.GetByParameter(sql, parameters);
+            return DataAccess.GetData(sql);
         }
 
         public int SaveEmployeeChanges(int userId, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate)
@@ -111,30 +105,28 @@ namespace EmployeeManagamentSystem.Repository
             return count > 0;
         }
 
-        public int CreateUser(string username, string password, string email, int roleID, DateTime createdAt)
+        public int CreateUser(string username, string password, string email, int roleId, DateTime createdAt)
         {
-            string sql = "INSERT INTO Users (Username, Password, Email, RoleID, CreatedAt) OUTPUT INSERTED.UserID VALUES (@Username, @Password, @Email, @RoleID, @CreatedAt);";
+            string sql = "INSERT INTO Users (Username, Password, Email, RoleID, CreatedAt) " +
+                         "OUTPUT INSERTED.UserID " +
+                         "VALUES (@Username, @Password, @Email, @RoleID, @CreatedAt);";
 
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@Username", username),
-                new SqlParameter("@Password", password),
+                new SqlParameter("@Password", password), // Password stored as plain text (not recommended)
                 new SqlParameter("@Email", email),
-                new SqlParameter("@RoleID", roleID),
+                new SqlParameter("@RoleID", roleId),
                 new SqlParameter("@CreatedAt", createdAt)
             };
 
             DataTable dt = DataAccess.GetByParameter(sql, parameters);
-            if (dt.Rows.Count > 0)
-            {
-                return (int)dt.Rows[0]["UserID"];
-            }
-            else
-            {
-                return -1; // Indicate failure
-            }
-        }
 
+            if (dt.Rows.Count > 0)
+                return Convert.ToInt32(dt.Rows[0]["UserID"]);
+
+            return -1; // Indicate failure
+        }
         public DataSet GetUsers(string filterByRole = null)
         {
             string sql = "SELECT U.UserID, U.Username, U.Email, R.RoleName, U.CreatedAt " +

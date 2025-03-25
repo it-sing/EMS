@@ -97,6 +97,7 @@
             cboDepartments.Name = "cboDepartments";
             cboDepartments.Size = new Size(412, 39);
             cboDepartments.TabIndex = 35;
+            cboDepartment.SelectedIndexChanged += cboDepartment_SelectedIndexChanged;
             //cboDepartments.Validating += cmb_Validating;
             // 
             // label7
@@ -117,6 +118,7 @@
             dtpEmployemntDate.Name = "dtpEmployemntDate";
             dtpEmployemntDate.Size = new Size(412, 38);
             dtpEmployemntDate.TabIndex = 31;
+            dgvEmployees.CellClick += dgvEmployees_CellClick;
             // 
             // label6
             // 

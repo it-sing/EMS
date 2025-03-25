@@ -31,17 +31,25 @@ namespace EmployeeManagamentSystem
         private void GetCurrentUser()
         {
             DataTable dtUser = _userService.GetUserDetails(currentUserId);
-            if (dtUser.Rows.Count > 0)
-            {
-                DataRow dr = dtUser.Rows[0];
-                txtEmployeeID.Text = dr["EmployeeID"].ToString();
-                txtFirstname.Text = dr["FirstName"].ToString();
-                txtLastName.Text = dr["LastName"].ToString();
-                txtEmail.Text = dr["Email"].ToString();
-                txtUsername.Text = dr["Username"].ToString();
-                dtpDateOfBirth.Value = Convert.ToDateTime(dr["DateOfBirth"]);
-                dtpEmployemntDate.Value = Convert.ToDateTime(dr["EmploymentDate"]);
-            }
+
+            //if (dtUser == null || dtUser.Rows.Count == 0)
+            //{
+            //    MessageBox.Show("No user found for the given ID.");
+            //    return;
+            //}
+
+            DataRow dr = dtUser.Rows[0];
+
+            // Ensure to check if the data is null before setting it
+            txtEmployeeID.Text = dr["EmployeeID"] != DBNull.Value ? dr["EmployeeID"].ToString() : string.Empty;
+            txtFirstname.Text = dr["FirstName"] != DBNull.Value ? dr["FirstName"].ToString() : string.Empty;
+            txtLastName.Text = dr["LastName"] != DBNull.Value ? dr["LastName"].ToString() : string.Empty;
+            txtEmail.Text = dr["Email"] != DBNull.Value ? dr["Email"].ToString() : string.Empty;
+            txtUsername.Text = dr["Username"] != DBNull.Value ? dr["Username"].ToString() : string.Empty;
+
+            // Date parsing with null check
+            dtpDateOfBirth.Value = dr["DateOfBirth"] != DBNull.Value ? Convert.ToDateTime(dr["DateOfBirth"]) : DateTime.Now;
+            dtpEmployemntDate.Value = dr["EmploymentDate"] != DBNull.Value ? Convert.ToDateTime(dr["EmploymentDate"]) : DateTime.Now;
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)

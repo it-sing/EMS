@@ -23,7 +23,7 @@ namespace EmployeeManagamentSystem.Service
             if (dt.Rows.Count == 1)
             {
                 userID = Convert.ToInt32(dt.Rows[0]["UserID"]);
-                role = _userRepository.GetRole(userID);
+                role = _userRepository.GetUserRole(userID);
                 return true;
             }
             else

@@ -15,7 +15,7 @@ namespace EmployeeManagamentSystem
         public frmSalaries()
         {
             InitializeComponent();
-            _salaryService = new SalaryService(new SalaryRepository()); // Inject repository into service
+            _salaryService = new SalaryService(new SalaryRepository()); 
         }
 
         private void frmSalaries_Load(object sender, EventArgs e)

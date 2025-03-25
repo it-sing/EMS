@@ -27,6 +27,24 @@ namespace EmployeeManagamentSystem
             try
             {
                 LoadFirstDepartment();
+                LoadViewDepartments();
+
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void LoadViewDepartments()
+        {
+            try
+            {
+                // Get the department data from the service
+                DataTable dtDepartments = _departmentService.GetAllDepartments();
+                dgvDepartments.DataSource = dtDepartments;
+                // Customize column headers
+                dgvDepartments.Columns[0].HeaderText = "Department ID";
+                dgvDepartments.AutoResizeColumns();
             }
             catch (Exception ex)
             {

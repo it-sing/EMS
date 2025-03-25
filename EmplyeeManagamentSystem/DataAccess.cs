@@ -99,32 +99,62 @@ namespace DBProgrammingDemo9
         }
 
         // ✅ Fetches a DataTable with SQL Parameters
+
         public static DataTable GetByParameter(string sql, SqlParameter[] parameters)
         {
+            DataTable dt = new DataTable();
+
             try
             {
                 using (SqlConnection conn = OpenConnection())
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    if (parameters != null)
                     {
-                        if (parameters != null)
-                        {
-                            cmd.Parameters.AddRange(parameters);
-                        }
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                        {
-                            DataTable dt = new DataTable();
-                            da.Fill(dt);
-                            return dt;
-                        }
+                        cmd.Parameters.AddRange(parameters);
+                    }
+
+                    using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                    {
+                        da.Fill(dt);
                     }
                 }
             }
-            catch (SqlException ex)
+            catch (Exception ex) // Catch all exceptions, not just SqlException
             {
-                throw new Exception("Error executing query with SQL parameters.", ex);
+                // Log error message if logging system is available
+                Console.WriteLine($"Error executing query: {ex.Message}");
             }
+
+            return dt; // Return empty DataTable on failure instead of throwing
         }
+
+        //public static DataTable GetByParameter(string sql, SqlParameter[] parameters)
+        //{
+        //    try
+        //    {
+        //        using (SqlConnection conn = OpenConnection())
+        //        {
+        //            using (SqlCommand cmd = new SqlCommand(sql, conn))
+        //            {
+        //                if (parameters != null)
+        //                {
+        //                    cmd.Parameters.AddRange(parameters);
+        //                }
+        //                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+        //                {
+        //                    DataTable dt = new DataTable();
+        //                    da.Fill(dt);
+        //                    return dt;
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch (SqlException ex)
+        //    {
+        //        throw new Exception("Error executing query with SQL parameters.", ex);
+        //    }
+        //}
 
         // ✅ Fetches a Single Value
         public static object GetValue(string sql)
@@ -145,7 +175,7 @@ namespace DBProgrammingDemo9
             }
         }
 
-        // ✅ Executes INSERT, UPDATE, DELETE Queries
+        // ✅ Executes INSERT, UPDATE, DELETE Queries with Parameters
         public static int SendData(string sql, SqlParameter[] parameters)
         {
             try
@@ -161,6 +191,47 @@ namespace DBProgrammingDemo9
             catch (SqlException ex)
             {
                 throw new Exception("Error executing data modification command.", ex);
+            }
+        }
+
+        // ✅ Executes INSERT, UPDATE, DELETE Queries
+        public static int Send(string sql)
+        {
+            try
+            {
+                using (SqlConnection conn = OpenConnection())
+                {
+                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    {
+                        return cmd.ExecuteNonQuery();
+                    }
+                }
+            }
+            catch (SqlException ex)
+            {
+                //Console.WriteLine($"Error executing query: {ex.Message}");
+
+                throw new Exception("Error executing data modification command.", ex);
+            }
+        }
+
+        public static object SendAndReturnId(string sql, SqlParameter[] parameters)
+        {
+            try
+            {
+                using (SqlConnection conn = OpenConnection())
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                {
+                    if (parameters != null)
+                    {
+                        cmd.Parameters.AddRange(parameters);
+                    }
+                    return cmd.ExecuteScalar(); // ✅ Returns the inserted UserID
+                }
+            }
+            catch (SqlException ex)
+            {
+                throw new Exception("Error retrieving scalar value.", ex);
             }
         }
 

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Data;
+using System.Diagnostics;
 using EmployeeManagamentSystem.Repository;
+using EmployeeManagamentSystem.Util;
 
 namespace EmployeeManagamentSystem
 {
@@ -33,29 +35,24 @@ namespace EmployeeManagamentSystem
             int result = _userRepository.CreateEmployee(firstName, lastName, email, dateOfBirth, employmentDate, userId);
             return result > 0;
         }
-        public bool CreateAccount(string username, string password, string email)
+        public bool RegisterUser(string username, string password, string email)
         {
-            // Check if the username already exists
             if (_userRepository.IsUserNameExists(username))
             {
-                return false;
+                return false; // Username already exists
             }
 
-            // Hash the password (this could be done using a stronger hashing algorithm like bcrypt)
-            string hashedPassword = HashPassword(password);
+            DateTime createdAt = DateTime.Now;
+            int roleID = 4; // Default role for new users
+            int userId = _userRepository.CreateUser(username, password, email, roleID, createdAt);
 
-            // Create the user in the database
-            int userId = _userRepository.CreateUser(username, hashedPassword, email, 4, DateTime.Now);
-
-            return userId > 0;
-        }
-        private string HashPassword(string password)
-        {
-            using (var sha256 = System.Security.Cryptography.SHA256.Create())
+            if (userId > 0)
             {
-                byte[] hashBytes = sha256.ComputeHash(System.Text.Encoding.UTF8.GetBytes(password));
-                return Convert.ToBase64String(hashBytes); // You can use a stronger hash like bcrypt in production
+                UIUtilities.CurrentUserID = userId;
+                return true;
             }
+
+            return false;
         }
 
         public DataSet GetUsers(string filterByRole = null)

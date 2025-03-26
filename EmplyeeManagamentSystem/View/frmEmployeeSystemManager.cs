@@ -4,7 +4,6 @@ namespace EmployeeManagamentSystem
 {
     public partial class frmEmployeeSystemManager : Form
     {
-
         public frmEmployeeSystemManager()
         {
             InitializeComponent();
@@ -21,7 +20,7 @@ namespace EmployeeManagamentSystem
             {
                 tag = ((ToolStripButton)sender).Tag;
             }
-
+            //MessageBox.Show(tag.ToString());
 
             Form? childForm = null;
 
@@ -49,18 +48,35 @@ namespace EmployeeManagamentSystem
                 case "About":
                     childForm = new frmAbout();
                     break;
-                case "View Departments":
-                    childForm = new frmViewDepartments();
-                    break;
-                case "View Employees":
-                    childForm = new frmViewEmployees();
-                    break;
+                //case "View Departments":
+                //    childForm = new frmViewDepartments();
+                //    break;
+                //case "View Employees":
+                //    childForm = new frmViewEmployees();
+                //    break;
                 case "Salary":
                     childForm = new frmSalaries();
                     break;
                 case "Manager":
                     childForm = new frmManager();
                     break;
+                case "Logout":
+                    DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+                    if (result == DialogResult.Yes)
+                    {
+                        foreach (Form child in this.MdiChildren)
+                        {
+                            child.Close();
+                        }
+                        this.Close();
+                        childForm = new frmLogin();
+
+                        //Application.Exit();
+                        // Ensures the application exits completely
+                    }
+                    break;
+
+
                 default:
                     MessageBox.Show($"I was called by {sender}");
                     break;
@@ -81,9 +97,9 @@ namespace EmployeeManagamentSystem
 
                 // Assign MDI parent only for specific forms
                 if (childForm is frmEditProfile ||
-                    childForm is frmAbout ||
-                    childForm is frmViewDepartments ||
-                    childForm is frmViewEmployees)
+                    childForm is frmAbout)
+                    //childForm is frmViewDepartments ||
+                    //childForm is frmViewEmployees)
                 {
                     childForm.MdiParent = this;
                 }
@@ -200,34 +216,34 @@ namespace EmployeeManagamentSystem
                     departmentsToolStripMenuItem.Visible = false;
                 }
 
-                if (!Authorization.ShowEmployeeViewerForm())
-                {
-                    viewEmployeesToolStripMenuItem.Visible = false;
-                    employeesToolStripButton.Visible = false;
-                }
+                //if (!Authorization.ShowEmployeeViewerForm())
+                //{
+                //    viewEmployeesToolStripMenuItem.Visible = false;
+                //    employeesToolStripButton.Visible = false;
+                //}
 
-                if (!Authorization.ShowDepartmentViewerForm())
-                {
-                    viewDepartmentsToolStripMenuItem.Visible = false;
-                    departmentToolStripButton.Visible = false;
-                }
+                //if (!Authorization.ShowDepartmentViewerForm())
+                //{
+                //    viewDepartmentsToolStripMenuItem.Visible = false;
+                //    departmentToolStripButton.Visible = false;
+                //}
 
                 if (!Authorization.ShowEditProfileForm())
                 {
                     editProfileToolStripMenuItem.Visible = false;
                 }
 
-                if (!Authorization.ShowEmployeeViewerForm())
-                {
-                    viewEmployeesToolStripMenuItem.Visible = false;
-                    employeesToolStripButton.Visible = false;
-                }
+                //if (!Authorization.ShowEmployeeViewerForm())
+                //{
+                //    viewEmployeesToolStripMenuItem.Visible = false;
+                //    employeesToolStripButton.Visible = false;
+                //}
 
-                if (!Authorization.ShowDepartmentViewerForm())
-                {
-                    viewDepartmentsToolStripMenuItem.Visible = false;
-                    departmentToolStripButton.Visible = false;
-                }
+                //if (!Authorization.ShowDepartmentViewerForm())
+                //{
+                //    viewDepartmentsToolStripMenuItem.Visible = false;
+                //    departmentToolStripButton.Visible = false;
+                //}
 
                 if (!Authorization.ShowManagerForm())
                 {

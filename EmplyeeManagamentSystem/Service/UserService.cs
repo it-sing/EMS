@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Data;
 using System.Diagnostics;
+using DBProgrammingDemo9;
 using EmployeeManagamentSystem.Repository;
 using EmployeeManagamentSystem.Util;
 
@@ -9,6 +10,8 @@ namespace EmployeeManagamentSystem
     public class UserService
     {
         private UserRepository _userRepository;
+        private const int DEFAULT_ROLE_ID = 4;
+
         public UserService()
         {
             _userRepository = new UserRepository();
@@ -35,23 +38,32 @@ namespace EmployeeManagamentSystem
             int result = _userRepository.CreateEmployee(firstName, lastName, email, dateOfBirth, employmentDate, userId);
             return result > 0;
         }
+
         public bool RegisterUser(string username, string password, string email)
         {
             if (_userRepository.IsUserNameExists(username))
             {
-                return false; // Username already exists
+                MessageBox.Show("Username already exists.");
+                return false;
+            }
+            if (_userRepository.IsUserEmailExists(email))
+            {
+                MessageBox.Show("Email already exists.");
+                return false;
             }
 
+            int roleID = 4;
             DateTime createdAt = DateTime.Now;
-            int roleID = 4; // Default role for new users
-            int userId = _userRepository.CreateUser(username, password, email, roleID, createdAt);
 
-            if (userId > 0)
+            int rowsAffected = _userRepository.CreateUser(username, password, email, roleID, createdAt);
+
+            if (rowsAffected == 1)
             {
+                int userId = _userRepository.GetUserId(username);
                 UIUtilities.CurrentUserID = userId;
                 return true;
             }
-
+            MessageBox.Show("User creation failed");
             return false;
         }
 

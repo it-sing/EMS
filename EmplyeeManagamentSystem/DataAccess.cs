@@ -215,26 +215,6 @@ namespace DBProgrammingDemo9
             }
         }
 
-        public static object SendAndReturnId(string sql, SqlParameter[] parameters)
-        {
-            try
-            {
-                using (SqlConnection conn = OpenConnection())
-                using (SqlCommand cmd = new SqlCommand(sql, conn))
-                {
-                    if (parameters != null)
-                    {
-                        cmd.Parameters.AddRange(parameters);
-                    }
-                    return cmd.ExecuteScalar(); // ✅ Returns the inserted UserID
-                }
-            }
-            catch (SqlException ex)
-            {
-                throw new Exception("Error retrieving scalar value.", ex);
-            }
-        }
-
         // ✅ Updates Data with Parameters
         public static int UpdateData(string sql, Dictionary<string, object> parameters)
         {

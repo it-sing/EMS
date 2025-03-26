@@ -4,6 +4,7 @@ using System.Data.SqlClient;
 using System.Data;
 using DBProgrammingDemo9;
 using System.Diagnostics;
+using EmployeeManagamentSystem.Util;
 
 namespace EmployeeManagamentSystem.Repository
 {
@@ -96,37 +97,37 @@ namespace EmployeeManagamentSystem.Repository
         public bool IsUserNameExists(string userName)
         {
             string sql = "SELECT COUNT(*) FROM Users WHERE Username = @Username;";
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@Username", userName)
-            };
-
-            int count = (int)DataAccess.GetByParameter(sql, parameters).Rows[0][0];
-            return count > 0;
-        }
-
-        public int CreateUser(string username, string password, string email, int roleId, DateTime createdAt)
-        {
-            string sql = "INSERT INTO Users (Username, Password, Email, RoleID, CreatedAt) " +
-                         "OUTPUT INSERTED.UserID " +
-                         "VALUES (@Username, @Password, @Email, @RoleID, @CreatedAt);";
-
-            SqlParameter[] parameters = new SqlParameter[]
-            {
-                new SqlParameter("@Username", username),
-                new SqlParameter("@Password", password), // Password stored as plain text (not recommended)
-                new SqlParameter("@Email", email),
-                new SqlParameter("@RoleID", roleId),
-                new SqlParameter("@CreatedAt", createdAt)
-            };
-
+            SqlParameter[] parameters = { new SqlParameter("@Username", userName) };
             DataTable dt = DataAccess.GetByParameter(sql, parameters);
-
-            if (dt.Rows.Count > 0)
-                return Convert.ToInt32(dt.Rows[0]["UserID"]);
-
-            return -1; // Indicate failure
+            return dt.Rows.Count > 0 && Convert.ToInt32(dt.Rows[0][0]) > 0;
         }
+
+        public bool IsUserEmailExists(string email)
+        {
+            string sql = "SELECT COUNT(*) FROM Users WHERE Email = @Email;";
+            SqlParameter[] parameters = { new SqlParameter("@Email", email) };
+            DataTable dt = DataAccess.GetByParameter(sql, parameters);
+            return dt.Rows.Count > 0 && Convert.ToInt32(dt.Rows[0][0]) > 0;
+        }
+
+        public int CreateUser(string username, string password, string email, int roleID, DateTime createdAt)
+        {
+            string sql = $"INSERT INTO Users (Username, Password, Email, Role, CreatedAt) VALUES ('{username}', '{password}', '{email}', {roleID}, '{createdAt}');";
+
+            return DataAccess.Send(sql);
+        }
+
+        public int GetUserId(string username)
+        {
+            //sql = $"SELECT UserID FROM Users WHERE Username = '{username}';";
+            //DataTable dt = DataAccess.GetData(sql);
+            //int userId = (int)dt.Rows[0]["UserID"];
+            string sql = "SELECT UserID FROM Users WHERE Username = @Username;";
+            SqlParameter[] parameters = { new SqlParameter("@Username", username) };
+            DataTable dt = DataAccess.GetByParameter(sql, parameters);
+            return dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["UserID"]) : -1;
+        }
+
         public DataSet GetUsers(string filterByRole = null)
         {
             string sql = "SELECT U.UserID, U.Username, U.Email, R.RoleName, U.CreatedAt " +

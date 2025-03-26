@@ -24,8 +24,6 @@ namespace EmployeeManagamentSystem.Util
     {
         private static bool showEmployeeEditorForm = false;
         private static bool showDepartmentEditorForm = false;
-        private static bool showEmployeeViewerForm = false;
-        private static bool showDepartmentViewerForm = false;
         private static bool showEditProfileForm = true;
         private static bool showManagerForm = false;
         private static bool showSalaryForm = false;
@@ -33,6 +31,7 @@ namespace EmployeeManagamentSystem.Util
         private static bool showAttendanceForm = false;
         private static bool showReportForm = false;
         private static bool showNotificationForm = false;
+        private static bool showLogoutForm = false;
 
 
         public static void SetFormAccess(Permission permission)
@@ -43,8 +42,6 @@ namespace EmployeeManagamentSystem.Util
                 case Permission.ALL:
                     showEmployeeEditorForm = true;
                     showDepartmentEditorForm = true;
-                    showEmployeeViewerForm = true;
-                    showDepartmentViewerForm = true;
                     showEditProfileForm = true;
                     showManagerForm = true;
                     showSalaryForm = true;
@@ -52,13 +49,14 @@ namespace EmployeeManagamentSystem.Util
                     showAttendanceForm = true;
                     showReportForm = true;
                     showNotificationForm = true;
+                    showLogoutForm = true;
 
                     break;
-                case Permission.VIEW_EMPLOYEES:
-                    //show employee viewer form
-                    showEmployeeViewerForm = true;
+                //case Permission.VIEW_EMPLOYEES:
+                //    //show employee viewer form
+                //    showEmployeeViewerForm = true;
 
-                    break;
+                //    break;
                 case Permission.ADD_EMPLOYEE:
                     //show employee editor form
                     showEmployeeEditorForm = true;
@@ -135,15 +133,15 @@ namespace EmployeeManagamentSystem.Util
             return showDepartmentEditorForm;
         }
 
-        public static bool ShowEmployeeViewerForm()
-        {
-            return showEmployeeViewerForm;
-        }
+        //public static bool ShowEmployeeViewerForm()
+        //{
+        //    return showEmployeeViewerForm;
+        //}
 
-        public static bool ShowDepartmentViewerForm()
-        {
-            return showDepartmentViewerForm;
-        }
+        //public static bool ShowDepartmentViewerForm()
+        //{
+        //    return showDepartmentViewerForm;
+        //}
 
         public static bool ShowEditProfileForm()
         {

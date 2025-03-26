@@ -35,13 +35,12 @@ namespace EmployeeManagamentSystem
             employeesToolStripMenuItem = new ToolStripMenuItem();
             departmentsToolStripMenuItem = new ToolStripMenuItem();
             editProfileToolStripMenuItem = new ToolStripMenuItem();
-            viewEmployeesToolStripMenuItem = new ToolStripMenuItem();
-            viewDepartmentsToolStripMenuItem = new ToolStripMenuItem();
             setManagerToolStripMenuItem = new ToolStripMenuItem();
             attendanceToolStripMenuItem = new ToolStripMenuItem();
             setSalaToolStripMenuItem = new ToolStripMenuItem();
             reportToolStripMenuItem = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
+            logoutToolStripMenuItem = new ToolStripMenuItem();
             statusStrip = new StatusStrip();
             toolStripStatusLabel = new ToolStripStatusLabel();
             toolStrip1 = new ToolStrip();
@@ -55,124 +54,115 @@ namespace EmployeeManagamentSystem
             // 
             // menuStrip
             // 
-            menuStrip.ImageScalingSize = new Size(20, 20);
-            menuStrip.Items.AddRange(new ToolStripItem[] { userToolStripMenuItem, employeesToolStripMenuItem, departmentsToolStripMenuItem, editProfileToolStripMenuItem, viewEmployeesToolStripMenuItem, viewDepartmentsToolStripMenuItem, setManagerToolStripMenuItem, attendanceToolStripMenuItem, setSalaToolStripMenuItem, reportToolStripMenuItem, aboutToolStripMenuItem });
+            menuStrip.ImageScalingSize = new Size(40, 40);
+            menuStrip.Items.AddRange(new ToolStripItem[] { userToolStripMenuItem, employeesToolStripMenuItem, departmentsToolStripMenuItem, editProfileToolStripMenuItem, setManagerToolStripMenuItem, attendanceToolStripMenuItem, setSalaToolStripMenuItem, reportToolStripMenuItem, aboutToolStripMenuItem, logoutToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new Padding(8, 3, 0, 3);
-            menuStrip.Size = new Size(1283, 29);
+            menuStrip.Size = new Size(1283, 33);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "MenuStrip";
             // 
             // userToolStripMenuItem
             // 
-            userToolStripMenuItem.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold);
+            userToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             userToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
             userToolStripMenuItem.Name = "userToolStripMenuItem";
-            userToolStripMenuItem.Size = new Size(58, 23);
+            userToolStripMenuItem.Size = new Size(64, 27);
             userToolStripMenuItem.Tag = "User";
             userToolStripMenuItem.Text = "User";
             userToolStripMenuItem.Click += ShowNewForm;
             // 
             // employeesToolStripMenuItem
             // 
-            employeesToolStripMenuItem.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold);
+            employeesToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             employeesToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
             employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
-            employeesToolStripMenuItem.Size = new Size(149, 23);
+            employeesToolStripMenuItem.Size = new Size(107, 27);
             employeesToolStripMenuItem.Tag = "Employees";
-            employeesToolStripMenuItem.Text = "Employee Editor";
+            employeesToolStripMenuItem.Text = "Employee";
             employeesToolStripMenuItem.Click += ShowNewForm;
             // 
             // departmentsToolStripMenuItem
             // 
-            departmentsToolStripMenuItem.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold);
+            departmentsToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             departmentsToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
             departmentsToolStripMenuItem.Name = "departmentsToolStripMenuItem";
-            departmentsToolStripMenuItem.Size = new Size(164, 23);
+            departmentsToolStripMenuItem.Size = new Size(125, 27);
             departmentsToolStripMenuItem.Tag = "Departments";
-            departmentsToolStripMenuItem.Text = "Department Editor";
+            departmentsToolStripMenuItem.Text = "Department";
             departmentsToolStripMenuItem.Click += ShowNewForm;
             // 
             // editProfileToolStripMenuItem
             // 
-            editProfileToolStripMenuItem.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold);
+            editProfileToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             editProfileToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
             editProfileToolStripMenuItem.Name = "editProfileToolStripMenuItem";
-            editProfileToolStripMenuItem.Size = new Size(108, 23);
+            editProfileToolStripMenuItem.Size = new Size(116, 27);
             editProfileToolStripMenuItem.Tag = "Edit Profile";
             editProfileToolStripMenuItem.Text = "EditProfile";
             editProfileToolStripMenuItem.Click += ShowNewForm;
             // 
-            // viewEmployeesToolStripMenuItem
-            // 
-            viewEmployeesToolStripMenuItem.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold);
-            viewEmployeesToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
-            viewEmployeesToolStripMenuItem.Name = "viewEmployeesToolStripMenuItem";
-            viewEmployeesToolStripMenuItem.Size = new Size(144, 23);
-            viewEmployeesToolStripMenuItem.Tag = "View Employees";
-            viewEmployeesToolStripMenuItem.Text = "View Employees";
-            viewEmployeesToolStripMenuItem.Click += ShowNewForm;
-            // 
-            // viewDepartmentsToolStripMenuItem
-            // 
-            viewDepartmentsToolStripMenuItem.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold);
-            viewDepartmentsToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
-            viewDepartmentsToolStripMenuItem.Name = "viewDepartmentsToolStripMenuItem";
-            viewDepartmentsToolStripMenuItem.Size = new Size(159, 23);
-            viewDepartmentsToolStripMenuItem.Tag = "View Departments";
-            viewDepartmentsToolStripMenuItem.Text = "View Departments";
-            viewDepartmentsToolStripMenuItem.Click += ShowNewForm;
-            // 
             // setManagerToolStripMenuItem
             // 
-            setManagerToolStripMenuItem.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold);
+            setManagerToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             setManagerToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
             setManagerToolStripMenuItem.Name = "setManagerToolStripMenuItem";
-            setManagerToolStripMenuItem.Size = new Size(89, 23);
+            setManagerToolStripMenuItem.Size = new Size(100, 27);
             setManagerToolStripMenuItem.Tag = "Manager";
             setManagerToolStripMenuItem.Text = "Manager";
             setManagerToolStripMenuItem.Click += ShowNewForm;
             // 
             // attendanceToolStripMenuItem
             // 
-            attendanceToolStripMenuItem.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold);
+            attendanceToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             attendanceToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
             attendanceToolStripMenuItem.Name = "attendanceToolStripMenuItem";
-            attendanceToolStripMenuItem.Size = new Size(105, 23);
+            attendanceToolStripMenuItem.Size = new Size(121, 27);
             attendanceToolStripMenuItem.Tag = "Attendance";
             attendanceToolStripMenuItem.Text = "Attendance";
             attendanceToolStripMenuItem.Click += ShowNewForm;
             // 
             // setSalaToolStripMenuItem
             // 
-            setSalaToolStripMenuItem.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold);
+            setSalaToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             setSalaToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
             setSalaToolStripMenuItem.Name = "setSalaToolStripMenuItem";
-            setSalaToolStripMenuItem.Size = new Size(79, 23);
+            setSalaToolStripMenuItem.Size = new Size(84, 27);
             setSalaToolStripMenuItem.Tag = "Salary";
             setSalaToolStripMenuItem.Text = "Payroll";
             setSalaToolStripMenuItem.Click += ShowNewForm;
             // 
             // reportToolStripMenuItem
             // 
-            reportToolStripMenuItem.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold);
+            reportToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             reportToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
             reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            reportToolStripMenuItem.Size = new Size(75, 23);
+            reportToolStripMenuItem.Size = new Size(83, 27);
             reportToolStripMenuItem.Tag = "Report";
             reportToolStripMenuItem.Text = "Report";
             reportToolStripMenuItem.Click += ShowNewForm;
             // 
             // aboutToolStripMenuItem
             // 
-            aboutToolStripMenuItem.Font = new Font("Times New Roman", 10.2F, FontStyle.Bold);
+            aboutToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
             aboutToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(67, 23);
+            aboutToolStripMenuItem.Size = new Size(75, 27);
             aboutToolStripMenuItem.Tag = "About";
             aboutToolStripMenuItem.Text = "About";
             aboutToolStripMenuItem.Click += ShowNewForm;
+            // 
+            // logoutToolStripMenuItem
+            // 
+            logoutToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
+            logoutToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
+            logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
+            logoutToolStripMenuItem.Size = new Size(84, 27);
+            logoutToolStripMenuItem.Tag = "Logout";
+            logoutToolStripMenuItem.Text = "Logout";
+            logoutToolStripMenuItem.Click += ShowNewForm;
+
             // 
             // statusStrip
             // 
@@ -195,7 +185,7 @@ namespace EmployeeManagamentSystem
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
             toolStrip1.Items.AddRange(new ToolStripItem[] { departmentToolStripButton, employeesToolStripButton, toolStripButton3 });
-            toolStrip1.Location = new Point(0, 29);
+            toolStrip1.Location = new Point(0, 33);
             toolStrip1.Name = "toolStrip1";
             toolStrip1.Size = new Size(1283, 27);
             toolStrip1.TabIndex = 4;
@@ -272,13 +262,12 @@ namespace EmployeeManagamentSystem
         private ToolStripButton employeesToolStripButton;
         private ToolStripButton toolStripButton3;
         private ToolStripMenuItem aboutToolStripMenuItem;
-        private ToolStripMenuItem viewEmployeesToolStripMenuItem;
-        private ToolStripMenuItem viewDepartmentsToolStripMenuItem;
         private ToolStripMenuItem setManagerToolStripMenuItem;
         private ToolStripMenuItem setSalaToolStripMenuItem;
         private ToolStripMenuItem userToolStripMenuItem;
         private ToolStripMenuItem attendanceToolStripMenuItem;
         private ToolStripMenuItem reportToolStripMenuItem;
+        private ToolStripMenuItem logoutToolStripMenuItem;
     }
 }
 

@@ -23,6 +23,9 @@
     <Compile Update="View\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\frmLogout.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\frmManager.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -39,12 +42,6 @@
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\frmSplashScreen.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="View\frmViewDepartments.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="View\frmViewEmployees.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\frmUserManagement.cs">

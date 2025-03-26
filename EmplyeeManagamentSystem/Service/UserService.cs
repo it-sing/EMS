@@ -21,6 +21,11 @@ namespace EmployeeManagamentSystem
         {
             this._userRepository = userRepository;
         }
+       
+        public DataTable GetRoles()
+        {
+            return _userRepository.GetRoles();
+        }
 
         public DataTable GetUserDetails(int userId)
         {

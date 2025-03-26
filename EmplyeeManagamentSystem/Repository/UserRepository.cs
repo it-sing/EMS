@@ -149,6 +149,12 @@ namespace EmployeeManagamentSystem.Repository
             return DataAccess.GetBy(sql, parameters);
         }
 
+        public DataTable GetRoles()
+        {
+            string sql = "SELECT RoleID, RoleName FROM Roles";
+            return DataAccess.GetData(sql);
+        }
+
         public int PromoteUser(int userID, string newRole)
         {
             string sql = "UPDATE Users SET Role = @RoleID WHERE UserID = @UserID";

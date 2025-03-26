@@ -1,5 +1,5 @@
-﻿
-using System.Data;
+﻿using System.Data;
+using EmployeeManagamentSystem.Util;
 
 namespace EmployeeManagamentSystem
 {
@@ -18,6 +18,7 @@ namespace EmployeeManagamentSystem
         {
             try
             {
+                GetRoles();
                 GetUsers();
             }
             catch (Exception ex)
@@ -30,14 +31,45 @@ namespace EmployeeManagamentSystem
         {
             try
             {
-                string selectedRole = cmbFilterByRoles.SelectedItem?.ToString();
-                GetUsers(selectedRole);
+                if (cmbFilterByRoles.SelectedValue != null)
+                {
+                    string selectedRole = cmbFilterByRoles.SelectedValue.ToString();
+                    if (string.IsNullOrEmpty(selectedRole) || selectedRole == "All Roles" || selectedRole == "")
+                    {
+                        GetUsers(null); 
+                    }
+                    else
+                    {
+                        GetUsers(selectedRole); 
+                    }
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+
+
+
+        private void GetRoles()
+        {
+            DataTable dtRoles = _userService.GetRoles();
+
+            if (dtRoles != null)
+            {
+                DataRow dr = dtRoles.NewRow();
+                dr["RoleID"] = 01;
+                dr["RoleName"] = "All Roles";
+                dtRoles.Rows.InsertAt(dr, 0);
+            }
+
+            cmbFilterByRoles.DisplayMember = "RoleName";
+            cmbFilterByRoles.ValueMember = "RoleName"; // Ensure it passes the role name, not ID
+            cmbFilterByRoles.DataSource = dtRoles;
+        }
+
 
         private void GetUsers(string filterByRole = null)
         {
@@ -45,114 +77,11 @@ namespace EmployeeManagamentSystem
             {
                 DataSet dtUsers = _userService.GetUsers(filterByRole);
                 dgvUsers.DataSource = dtUsers.Tables[0];
-
-                if (!dgvUsers.Columns.Contains("Actions"))
-                {
-                    AddActionButtonColumn();
-                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-        private void AddActionButtonColumn()
-        {
-            DataGridViewButtonColumn actionButtonColumn = new DataGridViewButtonColumn();
-            actionButtonColumn.Name = "Actions";
-            actionButtonColumn.HeaderText = "Actions";
-            actionButtonColumn.Text = "Action";
-            actionButtonColumn.UseColumnTextForButtonValue = true;
-            dgvUsers.Columns.Add(actionButtonColumn);
-            dgvUsers.CellClick += DgvUsers_CellClick;
-        }
-
-        private void DgvUsers_CellClick(object sender, DataGridViewCellEventArgs e)
-        {
-            if (e.RowIndex >= 0 && dgvUsers.Columns[e.ColumnIndex].Name == "Actions")
-            {
-                int userID = Convert.ToInt32(dgvUsers.Rows[e.RowIndex].Cells["UserID"].Value);
-                string username = dgvUsers.Rows[e.RowIndex].Cells["Username"].Value.ToString();
-                ContextMenuStrip actionMenu = new ContextMenuStrip();
-
-                // Promote option
-                if (dgvUsers.Rows[e.RowIndex].Cells["RoleName"].Value.ToString() != "User")
-                {
-                    ToolStripMenuItem promoteOption = new ToolStripMenuItem("Promote");
-                    promoteOption.DropDownItems.AddRange(new ToolStripMenuItem[]
-                    {
-                    new ToolStripMenuItem("Admin", null, (s, args) => PromoteUser(userID, "1")),
-                    new ToolStripMenuItem("Manager", null, (s, args) => PromoteUser(userID, "2")),
-                    new ToolStripMenuItem("Employee", null, (s, args) => PromoteUser(userID, "3"))
-                    });
-                    actionMenu.Items.Add(promoteOption);
-                }
-
-                // Delete option
-                if (dgvUsers.Rows[e.RowIndex].Cells["RoleName"].Value.ToString() != "Admin")
-                {
-                    ToolStripMenuItem deleteOption = new ToolStripMenuItem("Delete");
-                    deleteOption.Click += (s, args) => DeleteUser(userID, username);
-                    actionMenu.Items.Add(deleteOption);
-                }
-
-                // Approve option
-                if (dgvUsers.Rows[e.RowIndex].Cells["RoleName"].Value.ToString() == "User")
-                {
-                    ToolStripMenuItem approveOption = new ToolStripMenuItem("Approve");
-                    approveOption.Click += (s, args) => ApproveUser(userID, username);
-                    actionMenu.Items.Add(approveOption);
-                }
-
-                actionMenu.Show(Cursor.Position);
-            }
-        }
-
-        private void PromoteUser(int userID, string newRole)
-        {
-            try
-            {
-                _userService.PromoteUser(userID, newRole);
-                GetUsers(cmbFilterByRoles.SelectedItem?.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error promoting user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void DeleteUser(int userID, string username)
-        {
-            try
-            {
-                DialogResult result = MessageBox.Show($"Are you sure you want to delete user '{username}'?",
-                    "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-
-                if (result == DialogResult.Yes)
-                {
-                    _userService.DeleteUser(userID);
-                    GetUsers(cmbFilterByRoles.SelectedItem?.ToString());
-                }
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error deleting user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void ApproveUser(int userID, string username)
-        {
-            try
-            {
-                _userService.ApproveUser(userID);
-                GetUsers(cmbFilterByRoles.SelectedItem?.ToString());
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"Error approving user: {ex.Message}", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
     }
-
 }

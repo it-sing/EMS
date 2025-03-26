@@ -61,7 +61,6 @@ namespace EmployeeManagamentSystem
             dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
             dgvUsers.Size = new Size(1042, 435);
             dgvUsers.TabIndex = 46;
-            dgvUsers.CellClick += DgvUsers_CellClick;
             // 
             // grpDepartment
             // 
@@ -78,7 +77,7 @@ namespace EmployeeManagamentSystem
             // 
             cmbFilterByRoles.DropDownStyle = ComboBoxStyle.DropDownList;
             cmbFilterByRoles.FormattingEnabled = true;
-            cmbFilterByRoles.Items.AddRange(new object[] { "", "All", "Admin", "Manager", "Employee", "User" });
+            cmbFilterByRoles.Items.AddRange(new object[] { "" });
             cmbFilterByRoles.Location = new Point(18, 34);
             cmbFilterByRoles.Name = "cmbFilterByRoles";
             cmbFilterByRoles.Size = new Size(322, 36);

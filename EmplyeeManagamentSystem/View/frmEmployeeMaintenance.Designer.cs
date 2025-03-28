@@ -1,4 +1,6 @@
-﻿namespace EmployeeManagamentSystem
+﻿using System.Windows.Forms;
+
+namespace EmployeeManagamentSystem
 {
     partial class frmEmployeeMaintenance
     {
@@ -40,7 +42,6 @@
             label4 = new Label();
             btnSave = new Button();
             btnCancel = new Button();
-            btnAdd = new Button();
             txtFirstname = new TextBox();
             label3 = new Label();
             txtLastName = new TextBox();
@@ -54,7 +55,7 @@
             toolStripStatusLabel3 = new ToolStripStatusLabel();
             errProvider = new ErrorProvider(components);
             grpDepartment = new GroupBox();
-            cboDepartment = new ComboBox();
+            cboDepartmentFillter = new ComboBox();
             dgvEmployees = new DataGridView();
             grpEmployees.SuspendLayout();
             statusStrip1.SuspendLayout();
@@ -75,7 +76,6 @@
             grpEmployees.Controls.Add(label4);
             grpEmployees.Controls.Add(btnSave);
             grpEmployees.Controls.Add(btnCancel);
-            grpEmployees.Controls.Add(btnAdd);
             grpEmployees.Controls.Add(txtFirstname);
             grpEmployees.Controls.Add(label3);
             grpEmployees.Controls.Add(txtLastName);
@@ -93,18 +93,16 @@
             // cboDepartments
             // 
             cboDepartments.FormattingEnabled = true;
-            cboDepartments.Location = new Point(538, 287);
+            cboDepartments.Location = new Point(538, 67);
             cboDepartments.Name = "cboDepartments";
             cboDepartments.Size = new Size(412, 39);
             cboDepartments.TabIndex = 35;
-            cboDepartment.SelectedIndexChanged += cboDepartment_SelectedIndexChanged;
-            //cboDepartments.Validating += cmb_Validating;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(538, 251);
+            label7.Location = new Point(538, 42);
             label7.Name = "label7";
             label7.Size = new Size(108, 23);
             label7.TabIndex = 32;
@@ -114,17 +112,16 @@
             // 
             dtpEmployemntDate.CalendarFont = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             dtpEmployemntDate.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpEmployemntDate.Location = new Point(538, 211);
+            dtpEmployemntDate.Location = new Point(538, 236);
             dtpEmployemntDate.Name = "dtpEmployemntDate";
             dtpEmployemntDate.Size = new Size(412, 38);
             dtpEmployemntDate.TabIndex = 31;
-            dgvEmployees.CellClick += dgvEmployees_CellClick;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(538, 185);
+            label6.Location = new Point(538, 210);
             label6.Name = "label6";
             label6.Size = new Size(155, 23);
             label6.TabIndex = 30;
@@ -156,7 +153,6 @@
             txtEmail.Size = new Size(398, 38);
             txtEmail.TabIndex = 27;
             txtEmail.Tag = "Email";
-            //txtEmail.Validating += txt_Validating;
             // 
             // label4
             // 
@@ -171,7 +167,7 @@
             // btnSave
             // 
             btnSave.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSave.Location = new Point(166, 377);
+            btnSave.Location = new Point(44, 377);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(94, 29);
             btnSave.TabIndex = 24;
@@ -182,24 +178,14 @@
             // btnCancel
             // 
             btnCancel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancel.Location = new Point(298, 377);
+            btnCancel.Location = new Point(174, 377);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(94, 29);
             btnCancel.TabIndex = 23;
+            btnCancel.Tag = "Cancel";
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
-            //btnCancel.Click += btnCancel_Click;
-            // 
-            // btnAdd
-            // 
-            btnAdd.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAdd.Location = new Point(44, 377);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(94, 29);
-            btnAdd.TabIndex = 22;
-            btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
-            //btnAdd.Click += btnAdd_Click;
+            btnCancel.Click += btnCancel_Click;
             // 
             // txtFirstname
             // 
@@ -209,7 +195,6 @@
             txtFirstname.Size = new Size(398, 38);
             txtFirstname.TabIndex = 17;
             txtFirstname.Tag = "First Name";
-            //txtFirstname.Validating += txt_Validating;
             // 
             // label3
             // 
@@ -228,7 +213,6 @@
             txtLastName.Size = new Size(398, 38);
             txtLastName.TabIndex = 15;
             txtLastName.Tag = "Last Name";
-            //txtLastName.Validating += txt_Validating;
             // 
             // label2
             // 
@@ -245,7 +229,7 @@
             txtEmployeeID.Location = new Point(41, 68);
             txtEmployeeID.Name = "txtEmployeeID";
             txtEmployeeID.ReadOnly = true;
-            txtEmployeeID.Size = new Size(909, 38);
+            txtEmployeeID.Size = new Size(398, 38);
             txtEmployeeID.TabIndex = 1;
             // 
             // label1
@@ -264,7 +248,7 @@
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2, prgBar, toolStripStatusLabel3 });
             statusStrip1.Location = new Point(0, 868);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1197, 26);
+            statusStrip1.Size = new Size(1106, 26);
             statusStrip1.TabIndex = 2;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -295,7 +279,7 @@
             // 
             // grpDepartment
             // 
-            grpDepartment.Controls.Add(cboDepartment);
+            grpDepartment.Controls.Add(cboDepartmentFillter);
             grpDepartment.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grpDepartment.Location = new Point(25, 457);
             grpDepartment.Name = "grpDepartment";
@@ -304,13 +288,14 @@
             grpDepartment.TabStop = false;
             grpDepartment.Text = "Choose A Department";
             // 
-            // cboDepartment
+            // cboDepartmentFillter
             // 
-            cboDepartment.FormattingEnabled = true;
-            cboDepartment.Location = new Point(91, 33);
-            cboDepartment.Name = "cboDepartment";
-            cboDepartment.Size = new Size(322, 36);
-            cboDepartment.TabIndex = 0;
+            cboDepartmentFillter.FormattingEnabled = true;
+            cboDepartmentFillter.Location = new Point(91, 33);
+            cboDepartmentFillter.Name = "cboDepartmentFillter";
+            cboDepartmentFillter.Size = new Size(322, 36);
+            cboDepartmentFillter.TabIndex = 0;
+            cboDepartmentFillter.SelectedIndexChanged += cboDepartment_SelectedIndexChanged;
             // 
             // dgvEmployees
             // 
@@ -321,14 +306,15 @@
             dgvEmployees.Name = "dgvEmployees";
             dgvEmployees.ReadOnly = true;
             dgvEmployees.RowHeadersWidth = 51;
-            dgvEmployees.Size = new Size(1148, 325);
+            dgvEmployees.Size = new Size(1049, 325);
             dgvEmployees.TabIndex = 5;
+            dgvEmployees.CellClick += dataGridView1_CellClick;
             // 
             // frmEmployeeMaintenance
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1197, 894);
+            ClientSize = new Size(1106, 894);
             Controls.Add(grpDepartment);
             Controls.Add(dgvEmployees);
             Controls.Add(statusStrip1);
@@ -355,7 +341,6 @@
         private Label label1;
         private Button btnSave;
         private Button btnCancel;
-        private Button btnAdd;
         private TextBox txtFirstname;
         private Label label3;
         private TextBox txtLastName;
@@ -375,7 +360,8 @@
         private ToolStripStatusLabel toolStripStatusLabel3;
         private ErrorProvider errProvider;
         private GroupBox grpDepartment;
-        private ComboBox cboDepartment;
+        private ComboBox cboDepartmentFillter;
         private DataGridView dgvEmployees;
+        private ContextMenuStrip contextMenuStrip1;
     }
 }

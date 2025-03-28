@@ -30,7 +30,6 @@ namespace EmployeeManagamentSystem.Repository
             };
             return DataAccess.GetByParameter(sql, parameters);
         }
-
         public DataTable GetUserById(int userId)
         {
             string sql = $@"
@@ -50,7 +49,6 @@ namespace EmployeeManagamentSystem.Repository
 
             return DataAccess.GetData(sql);
         }
-
         public int SaveEmployeeChanges(int userId, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate)
         {
             string query = @"
@@ -75,7 +73,6 @@ namespace EmployeeManagamentSystem.Repository
 
             return DataAccess.SendData(query, parameters);
         }
-
         public int CreateEmployee(string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int userId)
         {
             string query = @"
@@ -101,7 +98,6 @@ namespace EmployeeManagamentSystem.Repository
             DataTable dt = DataAccess.GetByParameter(sql, parameters);
             return dt.Rows.Count > 0 && Convert.ToInt32(dt.Rows[0][0]) > 0;
         }
-
         public bool IsUserEmailExists(string email)
         {
             string sql = "SELECT COUNT(*) FROM Users WHERE Email = @Email;";
@@ -109,14 +105,12 @@ namespace EmployeeManagamentSystem.Repository
             DataTable dt = DataAccess.GetByParameter(sql, parameters);
             return dt.Rows.Count > 0 && Convert.ToInt32(dt.Rows[0][0]) > 0;
         }
-
         public int CreateUser(string username, string password, string email, int roleID, DateTime createdAt)
         {
             string sql = $"INSERT INTO Users (Username, Password, Email, Role, CreatedAt) VALUES ('{username}', '{password}', '{email}', {roleID}, '{createdAt}');";
 
             return DataAccess.Send(sql);
         }
-
         public int GetUserId(string username)
         {
             //sql = $"SELECT UserID FROM Users WHERE Username = '{username}';";
@@ -127,7 +121,6 @@ namespace EmployeeManagamentSystem.Repository
             DataTable dt = DataAccess.GetByParameter(sql, parameters);
             return dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["UserID"]) : -1;
         }
-
         public DataSet GetUsers(string filterByRole = null)
         {
             string sql = "SELECT U.UserID, U.Username, U.Email, R.RoleName, U.CreatedAt " +
@@ -148,13 +141,11 @@ namespace EmployeeManagamentSystem.Repository
 
             return DataAccess.GetBy(sql, parameters);
         }
-
         public DataTable GetRoles()
         {
             string sql = "SELECT RoleID, RoleName FROM Roles";
             return DataAccess.GetData(sql);
         }
-
         public int PromoteUser(int userID, string newRole)
         {
             string sql = "UPDATE Users SET Role = @RoleID WHERE UserID = @UserID";
@@ -165,7 +156,6 @@ namespace EmployeeManagamentSystem.Repository
         };
             return DataAccess.UpdateData(sql, parameters);
         }
-
         public int DeleteUser(int userID)
         {
             string sql = "UPDATE Users SET IsDeleted = 1 WHERE UserID = @UserID";
@@ -175,7 +165,6 @@ namespace EmployeeManagamentSystem.Repository
         };
             return DataAccess.UpdateData(sql, parameters);
         }
-
         public int ApproveUser(int userID)
         {
             string sql = "UPDATE Users SET Role = 3 WHERE UserID = @UserID";

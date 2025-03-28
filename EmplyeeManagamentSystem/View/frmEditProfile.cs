@@ -32,11 +32,11 @@ namespace EmployeeManagamentSystem
         {
             DataTable dtUser = _userService.GetUserDetails(currentUserId);
 
-            //if (dtUser == null || dtUser.Rows.Count == 0)
-            //{
-            //    MessageBox.Show("No user found for the given ID.");
-            //    return;
-            //}
+            if (dtUser == null || dtUser.Rows.Count == 0)
+            {
+                MessageBox.Show("No user found for the given ID.");
+                return;
+            }
 
             DataRow dr = dtUser.Rows[0];
 

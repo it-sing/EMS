@@ -17,29 +17,26 @@ namespace EmployeeManagamentSystem
         {
             return _employeeRepository.GetEmployeesByDepartment(departmentId);
         }
-        public DataRow GetEmployeeById(int employeeId)
+
+        public int DeleteEmployee(int employeeId)
         {
-            DataTable dt = _employeeRepository.GetEmployeeById(employeeId);
-            return dt.Rows.Count > 0 ? dt.Rows[0] : null;
+            return _employeeRepository.DeleteEmployee(employeeId);
         }
 
-        // Create a new employee
-        //public bool CreateEmployee(string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int departmentId, EmployeeRepository _employeeRepository)
-        //{
-        //    return _employeeRepository.CreateEmployee(firstName, lastName, email, dateOfBirth, employmentDate, departmentId);
-        //}
+        public bool CreateEmployee(string firstName, string lastName, string email, DateTime dob, DateTime employmentDate, int departmentId)
+        {
+            // Call the repository method to save the employee to the database
+            return _employeeRepository.CreateEmployee(firstName, lastName, email, dob, employmentDate, departmentId);
+        }
 
-        //// Update an existing employee
-        //public bool UpdateEmployee(int employeeId, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int departmentId)
-        //{
-        //    return _employeeRepository.UpdateEmployee(employeeId, firstName, lastName, email, dateOfBirth, employmentDate, departmentId);
-        //}
+        // Update an existing employee
+        public int UpdateEmployee(int employeeId, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int departmentId)
+        {
+            return _employeeRepository.UpdateEmployee(employeeId, firstName, lastName, email, dateOfBirth, employmentDate, departmentId);
+        }
 
-        // Delete an employee by ID
-        //public bool DeleteEmployee(int employeeId)
-        //{
-        //    return _employeeRepository.DeleteEmployee(employeeId);
-        //}
+
+
     }
 }
 

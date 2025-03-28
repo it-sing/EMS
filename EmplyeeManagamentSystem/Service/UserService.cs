@@ -76,7 +76,6 @@ namespace EmployeeManagamentSystem
         {
             return _userRepository.GetUsers(filterByRole);
         }
-
         public void PromoteUser(int userID, string newRole)
         {
             int rowsAffected = _userRepository.PromoteUser(userID, newRole);

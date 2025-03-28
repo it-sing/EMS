@@ -21,16 +21,12 @@ namespace DBProgrammingDemo9
             try
             {
                 using (SqlConnection conn = OpenConnection())
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                 {
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                        {
-                            DataTable dt = new DataTable();
-                            da.Fill(dt);
-                            return dt;
-                        }
-                    }
+                    DataTable dt = new DataTable();
+                    da.Fill(dt);
+                    return dt;
                 }
             }
             catch (SqlException ex)
@@ -45,19 +41,15 @@ namespace DBProgrammingDemo9
             try
             {
                 using (SqlConnection conn = OpenConnection())
+                using (SqlCommand cmd = new SqlCommand(string.Join(";", sqlStatements), conn))
+                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                 {
                     DataSet ds = new DataSet();
-                    using (SqlCommand cmd = new SqlCommand(string.Join(";", sqlStatements), conn))
+                    for (int i = 0; i < sqlStatements.Length; i++)
                     {
-                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-                        {
-                            for (int i = 0; i < sqlStatements.Length; i++)
-                            {
-                                da.TableMappings.Add($"Table{i}", $"Data{i}");
-                            }
-                            da.Fill(ds);
-                        }
+                        da.TableMappings.Add($"Table{i}", $"Data{i}");
                     }
+                    da.Fill(ds);
                     return ds;
                 }
             }
@@ -73,22 +65,21 @@ namespace DBProgrammingDemo9
             try
             {
                 using (SqlConnection conn = OpenConnection())
+                using (SqlCommand command = new SqlCommand(sql, conn))
                 {
-                    using (SqlCommand command = new SqlCommand(sql, conn))
+                    if (parameters != null)
                     {
-                        if (parameters != null)
+                        foreach (var param in parameters)
                         {
-                            foreach (var param in parameters)
-                            {
-                                command.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
-                            }
+                            command.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
                         }
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            DataSet ds = new DataSet();
-                            adapter.Fill(ds);
-                            return ds;
-                        }
+                    }
+
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    {
+                        DataSet ds = new DataSet();
+                        adapter.Fill(ds);
+                        return ds;
                     }
                 }
             }
@@ -99,11 +90,8 @@ namespace DBProgrammingDemo9
         }
 
         // ✅ Fetches a DataTable with SQL Parameters
-
         public static DataTable GetByParameter(string sql, SqlParameter[] parameters)
         {
-            DataTable dt = new DataTable();
-
             try
             {
                 using (SqlConnection conn = OpenConnection())
@@ -116,45 +104,18 @@ namespace DBProgrammingDemo9
 
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
+                        DataTable dt = new DataTable();
                         da.Fill(dt);
+                        return dt;
                     }
                 }
             }
-            catch (Exception ex) // Catch all exceptions, not just SqlException
+            catch (Exception ex)
             {
-                // Log error message if logging system is available
                 Console.WriteLine($"Error executing query: {ex.Message}");
+                return new DataTable(); // Return empty DataTable on failure instead of throwing
             }
-
-            return dt; // Return empty DataTable on failure instead of throwing
         }
-
-        //public static DataTable GetByParameter(string sql, SqlParameter[] parameters)
-        //{
-        //    try
-        //    {
-        //        using (SqlConnection conn = OpenConnection())
-        //        {
-        //            using (SqlCommand cmd = new SqlCommand(sql, conn))
-        //            {
-        //                if (parameters != null)
-        //                {
-        //                    cmd.Parameters.AddRange(parameters);
-        //                }
-        //                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
-        //                {
-        //                    DataTable dt = new DataTable();
-        //                    da.Fill(dt);
-        //                    return dt;
-        //                }
-        //            }
-        //        }
-        //    }
-        //    catch (SqlException ex)
-        //    {
-        //        throw new Exception("Error executing query with SQL parameters.", ex);
-        //    }
-        //}
 
         // ✅ Fetches a Single Value
         public static object GetValue(string sql)
@@ -162,11 +123,9 @@ namespace DBProgrammingDemo9
             try
             {
                 using (SqlConnection conn = OpenConnection())
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        return cmd.ExecuteScalar();
-                    }
+                    return cmd.ExecuteScalar();
                 }
             }
             catch (SqlException ex)
@@ -181,11 +140,13 @@ namespace DBProgrammingDemo9
             try
             {
                 using (SqlConnection conn = OpenConnection())
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
+                    if (parameters != null)
                     {
-                        return cmd.ExecuteNonQuery();
+                        cmd.Parameters.AddRange(parameters);
                     }
+                    return cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
@@ -200,17 +161,13 @@ namespace DBProgrammingDemo9
             try
             {
                 using (SqlConnection conn = OpenConnection())
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
-                    using (SqlCommand cmd = new SqlCommand(sql, conn))
-                    {
-                        return cmd.ExecuteNonQuery();
-                    }
+                    return cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
             {
-                //Console.WriteLine($"Error executing query: {ex.Message}");
-
                 throw new Exception("Error executing data modification command.", ex);
             }
         }
@@ -221,18 +178,16 @@ namespace DBProgrammingDemo9
             try
             {
                 using (SqlConnection conn = OpenConnection())
+                using (SqlCommand command = new SqlCommand(sql, conn))
                 {
-                    using (SqlCommand command = new SqlCommand(sql, conn))
+                    if (parameters != null)
                     {
-                        if (parameters != null)
+                        foreach (var param in parameters)
                         {
-                            foreach (var param in parameters)
-                            {
-                                command.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
-                            }
+                            command.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
                         }
-                        return command.ExecuteNonQuery();
                     }
+                    return command.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)

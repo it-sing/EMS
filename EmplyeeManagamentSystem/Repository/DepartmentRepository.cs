@@ -13,10 +13,28 @@ namespace EmployeeManagamentSystem
             string sqlString = "SELECT * FROM Departments";
             return DataAccess.GetData(sqlString);
         }
+        public bool IsEmployeeManager(int employeeId)
+        {
+            string sql = "SELECT COUNT(1) FROM Departments WHERE ManagerID = @EmployeeID";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@EmployeeID", employeeId)
+            };
+            DataTable dt = DataAccess.GetByParameter(sql, parameters);
+            return dt.Rows.Count == 1 && Convert.ToInt32(dt.Rows[0][0]) > 0;
+
+        }
 
         public DataTable GetAllDepartments()
         {
-            string sql = "SELECT * FROM Departments";
+            string sql = @"
+                        SELECT 
+                            d.DepartmentID, 
+                            d.DepartmentName, 
+                            d.Description, 
+                            e.FirstName + ' ' + e.LastName AS ManagerName
+                        FROM Departments d
+                        LEFT JOIN Employees e ON d.ManagerID = e.EmployeeID;";
             return DataAccess.GetData(sql);
         }
         public int GetFirstDepartmentId()
@@ -93,7 +111,6 @@ namespace EmployeeManagamentSystem
         //    string sql = "SELECT DepartmentID, DepartmentName FROM Departments;";
         //    return DataAccess.GetData(sql);
         //}
-
         public DataTable GetDepartmentCurrentManager(int departmentID)
         {
             string sql = $@"
@@ -115,6 +132,8 @@ namespace EmployeeManagamentSystem
             };
             return DataAccess.SendData(sql, parameters);
         }
+
+
 
     }
 }

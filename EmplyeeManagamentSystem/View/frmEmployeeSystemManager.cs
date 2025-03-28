@@ -30,12 +30,6 @@ namespace EmployeeManagamentSystem
                 case "User":
                     childForm = new frmUserManagement();
                     break;
-                case "Attendance":
-                    childForm = new frmAttendance();
-                    break;
-                case "Report":
-                    childForm = new frmReport();
-                    break;
                 case "Employees":
                     childForm = new frmEmployeeMaintenance();
                     break;
@@ -48,17 +42,17 @@ namespace EmployeeManagamentSystem
                 case "About":
                     childForm = new frmAbout();
                     break;
-                //case "View Departments":
-                //    childForm = new frmViewDepartments();
-                //    break;
-                //case "View Employees":
-                //    childForm = new frmViewEmployees();
-                //    break;
                 case "Salary":
                     childForm = new frmSalaries();
                     break;
                 case "Manager":
                     childForm = new frmManager();
+                    break;
+                case "Attendance":
+                    childForm = new frmAttendance();
+                    break;
+                case "Report":
+                    childForm = new frmReport();
                     break;
                 case "Logout":
                     DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
@@ -71,8 +65,10 @@ namespace EmployeeManagamentSystem
                         this.Close();
                         childForm = new frmLogin();
 
-                        //Application.Exit();
-                        // Ensures the application exits completely
+                    }
+                    else
+                    {
+                        return;
                     }
                     break;
 
@@ -216,34 +212,10 @@ namespace EmployeeManagamentSystem
                     departmentsToolStripMenuItem.Visible = false;
                 }
 
-                //if (!Authorization.ShowEmployeeViewerForm())
-                //{
-                //    viewEmployeesToolStripMenuItem.Visible = false;
-                //    employeesToolStripButton.Visible = false;
-                //}
-
-                //if (!Authorization.ShowDepartmentViewerForm())
-                //{
-                //    viewDepartmentsToolStripMenuItem.Visible = false;
-                //    departmentToolStripButton.Visible = false;
-                //}
-
                 if (!Authorization.ShowEditProfileForm())
                 {
                     editProfileToolStripMenuItem.Visible = false;
                 }
-
-                //if (!Authorization.ShowEmployeeViewerForm())
-                //{
-                //    viewEmployeesToolStripMenuItem.Visible = false;
-                //    employeesToolStripButton.Visible = false;
-                //}
-
-                //if (!Authorization.ShowDepartmentViewerForm())
-                //{
-                //    viewDepartmentsToolStripMenuItem.Visible = false;
-                //    departmentToolStripButton.Visible = false;
-                //}
 
                 if (!Authorization.ShowManagerForm())
                 {
@@ -271,7 +243,7 @@ namespace EmployeeManagamentSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(ex.Message, "Error ", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
 
         }

@@ -1,6 +1,0 @@
-3/20/2025 8:42:15 AM: Executing SQL: SELECT RoleID, RoleName FROM Roles;
-3/20/2025 8:42:15 AM: Roles successfully retrieved and bound to ComboBox.
-3/20/2025 8:46:13 AM: Executing SQL: SELECT RoleID, RoleName FROM Roles;
-3/20/2025 8:46:13 AM: Roles successfully retrieved and bound to ComboBox.
-3/20/2025 8:48:55 AM: Executing SQL: SELECT RoleID, RoleName FROM Roles;
-3/20/2025 8:48:56 AM: Roles successfully retrieved and bound to ComboBox.

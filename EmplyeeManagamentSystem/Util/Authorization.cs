@@ -31,7 +31,6 @@ namespace EmployeeManagamentSystem.Util
         private static bool showAttendanceForm = false;
         private static bool showReportForm = false;
         private static bool showNotificationForm = false;
-        private static bool showLogoutForm = false;
 
 
         public static void SetFormAccess(Permission permission)
@@ -49,14 +48,9 @@ namespace EmployeeManagamentSystem.Util
                     showAttendanceForm = true;
                     showReportForm = true;
                     showNotificationForm = true;
-                    showLogoutForm = true;
 
                     break;
-                //case Permission.VIEW_EMPLOYEES:
-                //    //show employee viewer form
-                //    showEmployeeViewerForm = true;
 
-                //    break;
                 case Permission.ADD_EMPLOYEE:
                     //show employee editor form
                     showEmployeeEditorForm = true;
@@ -76,9 +70,6 @@ namespace EmployeeManagamentSystem.Util
                 case Permission.EDIT_SELF:
                     showEditProfileForm = true;
                     break;
-                case Permission.NONE:
-                    showNotificationForm = true;
-                    break;
                 default:
 
                     break;
@@ -94,10 +85,12 @@ namespace EmployeeManagamentSystem.Util
             string currentRole = $"SELECT Role FROM Users WHERE UserID = {currentUserId}";
             //get role id value from database
             int roleIdValue = (int)DataAccess.GetValue(currentRole);
+            //MessageBox.Show(currentRole.ToString());
 
             //get role from database for roleid value
             string roleSql = $"SELECT Permission FROM Roles WHERE RoleID = {roleIdValue}";
             DataTable dtRoles = DataAccess.GetData(roleSql);
+            //MessageBox.Show(roleSql.ToString());
 
             if (dtRoles.Rows.Count > 0)
             {
@@ -108,7 +101,6 @@ namespace EmployeeManagamentSystem.Util
             return null;
 
         }
-
         public static void SetFormAccessCurrentUser()
         {
             string[]? permissions = GetCurrentUserPermission();
@@ -132,17 +124,6 @@ namespace EmployeeManagamentSystem.Util
         {
             return showDepartmentEditorForm;
         }
-
-        //public static bool ShowEmployeeViewerForm()
-        //{
-        //    return showEmployeeViewerForm;
-        //}
-
-        //public static bool ShowDepartmentViewerForm()
-        //{
-        //    return showDepartmentViewerForm;
-        //}
-
         public static bool ShowEditProfileForm()
         {
             return showEditProfileForm;

@@ -13,6 +13,13 @@ namespace EmployeeManagamentSystem
         }
 
         public DataTable Departments => _departmentRepository.GetDepartments();
+
+        public bool IsEmployeeManager(int employeeID)
+        {
+            return _departmentRepository.IsEmployeeManager(employeeID);
+        }
+
+        // Get all departments
         public DataTable GetAllDepartments()
         {
             return _departmentRepository.GetAllDepartments();

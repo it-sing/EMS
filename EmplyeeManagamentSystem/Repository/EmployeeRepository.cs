@@ -4,6 +4,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.Windows.Forms;
 using DBProgrammingDemo9;
+using EmployeeManagamentSystem.Pattern;
 
 namespace EmployeeManagamentSystem
 {
@@ -19,21 +20,23 @@ namespace EmployeeManagamentSystem
         {
             string sqlString = @"
                                 SELECT 
-                                    e.EmployeeID, 
-                                    e.FirstName, 
-                                    e.LastName, 
-                                    e.Email, 
-                                    e.DateOfBirth,  
-                                    e.EmploymentDate,   
-                                    e.SalaryBeforeTax,   
-                                    e.TaxAmount,  
-                                    e.SalaryAfterTax,   
-                                    e.CheckInTime,   
-                                    e.CheckOutTime,  
-                                    d.DepartmentName
-                                FROM Employees e 
-                                LEFT JOIN Departments d ON e.DepartmentID = d.DepartmentID
-                                WHERE e.DepartmentID = @DepartmentID;";
+                                e.EmployeeID, 
+                                e.FirstName, 
+                                e.LastName, 
+                                e.Email, 
+                                e.DateOfBirth,  
+                                e.EmploymentDate,   
+                                e.SalaryBeforeTax,   
+                                e.TaxAmount,  
+                                e.SalaryAfterTax,   
+                                e.CheckIn,   
+                                e.CheckOut,  
+                                e.UserID,
+                                d.DepartmentName
+                            FROM Employees e 
+                            LEFT JOIN Departments d ON e.DepartmentID = d.DepartmentID
+                            WHERE e.DepartmentID = @DepartmentID 
+                              AND e.IsDeleted = 0;";
             SqlParameter[] parameters = new SqlParameter[] {
                 new SqlParameter("@DepartmentID", departmentId)
             };
@@ -53,13 +56,17 @@ namespace EmployeeManagamentSystem
                             e.SalaryBeforeTax,   
                             e.TaxAmount,  
                             e.SalaryAfterTax,   
-                            e.CheckInTime,   
-                            e.CheckOutTime,  
+                            e.CheckIn, 
+                            e.CheckOut,
+                            e.UserID,
                             d.DepartmentName
                         FROM Employees e 
-                        LEFT JOIN Departments d ON e.DepartmentID = d.DepartmentID;";
-            return DataAccess.GetData(sql);
+                        LEFT JOIN Departments d ON e.DepartmentID = d.DepartmentID
+                        WHERE e.IsDeleted = 0;";
+                            return DataAccess.GetData(sql);
         }
+
+
 
         public bool CreateEmployee(string firstName, string lastName, string email, DateTime dob, DateTime employmentDate, int departmentId)
         {
@@ -126,7 +133,7 @@ namespace EmployeeManagamentSystem
 
         public int DeleteEmployee(int employeeId)
         {
-            string sql = "DELETE FROM Employees WHERE EmployeeID = @EmployeeID";
+            string sql = "UPDATE Employees SET IsDeleted = 1 WHERE EmployeeID = @EmployeeID;";
             SqlParameter[] parameters = { new SqlParameter("@EmployeeID", employeeId) };
 
             try
@@ -136,7 +143,7 @@ namespace EmployeeManagamentSystem
             catch (Exception ex)
             {
                 MessageBox.Show($"An error occurred while deleting the employee: {ex.Message}");
-                return -1; // Return -1 or handle as per your needs
+                return -1; 
             }
         }
     }

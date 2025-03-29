@@ -1,5 +1,5 @@
-﻿using DBProgrammingDemo9;
-using System.Data;
+﻿using System.Data;
+using DBProgrammingDemo9;
 
 namespace EmployeeManagamentSystem.Util
 {
@@ -80,6 +80,9 @@ namespace EmployeeManagamentSystem.Util
         public static string[]? GetCurrentUserPermission()
         {
             int currentUserId = UIUtilities.CurrentUserID;
+
+            //MessageBox.Show(currentUserId.ToString());
+
 
             //get role from database for current user
             string currentRole = $"SELECT Role FROM Users WHERE UserID = {currentUserId}";

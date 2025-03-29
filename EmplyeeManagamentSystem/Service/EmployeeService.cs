@@ -1,4 +1,6 @@
 ﻿using System.Data;
+using EmployeeManagamentSystem.Repository;
+using Microsoft.VisualBasic.ApplicationServices;
 
 namespace EmployeeManagamentSystem
 {
@@ -18,11 +20,20 @@ namespace EmployeeManagamentSystem
             return _employeeRepository.GetEmployeesByDepartment(departmentId);
         }
 
-        public int DeleteEmployee(int employeeId)
+        public bool DeleteEmployee(int employeeId)
         {
-            return _employeeRepository.DeleteEmployee(employeeId);
+            try
+            {
+                // Perform the delete operation
+                int rowsAffected = _employeeRepository.DeleteEmployee(employeeId);
+                return rowsAffected > 0;
+            }
+            catch (Exception ex)
+            {
+                // Handle and log exception
+                throw new Exception("Failed to delete employee.", ex);
+            }
         }
-
         public bool CreateEmployee(string firstName, string lastName, string email, DateTime dob, DateTime employmentDate, int departmentId)
         {
             // Call the repository method to save the employee to the database

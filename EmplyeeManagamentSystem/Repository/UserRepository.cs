@@ -10,7 +10,7 @@ namespace EmployeeManagamentSystem.Repository
 {
     public class UserRepository
     {
-        public string GetUserRole(int userID)
+        public string? GetUserRole(int userID)
         {
             string sql = "SELECT Role FROM Users WHERE UserID = @UserID";
             SqlParameter[] parameters = new SqlParameter[]
@@ -22,7 +22,7 @@ namespace EmployeeManagamentSystem.Repository
         }
         public DataTable GetUserByUsernameAndPassword(string username, string password)
         {
-            string sql = "SELECT * FROM Users WHERE Username = @Username AND Password = @Password";
+            string sql = "SELECT * FROM Users WHERE Username = @Username AND Password = @Password AND IsDeleted = 0";
             SqlParameter[] parameters = new SqlParameter[]
             {
                 new SqlParameter("@Username", username),
@@ -32,23 +32,28 @@ namespace EmployeeManagamentSystem.Repository
         }
         public DataTable GetUserById(int userId)
         {
-            string sql = $@"
-                    SELECT
-                    EmployeeID,
-                    Employees.FirstName,
-                    Employees.LastName,
-                    Employees.Email,
-                    Users.Username,
-                    Employees.DateOfBirth,
-                    Employees.EmploymentDate
-                FROM Employees
-                    INNER JOIN Users
-                    ON Employees.UserID = Users.UserID
-                WHERE Users.UserID = {userId};
-                 ";
+           
+            string sql = @"
+            SELECT
+                EmployeeID,
+                Employees.FirstName,
+                Employees.LastName,
+                Employees.Email,
+                Users.Username,
+                Employees.DateOfBirth,
+                Employees.EmploymentDate
+            FROM Employees
+            INNER JOIN Users
+                ON Employees.UserID = Users.UserID
+            WHERE Users.UserID = @UserID;";
 
-            return DataAccess.GetData(sql);
+            SqlParameter[] parameters = new SqlParameter[] {
+                new SqlParameter("@UserID", userId)
+            };
+
+            return DataAccess.GetByParameter(sql, parameters);
         }
+
         public int SaveEmployeeChanges(int userId, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate)
         {
             string query = @"
@@ -113,20 +118,25 @@ namespace EmployeeManagamentSystem.Repository
         }
         public int GetUserId(string username)
         {
-            //sql = $"SELECT UserID FROM Users WHERE Username = '{username}';";
-            //DataTable dt = DataAccess.GetData(sql);
-            //int userId = (int)dt.Rows[0]["UserID"];
-            string sql = "SELECT UserID FROM Users WHERE Username = @Username;";
+            string sql = "SELECT UserID FROM Users WHERE Username = @Username ;";
             SqlParameter[] parameters = { new SqlParameter("@Username", username) };
             DataTable dt = DataAccess.GetByParameter(sql, parameters);
             return dt.Rows.Count > 0 ? Convert.ToInt32(dt.Rows[0]["UserID"]) : -1;
         }
         public DataSet GetUsers(string filterByRole = null)
         {
-            string sql = "SELECT U.UserID, U.Username, U.Email, R.RoleName, U.CreatedAt " +
-                         "FROM Users U " +
-                         "JOIN Roles R ON U.Role = R.RoleID " +
-                         "WHERE U.IsDeleted = 0";
+            string sql = @"
+                        SELECT 
+                            U.UserID, 
+                            U.Username, 
+                            U.Email, 
+                            R.RoleName, 
+                            U.CreatedAt, 
+                            E.EmployeeID
+                        FROM Users U
+                        LEFT JOIN Employees E ON U.UserID = E.UserID
+                        JOIN Roles R ON U.Role = R.RoleID
+                        WHERE U.IsDeleted = 0";
 
             if (!string.IsNullOrEmpty(filterByRole))
             {
@@ -141,6 +151,7 @@ namespace EmployeeManagamentSystem.Repository
 
             return DataAccess.GetBy(sql, parameters);
         }
+
         public DataTable GetRoles()
         {
             string sql = "SELECT RoleID, RoleName FROM Roles";

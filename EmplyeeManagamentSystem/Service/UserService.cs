@@ -89,16 +89,29 @@ namespace EmployeeManagamentSystem
             }
         }
 
-        public void DeleteUser(int userID)
+        //public void DeleteUser(int userID)
+        //{
+        //    int rowsAffected = _userRepository.DeleteUser(userID);
+        //    if (rowsAffected > 0)
+        //    {
+        //        // Notify UI to refresh or show success message
+        //    }
+        //    else
+        //    {
+        //        throw new Exception("Failed to delete user.");
+        //    }
+        //}
+        public bool DeleteUser(int userId)
         {
-            int rowsAffected = _userRepository.DeleteUser(userID);
-            if (rowsAffected > 0)
+            try
             {
-                // Notify UI to refresh or show success message
+                int rowsAffected = _userRepository.DeleteUser(userId);
+                return rowsAffected > 0;
             }
-            else
+            catch (Exception ex)
             {
-                throw new Exception("Failed to delete user.");
+                // Handle and log exception
+                throw new Exception("Failed to delete user.", ex);
             }
         }
 

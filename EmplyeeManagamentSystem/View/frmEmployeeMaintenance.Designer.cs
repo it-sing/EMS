@@ -295,7 +295,7 @@ namespace EmployeeManagamentSystem
             cboDepartmentFillter.Name = "cboDepartmentFillter";
             cboDepartmentFillter.Size = new Size(322, 36);
             cboDepartmentFillter.TabIndex = 0;
-            cboDepartmentFillter.SelectedIndexChanged += cboDepartment_SelectedIndexChanged;
+            cboDepartmentFillter.SelectedIndexChanged += cboDepartmentFillter_SelectedIndexChanged;
             // 
             // dgvEmployees
             // 

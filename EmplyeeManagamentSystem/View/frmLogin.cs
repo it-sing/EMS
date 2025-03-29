@@ -32,6 +32,10 @@ namespace EmployeeManagamentSystem
                     {
                         // Save the current user ID and show the manager dashboard
                         UIUtilities.CurrentUserID = userID;
+                        UIUtilities.CurrentUserName = username;
+                        UIUtilities.CurrentUserRole = role;
+
+
                         frmEmployeeSystemManager frmEmployeeSystemManager = new frmEmployeeSystemManager();
                         frmEmployeeSystemManager.Show();
                         this.Hide();

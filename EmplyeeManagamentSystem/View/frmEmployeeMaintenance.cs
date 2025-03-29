@@ -8,6 +8,7 @@ namespace EmployeeManagamentSystem
     {
         private readonly EmployeeService _employeeService;
         private readonly DepartmentService _departmentService;
+        private readonly UserService _userService;
         private int currentEmployeeId;
         private readonly DepartmentRepository departmentRepository = new DepartmentRepository();
 
@@ -16,6 +17,7 @@ namespace EmployeeManagamentSystem
             InitializeComponent();
             _employeeService = new EmployeeService();
             _departmentService = new DepartmentService();
+            _userService = new UserService();
 
         }
         private void frmEmployeeMaintenance_Load(object sender, EventArgs e)
@@ -41,6 +43,7 @@ namespace EmployeeManagamentSystem
                     LoadEmployeeToForm(e.RowIndex);
                 }
             }
+      
         }
         private void LoadEmployeeToForm(int rowIndex)
         {
@@ -57,6 +60,8 @@ namespace EmployeeManagamentSystem
         private void HandleDeleteEmployee(int rowIndex)
         {
             int employeeId = Convert.ToInt32(dgvEmployees.Rows[rowIndex].Cells["EmployeeID"].Value);
+            int userId = Convert.ToInt32(dgvEmployees.Rows[rowIndex].Cells["UserID"].Value);
+
             string employeeName = dgvEmployees.Rows[rowIndex].Cells["FirstName"].Value?.ToString();
 
             DialogResult result = MessageBox.Show($"Are you sure you want to delete {employeeName}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
@@ -69,15 +74,25 @@ namespace EmployeeManagamentSystem
                     return;
                 }
 
-                int isDeleted = _employeeService.DeleteEmployee(employeeId);
-                if (isDeleted > 0)
+                try
                 {
-                    //MessageBox.Show("Employee deleted successfully.");
-                    LoadViewEmployees(); // Refresh
+                    // Delete both employee and user in one transaction-like process
+                    bool isEmployeeDeleted = _employeeService.DeleteEmployee(employeeId);
+                    bool isUserDeleted = _userService.DeleteUser(userId);
+
+                    if (isEmployeeDeleted && isUserDeleted)
+                    {
+                        MessageBox.Show("Employee and user deleted successfully.");
+                        LoadViewEmployees(); // Refresh the employee list after deletion
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error deleting employee or user.");
+                    }
                 }
-                else
+                catch (Exception ex)
                 {
-                    MessageBox.Show("Error deleting employee.");
+                    MessageBox.Show($"Error: {ex.Message}", "Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
         }
@@ -102,14 +117,21 @@ namespace EmployeeManagamentSystem
         private void LoadDepartments()
         {
             DataTable dtDepartments = _departmentService.Departments;
-            // Insert a new row at the select index 1 that says "All Departments"
+
+            if (dtDepartments == null || dtDepartments.Rows.Count == 0)
+            {
+                return; // Prevent binding issues
+            }
+
+            // Insert "All Departments" option at index 0
             DataRow dr = dtDepartments.NewRow();
             dr["DepartmentID"] = 0;
             dr["DepartmentName"] = "All Departments";
             dtDepartments.Rows.InsertAt(dr, 0);
-            UIUtilities.BindComboBox(cboDepartmentFillter, dtDepartments, "DepartmentName", "DepartmentID");
 
+            UIUtilities.BindComboBox(cboDepartmentFillter, dtDepartments, "DepartmentName", "DepartmentID");
         }
+
 
         // for update employee
         private void LoadDepartment()
@@ -119,34 +141,32 @@ namespace EmployeeManagamentSystem
 
         }
 
-        private void cboDepartment_SelectedIndexChanged(object sender, EventArgs e)
+        private void cboDepartmentFillter_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                toolStripStatusLabel2.Text = "";
-
                 if (cboDepartmentFillter.SelectedIndex == -1 || cboDepartmentFillter.SelectedValue == DBNull.Value)
                 {
                     return;
                 }
 
                 int departmentId = Convert.ToInt32(cboDepartmentFillter.SelectedValue);
+
                 DataTable dtEmployees = departmentId == 0
-                    ? _employeeService.Employees
+                    ? _employeeService.Employees  
                     : _employeeService.GetEmployeesByDepartment(departmentId);
 
                 dgvEmployees.DataSource = dtEmployees;
-
-                dgvEmployees.Columns[0].HeaderText = "Employee ID";
                 dgvEmployees.AutoResizeColumns();
 
-                toolStripStatusLabel1.Text = "Total Employees: " + dtEmployees.Rows.Count;
+                toolStripStatusLabel1.Text = $"Total Employees: {dtEmployees.Rows.Count}";
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
         private void LoadViewEmployees()
         {
             try

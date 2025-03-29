@@ -6,6 +6,9 @@ namespace EmployeeManagamentSystem.Util
     public static class UIUtilities
     {
         public static int CurrentUserID { get; set; }
+        public static string CurrentUserName { get; set; }
+        public static string CurrentUserRole { get; set; }
+
         public static void BindComboBox(this ComboBox cmb, DataTable dt, string displayMember, string valueMember)
         {
             //Adding an empty DataRow in the DataTable at first index

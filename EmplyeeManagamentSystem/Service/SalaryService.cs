@@ -29,7 +29,7 @@ namespace EmployeeManagamentSystem.Services
             decimal taxAmount = salaryBeforeTax * TAX_RATE;
             decimal salaryAfterTax = salaryBeforeTax - taxAmount;
 
-            int rowsAffected = _salaryRepository.UpdateSalary(employeeID, salaryBeforeTax, taxAmount, salaryAfterTax);
+            int rowsAffected = _salaryRepository.UpdateSalary(employeeID, salaryBeforeTax, taxAmount);
 
             return rowsAffected == 1;
         }

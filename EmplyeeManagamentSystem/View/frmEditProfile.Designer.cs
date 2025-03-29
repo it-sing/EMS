@@ -91,6 +91,7 @@
             txtUsername.Location = new Point(41, 173);
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
+            txtUsername.ReadOnly = true;
             txtUsername.Size = new Size(347, 55);
             txtUsername.TabIndex = 33;
             txtUsername.Tag = "First Name";

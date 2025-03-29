@@ -129,10 +129,10 @@ namespace EmployeeManagamentSystem
                     UPDATE Departments SET ManagerID = {newManagerID} WHERE DepartmentID = {departmentID};
                 ";
                 SqlParameter[] parameters = new SqlParameter[]
-       {
+                   {
                 new SqlParameter("@DepartmentID", departmentID),
                 new SqlParameter("@ManagerID", newManagerID),
-       };
+                   };
 
                 int recordAffected = DataAccess.SendData(sqlString, parameters);
 

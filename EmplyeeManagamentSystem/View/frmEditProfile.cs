@@ -9,11 +9,13 @@ namespace EmployeeManagamentSystem
     {
         private UserService _userService;
         private int currentUserId = UIUtilities.CurrentUserID;
+        
 
         public frmEditProfile()
         {
             InitializeComponent();
             _userService = new UserService();
+            //MessageBox.Show(currentUserId.ToString());
         }
 
         private void frmEditProfile_Load(object sender, EventArgs e)
@@ -30,11 +32,13 @@ namespace EmployeeManagamentSystem
 
         private void GetCurrentUser()
         {
+            //MessageBox.Show(currentUserId.ToString());
             DataTable dtUser = _userService.GetUserDetails(currentUserId);
+            //MessageBox.Show(dtUser.Rows.Count.ToString());
 
             if (dtUser == null || dtUser.Rows.Count == 0)
             {
-                MessageBox.Show("No user found for the given ID.");
+                //MessageBox.Show("No user found for the given ID.");
                 return;
             }
 

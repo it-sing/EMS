@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
+using EmployeeManagamentSystem.Pattern;
 using EmployeeManagamentSystem.Util;
 
 namespace EmployeeManagamentSystem
@@ -9,6 +10,8 @@ namespace EmployeeManagamentSystem
     public partial class frmUserManagement : Form
     {
         private readonly UserService _userService;
+        private readonly EmployeeService _employeeService;
+        private readonly DepartmentService _departmentService;
         private readonly Dictionary<string, string> roleMap;
 
         public frmUserManagement()
@@ -16,6 +19,8 @@ namespace EmployeeManagamentSystem
             InitializeComponent();
             errProvider = new ErrorProvider();
             _userService = new UserService();
+            _employeeService = new EmployeeService();
+            _departmentService = new DepartmentService();
 
             roleMap = new Dictionary<string, string>
             {
@@ -121,6 +126,13 @@ namespace EmployeeManagamentSystem
                 int userID = Convert.ToInt32(dgvUsers.Rows[e.RowIndex].Cells["UserID"].Value);
                 string username = dgvUsers.Rows[e.RowIndex].Cells["Username"].Value.ToString();
                 string roleName = dgvUsers.Rows[e.RowIndex].Cells["RoleName"].Value.ToString();
+                int? employeeId = null; 
+
+                if (dgvUsers.Rows[e.RowIndex].Cells["EmployeeID"].Value != DBNull.Value)
+                {
+                    employeeId = Convert.ToInt32(dgvUsers.Rows[e.RowIndex].Cells["EmployeeID"].Value);
+                }
+
                 ContextMenuStrip actionMenu = new ContextMenuStrip();
 
                 // Promote option
@@ -140,7 +152,14 @@ namespace EmployeeManagamentSystem
                 if (roleName != "Admin")
                 {
                     ToolStripMenuItem deleteOption = new ToolStripMenuItem("Delete");
-                    deleteOption.Click += (s, args) => DeleteUser(userID, username);
+                    deleteOption.Click += (s, args) =>
+                    {
+                        // If employeeId is not null, pass it, else pass a default value (e.g., -1 or 0)
+                        int empIdToDelete = employeeId ?? -1; // Use -1 if employeeId is null
+
+                        DeleteUser(userID, username, empIdToDelete);
+                    };
+
                     actionMenu.Items.Add(deleteOption);
                 }
 
@@ -172,7 +191,7 @@ namespace EmployeeManagamentSystem
             }
         }
 
-        private void DeleteUser(int userID, string username)
+        private void DeleteUser(int userID, string username, int employeeId)
         {
             try
             {
@@ -182,7 +201,13 @@ namespace EmployeeManagamentSystem
                 if (result == DialogResult.Yes)
                 {
                     _userService.DeleteUser(userID);
-
+                    _employeeService.DeleteEmployee(employeeId);
+                   
+                    if (_departmentService.IsEmployeeManager(employeeId))
+                    {
+                        MessageBox.Show("Cannot delete this employee. They are assigned as a department manager.", "Delete Blocked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                        return;
+                    }
                     // Refresh filtered user list automatically
                     string selectedRole = cmbFilterByRoles.SelectedValue?.ToString();
                     GetUsers(string.IsNullOrEmpty(selectedRole) || selectedRole == "All Roles" ? null : selectedRole);

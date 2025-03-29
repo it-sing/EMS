@@ -1,8 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using DBProgrammingDemo9;
-using EmployeeManagamentSystem.Pattern;
-using static System.Windows.Forms.VisualStyles.VisualStyleElement.ListView;
+
 
 namespace EmployeeManagamentSystem
 {
@@ -28,15 +27,16 @@ namespace EmployeeManagamentSystem
         public DataTable GetAllDepartments()
         {
             string sql = @"
-                        SELECT 
-                            d.DepartmentID, 
-                            d.DepartmentName, 
-                            d.Description, 
-                            e.FirstName + ' ' + e.LastName AS ManagerName
-                        FROM Departments d
-                        LEFT JOIN Employees e ON d.ManagerID = e.EmployeeID;";
+                SELECT 
+                    d.DepartmentID, 
+                    d.DepartmentName, 
+                    d.Description, 
+                    COALESCE(e.FirstName + ' ' + e.LastName, ' ') AS ManagerName
+                FROM Departments d
+                LEFT JOIN Employees e ON d.ManagerID = e.EmployeeID;";
             return DataAccess.GetData(sql);
         }
+
         public int GetFirstDepartmentId()
         {
             string sql = "SELECT TOP 1 DepartmentID FROM Departments ORDER BY DepartmentID ASC";

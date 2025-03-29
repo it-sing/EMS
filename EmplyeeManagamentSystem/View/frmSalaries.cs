@@ -103,7 +103,11 @@ namespace EmployeeManagamentSystem
                         return;
                     }
 
-                    decimal salaryBeforeTax = Convert.ToDecimal(txtSalaryBeforeTax.Text);
+                    if (!decimal.TryParse(txtSalaryBeforeTax.Text, out decimal salaryBeforeTax))
+                    {
+                        MessageBox.Show("Invalid salary input", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        return;
+                    }
 
                     bool salaryUpdated = _salaryService.UpdateSalary(currentEmployeeID, salaryBeforeTax);
 
@@ -123,5 +127,6 @@ namespace EmployeeManagamentSystem
                 }
             }
         }
+
     }
 }

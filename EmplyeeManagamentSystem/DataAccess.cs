@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Data;
+﻿using System.Data;
 using System.Data.SqlClient;
-using EmployeeManagamentSystem.Pattern;
+using EmployeeManagementSystem.Pattern;
 
 namespace DBProgrammingDemo9
 {
-    internal class DataAccess
+    public class DataAccess
     {
         private static SqlConnection OpenConnection()
         {
@@ -15,7 +13,6 @@ namespace DBProgrammingDemo9
             return conn;
         }
 
-        // ✅ Fetches a DataTable from SQL Query
         public static DataTable GetData(string sql)
         {
             try
@@ -31,25 +28,25 @@ namespace DBProgrammingDemo9
             }
             catch (SqlException ex)
             {
-                throw new Exception("Database connection error occurred. Please check your connection and try again.", ex);
+                throw new Exception("Database connection error occurred.", ex);
             }
         }
 
-        // ✅ Fetches a DataSet from multiple SQL Queries
         public static DataSet GetMultiData(string[] sqlStatements)
         {
             try
             {
                 using (SqlConnection conn = OpenConnection())
-                using (SqlCommand cmd = new SqlCommand(string.Join(";", sqlStatements), conn))
-                using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                 {
                     DataSet ds = new DataSet();
                     for (int i = 0; i < sqlStatements.Length; i++)
                     {
-                        da.TableMappings.Add($"Table{i}", $"Data{i}");
+                        using (SqlCommand cmd = new SqlCommand(sqlStatements[i], conn))
+                        using (SqlDataAdapter da = new SqlDataAdapter(cmd))
+                        {
+                            da.Fill(ds, $"Table{i}");
+                        }
                     }
-                    da.Fill(ds);
                     return ds;
                 }
             }
@@ -59,23 +56,21 @@ namespace DBProgrammingDemo9
             }
         }
 
-        // ✅ Fetches a DataSet with Parameters
         public static DataSet GetBy(string sql, Dictionary<string, object> parameters = null)
         {
             try
             {
                 using (SqlConnection conn = OpenConnection())
-                using (SqlCommand command = new SqlCommand(sql, conn))
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     if (parameters != null)
                     {
                         foreach (var param in parameters)
                         {
-                            command.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
                         }
                     }
-
-                    using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                    using (SqlDataAdapter adapter = new SqlDataAdapter(cmd))
                     {
                         DataSet ds = new DataSet();
                         adapter.Fill(ds);
@@ -89,7 +84,6 @@ namespace DBProgrammingDemo9
             }
         }
 
-        // ✅ Fetches a DataTable with SQL Parameters
         public static DataTable GetByParameter(string sql, SqlParameter[] parameters)
         {
             try
@@ -101,7 +95,6 @@ namespace DBProgrammingDemo9
                     {
                         cmd.Parameters.AddRange(parameters);
                     }
-
                     using (SqlDataAdapter da = new SqlDataAdapter(cmd))
                     {
                         DataTable dt = new DataTable();
@@ -113,11 +106,10 @@ namespace DBProgrammingDemo9
             catch (Exception ex)
             {
                 Console.WriteLine($"Error executing query: {ex.Message}");
-                return new DataTable(); // Return empty DataTable on failure instead of throwing
+                return new DataTable();
             }
         }
 
-        // ✅ Fetches a Single Value
         public static object GetValue(string sql)
         {
             try
@@ -134,7 +126,6 @@ namespace DBProgrammingDemo9
             }
         }
 
-        // ✅ Executes INSERT, UPDATE, DELETE Queries with Parameters
         public static int SendData(string sql, SqlParameter[] parameters)
         {
             try
@@ -154,8 +145,6 @@ namespace DBProgrammingDemo9
                 throw new Exception("Error executing data modification command.", ex);
             }
         }
-
-        // ✅ Executes INSERT, UPDATE, DELETE Queries
         public static int Send(string sql)
         {
             try
@@ -168,26 +157,27 @@ namespace DBProgrammingDemo9
             }
             catch (SqlException ex)
             {
+                MessageBox.Show($"SQL Error: {ex.Message}", "Database Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 throw new Exception("Error executing data modification command.", ex);
             }
         }
 
-        // ✅ Updates Data with Parameters
+
         public static int UpdateData(string sql, Dictionary<string, object> parameters)
         {
             try
             {
                 using (SqlConnection conn = OpenConnection())
-                using (SqlCommand command = new SqlCommand(sql, conn))
+                using (SqlCommand cmd = new SqlCommand(sql, conn))
                 {
                     if (parameters != null)
                     {
                         foreach (var param in parameters)
                         {
-                            command.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
+                            cmd.Parameters.AddWithValue(param.Key, param.Value ?? DBNull.Value);
                         }
                     }
-                    return command.ExecuteNonQuery();
+                    return cmd.ExecuteNonQuery();
                 }
             }
             catch (SqlException ex)
@@ -196,13 +186,11 @@ namespace DBProgrammingDemo9
             }
         }
 
-        // ✅ Executes Batch Queries with Transaction Support
         public static bool ExecuteTransaction(List<string> sqlStatements)
         {
             using (SqlConnection conn = OpenConnection())
             {
                 SqlTransaction transaction = conn.BeginTransaction();
-
                 try
                 {
                     foreach (var sql in sqlStatements)
@@ -217,25 +205,28 @@ namespace DBProgrammingDemo9
                 }
                 catch (SqlException)
                 {
-                    transaction.Rollback();
+                    try
+                    {
+                        transaction.Rollback();
+                    }
+                    catch { /* Prevent secondary exceptions */ }
                     throw;
                 }
             }
         }
 
-        // ✅ Sanitizes SQL (Removes extra spaces)
+
         public static string SQLCleaner(string sql)
         {
             if (string.IsNullOrEmpty(sql))
                 return sql;
 
             return sql.Replace(Environment.NewLine, " ")
-                     .Replace("\t", " ")
-                     .Trim()
-                     .Replace("  ", " ");
+                      .Replace("\t", " ")
+                      .Trim()
+                      .Replace("  ", " ");
         }
 
-        // ✅ Escapes Single Quotes in SQL Queries
         public static string SQLFix(string sql)
         {
             return string.IsNullOrEmpty(sql) ? sql : sql.Replace("'", "''");

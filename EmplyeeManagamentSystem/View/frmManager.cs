@@ -1,22 +1,24 @@
-﻿using DBProgrammingDemo9;
-using EmployeeManagamentSystem.Util;
-using System.ComponentModel;
+﻿using EmployeeManagamentSystem.Util;
+using EmployeeManagamentSystem;
 using System.Data;
-using System.Data.SqlClient;
 
 namespace EmployeeManagamentSystem
 {
     public partial class frmManager : Form
     {
-        int selectedDepartmentID;
+        private readonly EmployeeService _employeeService;
+        private readonly DepartmentService _departmentService;
+        private int selectedDepartmentID;
+
         public frmManager()
         {
             InitializeComponent();
+            _employeeService = new EmployeeService();
+            _departmentService = new DepartmentService();
         }
 
         private void frmManager_Load(object sender, EventArgs e)
         {
-
             LoadEmployees();
             LoadDepartments();
         }
@@ -25,12 +27,24 @@ namespace EmployeeManagamentSystem
         {
             try
             {
-                string sqlString =
-                    $@"SELECT EmployeeID, 
-                        CONCAT(FirstName, ' ', LastName) AS EmployeeName 
-                        FROM Employees;";
-                DataTable dtEmployees = DataAccess.GetData(sqlString);
+                DataTable dtEmployees = _employeeService.GetEmployees();
                 UIUtilities.BindComboBox(cboNewManager, dtEmployees, "EmployeeName", "EmployeeID");
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void LoadDepartments()
+        {
+            try
+            {
+                DataTable dtDepartments = _departmentService.GetDepartments();
+                if (dtDepartments.Rows.Count > 0)
+                    UIUtilities.BindComboBox(cboDepartments, dtDepartments, "DepartmentName", "DepartmentID");
+                else
+                    MessageBox.Show("No department found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             catch (Exception ex)
             {
@@ -42,129 +56,77 @@ namespace EmployeeManagamentSystem
         {
             try
             {
-                string sqlString =
-                    $@"
-                       SELECT
-                            (SELECT CONCAT(FirstName, ' ', LastName)
-                            FROM Employees
-                            WHERE Employees.EmployeeID = Departments.ManagerID) as CurrentManager
-                        FROM Departments
-                        WHERE DepartmentID = {selectedDepartmentID};
-                    ";
-                DataTable dtDepartments = DataAccess.GetData(sqlString);
-                string currentManager = dtDepartments.Rows[0]["CurrentManager"] != DBNull.Value ? dtDepartments.Rows[0]["CurrentManager"].ToString() : "No Manager";
-                txtCurrentManager.Text = currentManager;
+                // Fetch current manager data for the selected department
+                DataTable dt = _departmentService.GetCurrentManager(selectedDepartmentID);
 
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
-            }
-        }
-
-        private void LoadDepartments()
-        {
-            try
-            {
-
-
-
-                string sqlString =
-                    $@"
-                        SELECT
-                            Departments.DepartmentID,
-                            Departments.DepartmentName
-                        FROM Departments
-
-                    ";
-                DataTable dtDepartments = DataAccess.GetData(sqlString);
-                if (dtDepartments.Rows.Count > 0)
+                // Check if any data was returned
+                if (dt.Rows.Count > 0)
                 {
-                    UIUtilities.BindComboBox(cboDepartments, dtDepartments, "DepartmentName", "DepartmentID");
-
-
+                    // Check if "CurrentManager" column has a value (is not DBNull)
+                    var currentManager = dt.Rows[0]["CurrentManager"];
+                    txtCurrentManager.Text = currentManager != DBNull.Value ? currentManager.ToString() : "No Manager";
                 }
                 else
                 {
-                    MessageBox.Show("No department found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    // No department manager information found, display "No Manager"
+                    txtCurrentManager.Text = "No Manager";
                 }
-
-
             }
             catch (Exception ex)
             {
+                // Display any exceptions as an error message
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-        }
-
-
-
-        private void cbo_Validating(object sender, CancelEventArgs eventArgs)
-        {
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
-
-
             try
             {
+                // Check for valid department selection
                 if (cboDepartments.SelectedIndex == -1 || cboDepartments.SelectedValue == DBNull.Value)
                 {
                     MessageBox.Show("Please select a department", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     return;
                 }
 
-                if (cboNewManager.SelectedIndex == -1 || cboNewManager.SelectedValue == DBNull.Value)
-                {
-                    MessageBox.Show("Please select a manager", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    return;
-                }
-
-                int newManagerID = Convert.ToInt32(cboNewManager.SelectedValue);
                 int departmentID = Convert.ToInt32(cboDepartments.SelectedValue);
-                string sqlString = $@"
-                    UPDATE Employees SET DepartmentID = {departmentID} WHERE EmployeeID = {newManagerID};
-                    UPDATE Departments SET ManagerID = {newManagerID} WHERE DepartmentID = {departmentID};
-                ";
-                SqlParameter[] parameters = new SqlParameter[]
-                   {
-                new SqlParameter("@DepartmentID", departmentID),
-                new SqlParameter("@ManagerID", newManagerID),
-                   };
+                int? newManagerID = null;  // Default to null
 
-                int recordAffected = DataAccess.SendData(sqlString, parameters);
-
-                if (recordAffected == 2)
+                // Check if a manager is selected and assign the ID
+                if (cboNewManager.SelectedIndex != -1 && cboNewManager.SelectedValue != DBNull.Value)
                 {
-                    MessageBox.Show("Manager added successfully");
-                    LoadDepartmentCurrentManager();
+                    newManagerID = Convert.ToInt32(cboNewManager.SelectedValue);
                 }
-                else
-                {
 
-                    MessageBox.Show("Failed to add manager");
+                // Call the service to update the manager
+                if (_departmentService.AssignManager(departmentID, newManagerID))
+                {
+                    LoadDepartmentCurrentManager();  // Reload the department's current manager
                 }
+                //else
+                //{
+                //    MessageBox.Show("Failed to update manager", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-
             }
         }
+
+
+
 
         private void cboDepartments_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
             {
-                if (cboDepartments.SelectedIndex == -1 || cboDepartments.SelectedValue == DBNull.Value)
+                if (cboDepartments.SelectedIndex != -1 && cboDepartments.SelectedValue != DBNull.Value)
                 {
-                    return;
+                    selectedDepartmentID = Convert.ToInt32(cboDepartments.SelectedValue);
+                    LoadDepartmentCurrentManager();
                 }
-
-                selectedDepartmentID = Convert.ToInt32(cboDepartments.SelectedValue);
-                LoadDepartmentCurrentManager();
             }
             catch (Exception ex)
             {
@@ -172,4 +134,6 @@ namespace EmployeeManagamentSystem
             }
         }
     }
+
+
 }

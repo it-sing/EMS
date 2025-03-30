@@ -58,10 +58,6 @@ namespace EmployeeManagamentSystem
                     DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
                     if (result == DialogResult.Yes)
                     {
-                        // Clear the user session data
-                        ClearUserSession();
-
-                        // Close all child forms
                         foreach (Form child in this.MdiChildren)
                         {
                             child.Close();
@@ -121,17 +117,6 @@ namespace EmployeeManagamentSystem
             }
 
         }
-        private void ClearUserSession()
-        {
-            UIUtilities.CurrentUserID = 0;  
-            UIUtilities.CurrentUserName = string.Empty;
-            UIUtilities.CurrentUserRole = string.Empty;
-
-            // Add debug output to verify
-            Console.WriteLine("Session cleared: UserID = " + UIUtilities.CurrentUserID);
-            MessageBox.Show("Session Cleared!");
-        }
-
 
         private void OpenFile(object sender, EventArgs e)
         {
@@ -256,6 +241,8 @@ namespace EmployeeManagamentSystem
                 {
                     reportToolStripMenuItem.Visible = false;
                 }
+
+
 
             }
             catch (Exception ex)

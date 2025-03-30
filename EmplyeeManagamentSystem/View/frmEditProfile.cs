@@ -2,6 +2,7 @@
 using System;
 using System.Data;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement;
 
 namespace EmployeeManagamentSystem
 {
@@ -10,7 +11,6 @@ namespace EmployeeManagamentSystem
         private UserService _userService;
         private int currentUserId = UIUtilities.CurrentUserID;
         
-
         public frmEditProfile()
         {
             InitializeComponent();
@@ -84,7 +84,7 @@ namespace EmployeeManagamentSystem
             bool success = _userService.CreateUser(txtFirstname.Text, txtLastName.Text, txtEmail.Text, dtpDateOfBirth.Value, dtpEmployemntDate.Value, currentUserId);
             if (success)
             {
-                MessageBox.Show("Employee Created Successfully");
+                //MessageBox.Show("Employee Created Successfully");
             }
             else
             {

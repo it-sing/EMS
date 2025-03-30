@@ -3,20 +3,16 @@
   "WorkspaceRootPath": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\view\\frmemployeesystemmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\view\\frmemployeesystemmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\view\\frmsalaries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\view\\frmsalaries.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\util\\uiutilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\util\\uiutilities.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\repository\\salaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\repository\\salaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
-      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\view\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\view\\frmlogin.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\util\\authorization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\util\\authorization.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\repository\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\repository\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -26,58 +22,45 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 3,
+          "SelectedChildIndex": 0,
           "Children": [
             {
               "$type": "Document",
-              "DocumentIndex": 2,
-              "Title": "frmLogin.cs",
-              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmLogin.cs",
-              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\View\\frmLogin.cs",
-              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmLogin.cs",
-              "RelativeToolTip": "EmplyeeManagamentSystem\\View\\frmLogin.cs",
-              "ViewState": "AgIAABEAAAAAAAAAAAAuwCUAAAAAAAAAAAAAAA==",
+              "DocumentIndex": 0,
+              "Title": "frmSalaries.cs",
+              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmSalaries.cs",
+              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\View\\frmSalaries.cs",
+              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmSalaries.cs",
+              "RelativeToolTip": "EmplyeeManagamentSystem\\View\\frmSalaries.cs",
+              "ViewState": "AgIAACgAAAAAAAAAAAAAADYAAAAAAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T06:41:54.11Z",
+              "WhenOpened": "2025-03-30T09:05:44.35Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "EmployeeRepository.cs",
+              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs",
+              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs",
+              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs",
+              "RelativeToolTip": "EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAACGAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-30T09:04:06.718Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "UIUtilities.cs",
-              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Util\\UIUtilities.cs",
-              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\Util\\UIUtilities.cs",
-              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Util\\UIUtilities.cs",
-              "RelativeToolTip": "EmplyeeManagamentSystem\\Util\\UIUtilities.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA6AAAAAAAAAA==",
+              "Title": "SalaryRepository.cs",
+              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Repository\\SalaryRepository.cs",
+              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\Repository\\SalaryRepository.cs",
+              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Repository\\SalaryRepository.cs",
+              "RelativeToolTip": "EmplyeeManagamentSystem\\Repository\\SalaryRepository.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAArAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T06:08:38.135Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 3,
-              "Title": "Authorization.cs",
-              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Util\\Authorization.cs",
-              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\Util\\Authorization.cs",
-              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Util\\Authorization.cs",
-              "RelativeToolTip": "EmplyeeManagamentSystem\\Util\\Authorization.cs",
-              "ViewState": "AgIAAGgAAAAAAAAAAAAuwGIAAAANAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T06:02:57.512Z",
-              "EditorCaption": ""
-            },
-            {
-              "$type": "Document",
-              "DocumentIndex": 0,
-              "Title": "frmEmployeeSystemManager.cs",
-              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmEmployeeSystemManager.cs",
-              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\View\\frmEmployeeSystemManager.cs",
-              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmEmployeeSystemManager.cs",
-              "RelativeToolTip": "EmplyeeManagamentSystem\\View\\frmEmployeeSystemManager.cs",
-              "ViewState": "AgIAAHIAAAAAAAAAAAAUwIMAAAAwAAAAAAAAAA==",
-              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-29T06:02:41.625Z",
+              "WhenOpened": "2025-03-30T09:03:30.074Z",
               "EditorCaption": ""
             }
           ]

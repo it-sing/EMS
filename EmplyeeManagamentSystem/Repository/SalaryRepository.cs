@@ -10,8 +10,10 @@ namespace EmployeeManagamentSystem.Repositories
         public DataTable GetEmployees()
         {
             string sql = @"SELECT EmployeeID, 
-                                  CONCAT(FirstName, ' ', LastName) AS FullName
-                           FROM Employees";
+                               CONCAT(FirstName, ' ', LastName) AS FullName
+                        FROM Employees
+                        WHERE IsDeleted = 0;
+            ";
             return DataAccess.GetData(sql);
         }
 

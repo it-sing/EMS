@@ -219,7 +219,6 @@ namespace EmployeeManagamentSystem
             }
         }
 
-
         private void ApproveUser(int userID)
         {
             try

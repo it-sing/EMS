@@ -11,12 +11,19 @@ namespace EmployeeManagamentSystem
         {
             _departmentRepository = new DepartmentRepository();
         }
-
         public DataTable Departments => _departmentRepository.GetDepartments();
 
+        public bool IsDepartmentName(string departmentName)
+        {
+            return _departmentRepository.IsDepartmentsName(departmentName);
+        }
         public bool IsEmployeeManager(int employeeID)
         {
             return _departmentRepository.IsEmployeeManager(employeeID);
+        }
+        public bool IsDepartmentAssigned(int departmentId)
+        {
+            return _departmentRepository.IsDepartmentAssigned(departmentId);
         }
 
         // Get all departments
@@ -29,18 +36,6 @@ namespace EmployeeManagamentSystem
         public int GetFirstDepartmentId()
         {
             return _departmentRepository.GetFirstDepartmentId();
-        }
-
-        // Get department details by ID
-        public DataTable GetDepartmentDetails(int departmentId)
-        {
-            return _departmentRepository.GetDepartmentDetails(departmentId);
-        }
-
-        // Get navigation info (first, previous, next, last) for a department
-        public DataTable GetNavigationInfo(int departmentId)
-        {
-            return _departmentRepository.GetNavigationInfo(departmentId);
         }
 
         // Create a new department
@@ -68,9 +63,8 @@ namespace EmployeeManagamentSystem
             return _departmentRepository.GetAllDepartments();
         }
 
-
         public DataTable GetCurrentManager(int departmentID) => _departmentRepository.GetDepartmentCurrentManager(departmentID);
-        public bool AssignManager(int departmentID, int managerID) => _departmentRepository.UpdateManager(departmentID, managerID) == 2;
+        public bool AssignManager(int departmentID, int? managerID) => _departmentRepository.UpdateManager(departmentID, managerID) == 2;
     }
 
 }

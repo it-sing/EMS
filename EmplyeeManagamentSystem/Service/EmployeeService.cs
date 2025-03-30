@@ -12,6 +12,7 @@ namespace EmployeeManagamentSystem
         {
             _employeeRepository = new EmployeeRepository();
         }
+        public DataTable GetEmployees() => _employeeRepository.GetEmployees();
 
         public DataTable Employees => _employeeRepository.GetAllEmployees();
 

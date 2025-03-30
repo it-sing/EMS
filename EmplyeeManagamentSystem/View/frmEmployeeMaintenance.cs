@@ -26,7 +26,6 @@ namespace EmployeeManagamentSystem
             LoadViewEmployees();
             LoadDepartment();
         }
-
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             // Check if valid row and column clicked
@@ -56,7 +55,6 @@ namespace EmployeeManagamentSystem
             dtpEmployemntDate.Text = row.Cells["EmploymentDate"].Value?.ToString();
             cboDepartments.Text = row.Cells["DepartmentName"].Value?.ToString();
         }
-
         private void HandleDeleteEmployee(int rowIndex)
         {
             int employeeId = Convert.ToInt32(dgvEmployees.Rows[rowIndex].Cells["EmployeeID"].Value);
@@ -64,9 +62,7 @@ namespace EmployeeManagamentSystem
 
             string employeeName = dgvEmployees.Rows[rowIndex].Cells["FirstName"].Value?.ToString();
 
-            DialogResult result = MessageBox.Show($"Are you sure you want to delete {employeeName}?", "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Warning);
-
-            if (result == DialogResult.Yes)
+            try
             {
                 if (_departmentService.IsEmployeeManager(employeeId))
                 {
@@ -74,30 +70,25 @@ namespace EmployeeManagamentSystem
                     return;
                 }
 
-                try
-                {
-                    // Delete both employee and user in one transaction-like process
-                    bool isEmployeeDeleted = _employeeService.DeleteEmployee(employeeId);
-                    bool isUserDeleted = _userService.DeleteUser(userId);
+                // Delete both employee and user in one transaction-like process
+                bool isEmployeeDeleted = _employeeService.DeleteEmployee(employeeId);
+                bool isUserDeleted = _userService.DeleteUser(userId);
 
-                    if (isEmployeeDeleted && isUserDeleted)
-                    {
-                        MessageBox.Show("Employee and user deleted successfully.");
-                        LoadViewEmployees(); // Refresh the employee list after deletion
-                    }
-                    else
-                    {
-                        MessageBox.Show("Error deleting employee or user.");
-                    }
-                }
-                catch (Exception ex)
+                if (isEmployeeDeleted && isUserDeleted)
                 {
-                    MessageBox.Show($"Error: {ex.Message}", "Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //MessageBox.Show("Employee and user deleted successfully.");
+                    LoadViewEmployees(); // Refresh the employee list after deletion
+                }
+                else
+                {
+                    MessageBox.Show("Error deleting employee or user.");
                 }
             }
+            catch (Exception ex)
+            {
+                MessageBox.Show($"Error: {ex.Message}", "Deletion Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
-
         private void AddDeleteButton()
         {
             if (!dgvEmployees.Columns.Contains("Delete"))
@@ -110,10 +101,6 @@ namespace EmployeeManagamentSystem
                 dgvEmployees.Columns.Add(btnDelete);
             }
         }
-
-
-
-        // for filtering employees by department
         private void LoadDepartments()
         {
             DataTable dtDepartments = _departmentService.Departments;
@@ -131,16 +118,12 @@ namespace EmployeeManagamentSystem
 
             UIUtilities.BindComboBox(cboDepartmentFillter, dtDepartments, "DepartmentName", "DepartmentID");
         }
-
-
-        // for update employee
         private void LoadDepartment()
         {
             DataTable dtDepartments = _departmentService.Departments;
             UIUtilities.BindComboBox(cboDepartments, dtDepartments, "DepartmentName", "DepartmentID");
 
         }
-
         private void cboDepartmentFillter_SelectedIndexChanged(object sender, EventArgs e)
         {
             try
@@ -166,7 +149,6 @@ namespace EmployeeManagamentSystem
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void LoadViewEmployees()
         {
             try
@@ -191,8 +173,6 @@ namespace EmployeeManagamentSystem
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
         private void btnCancel_Click(object sender, EventArgs e)
         {
             txtEmployeeID.Text = "";
@@ -203,10 +183,9 @@ namespace EmployeeManagamentSystem
             dtpEmployemntDate.Value = DateTime.Now;
             cboDepartments.SelectedIndex = 0;
         }
-
-        // for update employee
         private void btnSave_Click(object sender, EventArgs e)
         {
+            ProgressBar();
             if (string.IsNullOrEmpty(txtEmployeeID.Text))
             {
                 MessageBox.Show("Please select an employee to update.");
@@ -241,7 +220,7 @@ namespace EmployeeManagamentSystem
 
             if (isUpdated > 0)
             {
-                MessageBox.Show("Employee updated successfully.");
+                //MessageBox.Show("Employee updated successfully.");
                 btnCancel_Click(sender, e);
                 LoadViewEmployees();
             }
@@ -249,6 +228,22 @@ namespace EmployeeManagamentSystem
             {
                 MessageBox.Show("Error while updating employee.");
             }
+        }
+
+        private void ProgressBar()
+        {
+            this.toolStripStatusLabel3.Text = "Processing...";
+            prgBar.Value = 0;
+            this.statusStrip1.Refresh();
+
+            while (prgBar.Value < prgBar.Maximum)
+            {
+                Thread.Sleep(10);
+                prgBar.Value += 1;
+            }
+
+            prgBar.Value = 100;
+            this.toolStripStatusLabel3.Text = "Processed";
         }
 
     }

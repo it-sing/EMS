@@ -37,7 +37,7 @@ namespace EmployeeManagamentSystem.Util
         {
 
             switch (permission)
-            {
+            {                
                 case Permission.ALL:
                     showEmployeeEditorForm = true;
                     showDepartmentEditorForm = true;
@@ -99,6 +99,8 @@ namespace EmployeeManagamentSystem.Util
             {
                 DataRow drRoles = dtRoles.Rows[0];
                 string? permission = drRoles["Permission"]?.ToString();
+
+                //MessageBox.Show(permission.ToString());
                 return permission?.Split(',');
             }
             return null;
@@ -106,7 +108,10 @@ namespace EmployeeManagamentSystem.Util
         }
         public static void SetFormAccessCurrentUser()
         {
+            ResetPermissions();
+
             string[]? permissions = GetCurrentUserPermission();
+
             if (permissions != null)
             {
                 foreach (string permission in permissions)
@@ -115,6 +120,19 @@ namespace EmployeeManagamentSystem.Util
                     SetFormAccess(currentPermission);
                 }
             }
+        }
+
+        private static void ResetPermissions()
+        {
+            showEmployeeEditorForm = false;
+            showDepartmentEditorForm = false;
+            showEditProfileForm = false;
+            showManagerForm = false;
+            showSalaryForm = false;
+            showUserForm = false;
+            showAttendanceForm = false;
+            showReportForm = false;
+            showNotificationForm = false;
         }
 
         //return all forms that should be shown
@@ -152,10 +170,6 @@ namespace EmployeeManagamentSystem.Util
         public static bool ShowReportForm()
         {
             return showReportForm;
-        }
-        public static bool ShowNotificationForm()
-        {
-            return showNotificationForm;
         }
 
     }

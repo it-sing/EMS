@@ -10,11 +10,6 @@ namespace EmployeeManagamentSystem
 {
     public class EmployeeRepository
     {
-        public DataTable GetEmployees()
-        {
-            string sqlString = "SELECT * FROM Employees";
-            return DataAccess.GetData(sqlString);
-        }
 
         public DataTable GetEmployeesByDepartment(int departmentId)
         {
@@ -43,6 +38,11 @@ namespace EmployeeManagamentSystem
             return DataAccess.GetByParameter(sqlString, parameters);
         }
 
+        public DataTable GetEmployees()
+        {
+            string sqlString = "SELECT EmployeeID, CONCAT(FirstName, ' ', LastName) AS EmployeeName FROM Employees WHERE IsDeleted = 0;";
+            return DataAccess.GetData(sqlString);
+        }
         public DataTable GetAllEmployees()
         {
             string sql = @"
@@ -65,8 +65,6 @@ namespace EmployeeManagamentSystem
                         WHERE e.IsDeleted = 0;";
                             return DataAccess.GetData(sql);
         }
-
-
 
         public bool CreateEmployee(string firstName, string lastName, string email, DateTime dob, DateTime employmentDate, int departmentId)
         {

@@ -32,10 +32,8 @@ namespace EmployeeManagamentSystem
         {
             components = new Container();
             grpDepartments = new GroupBox();
-            btnDelete = new Button();
             btnSave = new Button();
             btnCancel = new Button();
-            btnAdd = new Button();
             txtDepartmentID = new TextBox();
             label3 = new Label();
             txtDescription = new TextBox();
@@ -58,10 +56,8 @@ namespace EmployeeManagamentSystem
             // 
             // grpDepartments
             // 
-            grpDepartments.Controls.Add(btnDelete);
             grpDepartments.Controls.Add(btnSave);
             grpDepartments.Controls.Add(btnCancel);
-            grpDepartments.Controls.Add(btnAdd);
             grpDepartments.Controls.Add(txtDepartmentID);
             grpDepartments.Controls.Add(label3);
             grpDepartments.Controls.Add(txtDescription);
@@ -76,21 +72,10 @@ namespace EmployeeManagamentSystem
             grpDepartments.TabStop = false;
             grpDepartments.Text = "Department Details";
             // 
-            // btnDelete
-            // 
-            btnDelete.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnDelete.Location = new Point(167, 443);
-            btnDelete.Name = "btnDelete";
-            btnDelete.Size = new Size(94, 29);
-            btnDelete.TabIndex = 13;
-            btnDelete.Text = "Delete";
-            btnDelete.UseVisualStyleBackColor = true;
-            btnDelete.Click += btnDelete_Click;
-            // 
             // btnSave
             // 
             btnSave.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSave.Location = new Point(296, 443);
+            btnSave.Location = new Point(30, 452);
             btnSave.Name = "btnSave";
             btnSave.Size = new Size(94, 29);
             btnSave.TabIndex = 12;
@@ -101,24 +86,13 @@ namespace EmployeeManagamentSystem
             // btnCancel
             // 
             btnCancel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancel.Location = new Point(415, 443);
+            btnCancel.Location = new Point(141, 452);
             btnCancel.Name = "btnCancel";
             btnCancel.Size = new Size(94, 29);
             btnCancel.TabIndex = 11;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
             btnCancel.Click += btnCancel_Click;
-            // 
-            // btnAdd
-            // 
-            btnAdd.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnAdd.Location = new Point(40, 443);
-            btnAdd.Name = "btnAdd";
-            btnAdd.Size = new Size(94, 29);
-            btnAdd.TabIndex = 10;
-            btnAdd.Text = "Add";
-            btnAdd.UseVisualStyleBackColor = true;
-            btnAdd.Click += btnAdd_Click;
             // 
             // txtDepartmentID
             // 
@@ -182,7 +156,7 @@ namespace EmployeeManagamentSystem
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2, prgBar, toolStripStatusLabel3 });
             statusStrip1.Location = new Point(0, 590);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1454, 26);
+            statusStrip1.Size = new Size(1443, 26);
             statusStrip1.TabIndex = 1;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -220,8 +194,9 @@ namespace EmployeeManagamentSystem
             dgvDepartments.Name = "dgvDepartments";
             dgvDepartments.ReadOnly = true;
             dgvDepartments.RowHeadersWidth = 51;
-            dgvDepartments.Size = new Size(717, 464);
+            dgvDepartments.Size = new Size(716, 464);
             dgvDepartments.TabIndex = 2;
+            dgvDepartments.CellClick += dgvDepartments_CellClick;
             // 
             // label4
             // 
@@ -237,7 +212,7 @@ namespace EmployeeManagamentSystem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1454, 616);
+            ClientSize = new Size(1443, 616);
             Controls.Add(label4);
             Controls.Add(dgvDepartments);
             Controls.Add(statusStrip1);
@@ -263,10 +238,8 @@ namespace EmployeeManagamentSystem
         private GroupBox grpDepartments;
         private TextBox txtDepartmentName;
         private Label label1;
-        private Button btnDelete;
         private Button btnSave;
         private Button btnCancel;
-        private Button btnAdd;
         private TextBox txtDepartmentID;
         private Label label3;
         private TextBox txtDescription;

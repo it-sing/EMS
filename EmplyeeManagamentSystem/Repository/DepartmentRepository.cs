@@ -1,6 +1,7 @@
 ﻿using System.Data;
 using System.Data.SqlClient;
 using DBProgrammingDemo9;
+using EmployeeManagamentSystem.Pattern;
 
 
 namespace EmployeeManagamentSystem
@@ -11,6 +12,16 @@ namespace EmployeeManagamentSystem
         {
             string sqlString = "SELECT * FROM Departments";
             return DataAccess.GetData(sqlString);
+        }
+        public bool IsDepartmentsName(string departmentsName)
+        {
+            string sql = "SELECT COUNT(1) FROM Departments WHERE DepartmentName = @DepartmentName";
+            SqlParameter[] parameters = new SqlParameter[]
+            {
+                new SqlParameter("@DepartmentName", departmentsName)
+            };
+            DataTable dt = DataAccess.GetByParameter(sql, parameters);
+            return dt.Rows.Count == 1 && Convert.ToInt32(dt.Rows[0][0]) > 0;
         }
         public bool IsEmployeeManager(int employeeId)
         {
@@ -23,7 +34,17 @@ namespace EmployeeManagamentSystem
             return dt.Rows.Count == 1 && Convert.ToInt32(dt.Rows[0][0]) > 0;
 
         }
+        public bool IsDepartmentAssigned(int departmentId)
+        {
+            string sql = "SELECT COUNT(*) FROM Employees WHERE DepartmentID = @DepartmentID";
 
+            SqlParameter[] parameters = new SqlParameter[]
+             {
+                new SqlParameter("@DepartmentID", departmentId)
+             };
+            DataTable dt = DataAccess.GetByParameter(sql, parameters);
+            return dt.Rows.Count == 1 && Convert.ToInt32(dt.Rows[0][0]) > 0;
+        }
         public DataTable GetAllDepartments()
         {
             string sql = @"
@@ -36,21 +57,16 @@ namespace EmployeeManagamentSystem
                 LEFT JOIN Employees e ON d.ManagerID = e.EmployeeID;";
             return DataAccess.GetData(sql);
         }
-
         public int GetFirstDepartmentId()
         {
             string sql = "SELECT TOP 1 DepartmentID FROM Departments ORDER BY DepartmentID ASC";
             return (int)DataAccess.GetValue(sql);
         }
-
-        // Get the department details by ID
         public DataTable GetDepartmentDetails(int departmentId)
         {
             string sql = $"SELECT * FROM Departments WHERE DepartmentID = {departmentId}";
             return DataAccess.GetData(sql);
         }
-
-        // Get navigation info (previous, next, first, last) for departments
         public DataTable GetNavigationInfo(int departmentId)
         {
             string sql = $@"
@@ -106,31 +122,33 @@ namespace EmployeeManagamentSystem
             };
             return DataAccess.SendData(sql, parameters);
         }
-        //public DataTable GetAllDepartments()
-        //{
-        //    string sql = "SELECT DepartmentID, DepartmentName FROM Departments;";
-        //    return DataAccess.GetData(sql);
-        //}
         public DataTable GetDepartmentCurrentManager(int departmentID)
         {
-            string sql = $@"
-            SELECT (SELECT CONCAT(FirstName, ' ', LastName) FROM Employees WHERE EmployeeID = Departments.ManagerID) AS CurrentManager
-            FROM Departments WHERE DepartmentID = {departmentID};";
-            return DataAccess.GetData(sql);
+            string sqlString = @"SELECT (SELECT CONCAT(FirstName, ' ', LastName) FROM Employees WHERE EmployeeID = Departments.ManagerID) as CurrentManager FROM Departments WHERE DepartmentID = @DepartmentID;";
+            SqlParameter[] parameters = { new SqlParameter("@DepartmentID", departmentID) };
+            return DataAccess.GetByParameter(sqlString, parameters);
         }
 
-        public int UpdateManager(int departmentID, int managerID)
+        public int UpdateManager(int departmentID, int? managerID)
         {
-            string sql = $@"
-            UPDATE Employees SET DepartmentID = {departmentID} WHERE EmployeeID = {managerID};
-            UPDATE Departments SET ManagerID = {managerID} WHERE DepartmentID = {departmentID};";
+            string sqlString = @"
+                UPDATE Employees 
+                SET DepartmentID = @DepartmentID 
+                WHERE EmployeeID = @ManagerID;
 
-            SqlParameter[] parameters = new SqlParameter[]
-            {
+                UPDATE Departments 
+                SET ManagerID = @ManagerID 
+                WHERE DepartmentID = @DepartmentID;
+            ";
+
+                    // Using DBNull.Value for null managerID
+                    SqlParameter[] parameters =
+                    {
                 new SqlParameter("@DepartmentID", departmentID),
-                new SqlParameter("@ManagerID", managerID),
+                new SqlParameter("@ManagerID", (object)managerID ?? DBNull.Value)  // If managerID is null, it will pass DBNull.Value
             };
-            return DataAccess.SendData(sql, parameters);
+
+            return DataAccess.SendData(sqlString, parameters);
         }
 
 

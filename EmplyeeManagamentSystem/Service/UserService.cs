@@ -10,7 +10,7 @@ namespace EmployeeManagamentSystem
     public class UserService
     {
         private UserRepository _userRepository;
-        private const int DEFAULT_ROLE_ID = 4;
+        private const int DEFAULT_ROLE_ID = 5;
 
         public UserService()
         {

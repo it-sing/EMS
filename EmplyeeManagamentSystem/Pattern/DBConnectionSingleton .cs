@@ -11,7 +11,7 @@ namespace EmployeeManagementSystem.Pattern
         public static DBConnectionSingleton Instance => _instance.Value;
 
         private static readonly string _connectionString =
-            "Server=DESKTOP-89B3HBK\\SQLEXPRESS;Database=HRManagementDB;User Id=sa;Password=admin;";
+            "Server=DESKTOP-89B3HBK\\SQLEXPRESS;Database=EMSDB;User Id=sa;Password=admin;";
 
         private DBConnectionSingleton() { }
 

@@ -24,8 +24,6 @@ namespace EmployeeManagamentSystem
                                 e.SalaryBeforeTax,   
                                 e.TaxAmount,  
                                 e.SalaryAfterTax,   
-                                e.CheckIn,   
-                                e.CheckOut,  
                                 e.UserID,
                                 d.DepartmentName
                             FROM Employees e 
@@ -56,8 +54,6 @@ namespace EmployeeManagamentSystem
                             e.SalaryBeforeTax,   
                             e.TaxAmount,  
                             e.SalaryAfterTax,   
-                            e.CheckIn, 
-                            e.CheckOut,
                             e.UserID,
                             d.DepartmentName
                         FROM Employees e 

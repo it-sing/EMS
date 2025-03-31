@@ -23,13 +23,7 @@
     <Compile Update="View\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Update="View\frmLogout.cs">
-      <SubType>Form</SubType>
-    </Compile>
     <Compile Update="View\frmManager.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Update="View\frmNotification.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Update="View\frmRegister.cs">

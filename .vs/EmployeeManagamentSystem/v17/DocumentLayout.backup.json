@@ -3,12 +3,24 @@
   "WorkspaceRootPath": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\repository\\salaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\repository\\salaryrepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\repository\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\repository\\employeerepository.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\view\\frmemployeemaintenance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\view\\frmemployeemaintenance.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\service\\userservice.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\view\\frmregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\view\\frmregister.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\pattern\\dbconnectionsingleton .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\pattern\\dbconnectionsingleton .cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     }
   ],
   "DocumentGroupContainers": [
@@ -18,32 +30,71 @@
       "DocumentGroups": [
         {
           "DockedHeight": 200,
-          "SelectedChildIndex": 1,
+          "SelectedChildIndex": 2,
           "Children": [
             {
               "$type": "Document",
               "DocumentIndex": 1,
-              "Title": "EmployeeRepository.cs",
-              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs",
-              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs",
-              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs",
-              "RelativeToolTip": "EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAACoAAACGAAAAAAAAAA==",
+              "Title": "frmEmployeeMaintenance.cs",
+              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmEmployeeMaintenance.cs",
+              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\View\\frmEmployeeMaintenance.cs",
+              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmEmployeeMaintenance.cs",
+              "RelativeToolTip": "EmplyeeManagamentSystem\\View\\frmEmployeeMaintenance.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAgAAAA6AAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T09:04:06.718Z",
+              "WhenOpened": "2025-03-31T05:40:46.167Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "DBConnectionSingleton .cs",
+              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Pattern\\DBConnectionSingleton .cs",
+              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\Pattern\\DBConnectionSingleton .cs",
+              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Pattern\\DBConnectionSingleton .cs",
+              "RelativeToolTip": "EmplyeeManagamentSystem\\Pattern\\DBConnectionSingleton .cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAAAsAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T01:47:44.759Z",
               "EditorCaption": ""
             },
             {
               "$type": "Document",
               "DocumentIndex": 0,
-              "Title": "SalaryRepository.cs",
-              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Repository\\SalaryRepository.cs",
-              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\Repository\\SalaryRepository.cs",
-              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Repository\\SalaryRepository.cs*",
-              "RelativeToolTip": "EmplyeeManagamentSystem\\Repository\\SalaryRepository.cs*",
-              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAMAAAAAAAAAA==",
+              "Title": "EmployeeRepository.cs",
+              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs",
+              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs",
+              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs*",
+              "RelativeToolTip": "EmplyeeManagamentSystem\\Repository\\EmployeeRepository.cs*",
+              "ViewState": "AgIAACUAAAAAAAAAAAAQwDcAAAAwAAAAAAAAAA==",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2025-03-30T09:03:30.074Z",
+              "WhenOpened": "2025-03-31T01:46:52.832Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "UserService.cs",
+              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Service\\UserService.cs",
+              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\Service\\UserService.cs",
+              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Service\\UserService.cs",
+              "RelativeToolTip": "EmplyeeManagamentSystem\\Service\\UserService.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA8AAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T01:37:14.197Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "frmRegister.cs",
+              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmRegister.cs",
+              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\View\\frmRegister.cs",
+              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmRegister.cs",
+              "RelativeToolTip": "EmplyeeManagamentSystem\\View\\frmRegister.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABQAAAAvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-03-31T01:37:04.563Z",
               "EditorCaption": ""
             }
           ]

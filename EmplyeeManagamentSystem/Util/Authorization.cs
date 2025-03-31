@@ -12,12 +12,23 @@ namespace EmployeeManagamentSystem.Util
     public enum Permission
     {
         ALL,
-        VIEW_EMPLOYEES,
-        ADD_EMPLOYEE,
-        EDIT_EMPLOYEE,
-        DELETE_EMPLOYEE,
-        VIEW_SELF,
-        EDIT_SELF,
+        HR,
+        ACCOUNTANT,
+        EMPLOYEE,
+        //VIEW_EMPLOYEES,
+        //ADD_EMPLOYEE,
+        //EDIT_EMPLOYEE,
+        //DELETE_EMPLOYEE,
+        //VIEW_SELF,
+        //EDIT_SELF,
+        //VIEW_REPORT,
+        //EDIT_REPORT,
+        //VIEW_SALARY,
+        //EDIT_SALARY,
+        //VIEW_ATTENDANCE,
+        //EDIT_ATTENDANCE,
+        //VIEW_MANAGER,
+        //EDIT_MANAGER,
         NONE
     }
     public class Authorization
@@ -30,8 +41,6 @@ namespace EmployeeManagamentSystem.Util
         private static bool showUserForm = false;
         private static bool showAttendanceForm = false;
         private static bool showReportForm = false;
-        private static bool showNotificationForm = false;
-
 
         public static void SetFormAccess(Permission permission)
         {
@@ -47,29 +56,72 @@ namespace EmployeeManagamentSystem.Util
                     showUserForm = true;
                     showAttendanceForm = true;
                     showReportForm = true;
-                    showNotificationForm = true;
-
                     break;
 
-                case Permission.ADD_EMPLOYEE:
-                    //show employee editor form
+                case Permission.HR:
                     showEmployeeEditorForm = true;
-                    break;
-                case Permission.EDIT_EMPLOYEE:
-                    //show employee editor form
-                    showEmployeeEditorForm = true;
-                    break;
-                case Permission.DELETE_EMPLOYEE:
-                    //show employee editor form
                     showEditProfileForm = true;
+                    showAttendanceForm = true;
+                    showReportForm = true;
                     break;
-                case Permission.VIEW_SELF:
-                    //show employee viewer form
+
+                case Permission.ACCOUNTANT:
                     showEditProfileForm = true;
+                    showSalaryForm = true;
+                    showAttendanceForm = true;
+                    showReportForm = true;
                     break;
-                case Permission.EDIT_SELF:
+
+                case Permission.EMPLOYEE:
                     showEditProfileForm = true;
+                    showAttendanceForm = true;
                     break;
+
+                //case Permission.ADD_EMPLOYEE:
+                //    //show employee editor form
+                //    showEmployeeEditorForm = true;
+                //    break;
+                //case Permission.EDIT_EMPLOYEE:
+                //    //show employee editor form
+                //    showEmployeeEditorForm = true;
+                //    break;
+                //case Permission.DELETE_EMPLOYEE:
+                //    //show employee editor form
+                //    showEditProfileForm = true;
+                //    break;
+                //case Permission.VIEW_SELF:
+                //    //show employee viewer form
+                //    showEditProfileForm = true;
+                //    break;
+                //case Permission.EDIT_SELF:
+                //    showEditProfileForm = true;
+                //    break;
+                //case Permission.VIEW_REPORT:
+                //    //show employee viewer form
+                //    showReportForm = true;
+                //    break;
+                //case Permission.EDIT_REPORT:
+                //    showReportForm = true;
+                //    break;
+                //case Permission.VIEW_SALARY:
+                //    //show employee viewer form
+                //    showSalaryForm = true;
+                //    break;
+                //case Permission.EDIT_SALARY:
+                //    showSalaryForm = true;
+                //    break;
+                //case Permission.VIEW_ATTENDANCE:
+                //    showAttendanceForm = true;
+                //    break;
+                //case Permission.EDIT_ATTENDANCE:
+                //    showAttendanceForm = true;
+                //    break;
+                //case Permission.VIEW_MANAGER:
+                //    showManagerForm = true;
+                //    break;
+                //case Permission.EDIT_MANAGER:
+                //    showManagerForm = true;
+                //    break;
                 default:
 
                     break;
@@ -132,7 +184,6 @@ namespace EmployeeManagamentSystem.Util
             showUserForm = false;
             showAttendanceForm = false;
             showReportForm = false;
-            showNotificationForm = false;
         }
 
         //return all forms that should be shown

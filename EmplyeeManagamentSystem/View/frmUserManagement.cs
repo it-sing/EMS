@@ -25,8 +25,9 @@ namespace EmployeeManagamentSystem
             roleMap = new Dictionary<string, string>
             {
                 { "1", "Admin" },
-                { "2", "Manager" },
-                { "3", "Employee" }
+                { "2", "HR" },
+                { "3", "Employee" },
+                { "4", "Account" }
             };
         }
 
@@ -34,8 +35,8 @@ namespace EmployeeManagamentSystem
         {
             try
             {
-                GetRoles();   // Load roles and select All Roles
-                GetUsers();   // Show all users by default
+                GetRoles(); 
+                GetUsers();  
             }
             catch (Exception ex)
             {
@@ -136,14 +137,16 @@ namespace EmployeeManagamentSystem
                 ContextMenuStrip actionMenu = new ContextMenuStrip();
 
                 // Promote option
-                if (roleName != "User")
+                if (roleName != "Guest")
                 {
                     ToolStripMenuItem promoteOption = new ToolStripMenuItem("Promote");
                     promoteOption.DropDownItems.AddRange(new ToolStripMenuItem[]
                     {
                         new ToolStripMenuItem("Admin", null, (s, args) => PromoteUser(userID, "1")),
-                        new ToolStripMenuItem("Manager", null, (s, args) => PromoteUser(userID, "2")),
-                        new ToolStripMenuItem("Employee", null, (s, args) => PromoteUser(userID, "3"))
+                        new ToolStripMenuItem("HR", null, (s, args) => PromoteUser(userID, "2")),
+                        new ToolStripMenuItem("Employee", null, (s, args) => PromoteUser(userID, "3")),
+                        new ToolStripMenuItem("Account", null, (s, args) => PromoteUser(userID, "4"))
+
                     });
                     actionMenu.Items.Add(promoteOption);
                 }
@@ -153,9 +156,8 @@ namespace EmployeeManagamentSystem
                 {
                     ToolStripMenuItem deleteOption = new ToolStripMenuItem("Delete");
                     deleteOption.Click += (s, args) =>
-                    {
-                        // If employeeId is not null, pass it, else pass a default value (e.g., -1 or 0)
-                        int empIdToDelete = employeeId ?? -1; // Use -1 if employeeId is null
+                    {                   
+                        int empIdToDelete = employeeId ?? -1;
 
                         DeleteUser(userID, username, empIdToDelete);
                     };
@@ -164,7 +166,7 @@ namespace EmployeeManagamentSystem
                 }
 
                 // Approve option
-                if (roleName == "User")
+                if (roleName == "Guest")
                 {
                     ToolStripMenuItem approveOption = new ToolStripMenuItem("Approve");
                     approveOption.Click += (s, args) => ApproveUser(userID);

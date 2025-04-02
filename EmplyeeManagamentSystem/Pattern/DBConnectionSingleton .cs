@@ -12,7 +12,7 @@ namespace EmployeeManagementSystem.Pattern
 
         private static readonly string _connectionString =
             "Server=DESKTOP-89B3HBK\\SQLEXPRESS;Database=EMSDB;User Id=sa;Password=admin;";
-
+        
         private DBConnectionSingleton() { }
 
         public SqlConnection GetConnection()

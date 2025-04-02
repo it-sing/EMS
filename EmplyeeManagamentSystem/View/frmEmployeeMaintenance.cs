@@ -1,5 +1,6 @@
 ﻿using System.Data;
 using System.Windows.Forms;
+using EmployeeManagamentSystem.Pattern;
 using EmployeeManagamentSystem.Util;
 
 namespace EmployeeManagamentSystem

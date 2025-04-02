@@ -35,12 +35,6 @@ namespace EmployeeManagamentSystem
             };
             return DataAccess.GetByParameter(sqlString, parameters);
         }
-
-        public DataTable GetEmployees()
-        {
-            string sqlString = "SELECT EmployeeID, CONCAT(FirstName, ' ', LastName) AS EmployeeName FROM Employees WHERE IsDeleted = 0;";
-            return DataAccess.GetData(sqlString);
-        }
         public DataTable GetAllEmployees()
         {
             string sql = @"
@@ -61,35 +55,6 @@ namespace EmployeeManagamentSystem
                         WHERE e.IsDeleted = 0;";
                             return DataAccess.GetData(sql);
         }
-
-        public bool CreateEmployee(string firstName, string lastName, string email, DateTime dob, DateTime employmentDate, int departmentId)
-        {
-            string query = @"
-            INSERT INTO Employees (FirstName, LastName, Email, DateOfBirth, EmploymentDate, DepartmentID)
-            VALUES (@FirstName, @LastName, @Email, @DateOfBirth, @EmploymentDate, @DepartmentID)";
-
-            SqlParameter[] parameters = new SqlParameter[] {
-                new SqlParameter("@FirstName", firstName),
-                new SqlParameter("@LastName", lastName),
-                new SqlParameter("@Email", email),
-                new SqlParameter("@DateOfBirth", dob),
-                new SqlParameter("@EmploymentDate", employmentDate),
-                new SqlParameter("@DepartmentID", departmentId),
-            };
-
-            try
-            {
-                // Assuming DataAccess is a helper class that sends the query to the database
-                int rowsAffected = DataAccess.SendData(query, parameters);
-                return rowsAffected > 0;
-            }
-            catch (Exception ex)
-            {
-                MessageBox.Show($"An error occurred: {ex.Message}");
-                return false;
-            }
-        }
-
         public int UpdateEmployee(int employeeId, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int departmentId)
         {
             string sql = "UPDATE Employees SET DepartmentID = @DepartmentID, FirstName = @FirstName, LastName = @LastName, " +
@@ -117,14 +82,6 @@ namespace EmployeeManagamentSystem
                 return -1; // Return -1 or handle as per your needs
             }
         }
-
-        public DataTable GetEmployeeById(int employeeId)
-        {
-            string sql = "SELECT * FROM Employees WHERE EmployeeId = @EmployeeId";
-            SqlParameter[] parameters = { new SqlParameter("@EmployeeId", employeeId) };
-            return DataAccess.GetByParameter(sql, parameters);
-        }
-
         public int DeleteEmployee(int employeeId)
         {
             string sql = "UPDATE Employees SET IsDeleted = 1 WHERE EmployeeID = @EmployeeID;";
@@ -139,6 +96,14 @@ namespace EmployeeManagamentSystem
                 MessageBox.Show($"An error occurred while deleting the employee: {ex.Message}");
                 return -1; 
             }
+        }
+
+
+        // for manager
+        public DataTable GetEmployees()
+        {
+            string sqlString = "SELECT EmployeeID, CONCAT(FirstName, ' ', LastName) AS EmployeeName FROM Employees WHERE IsDeleted = 0;";
+            return DataAccess.GetData(sqlString);
         }
     }
 }

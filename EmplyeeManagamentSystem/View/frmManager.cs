@@ -1,6 +1,8 @@
-﻿using EmployeeManagamentSystem.Util;
-using EmployeeManagamentSystem;
+﻿using System;
 using System.Data;
+using System.Windows.Forms;
+using EmployeeManagamentSystem.Pattern.Manager_Strategy;
+using EmployeeManagamentSystem.Util;
 
 namespace EmployeeManagamentSystem
 {
@@ -9,6 +11,7 @@ namespace EmployeeManagamentSystem
         private readonly EmployeeService _employeeService;
         private readonly DepartmentService _departmentService;
         private int selectedDepartmentID;
+        private IManagerAssignmentStrategy _strategy;
 
         public frmManager()
         {
@@ -41,10 +44,7 @@ namespace EmployeeManagamentSystem
             try
             {
                 DataTable dtDepartments = _departmentService.GetDepartments();
-                if (dtDepartments.Rows.Count > 0)
-                    UIUtilities.BindComboBox(cboDepartments, dtDepartments, "DepartmentName", "DepartmentID");
-                else
-                    MessageBox.Show("No department found", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                UIUtilities.BindComboBox(cboDepartments, dtDepartments, "DepartmentName", "DepartmentID");
             }
             catch (Exception ex)
             {
@@ -56,34 +56,29 @@ namespace EmployeeManagamentSystem
         {
             try
             {
-                // Fetch current manager data for the selected department
                 DataTable dt = _departmentService.GetCurrentManager(selectedDepartmentID);
 
-                // Check if any data was returned
                 if (dt.Rows.Count > 0)
                 {
-                    // Check if "CurrentManager" column has a value (is not DBNull)
-                    var currentManager = dt.Rows[0]["CurrentManager"];
-                    txtCurrentManager.Text = currentManager != DBNull.Value ? currentManager.ToString() : "No Manager";
+                    object currentManager = dt.Rows[0]["CurrentManager"];
+                    txtCurrentManager.Text = (currentManager == DBNull.Value || currentManager == null) ? "No Manager" : currentManager.ToString();
                 }
                 else
                 {
-                    // No department manager information found, display "No Manager"
                     txtCurrentManager.Text = "No Manager";
                 }
             }
             catch (Exception ex)
             {
-                // Display any exceptions as an error message
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
+
         }
 
         private void btnSubmit_Click(object sender, EventArgs e)
         {
             try
             {
-                // Check for valid department selection
                 if (cboDepartments.SelectedIndex == -1 || cboDepartments.SelectedValue == DBNull.Value)
                 {
                     MessageBox.Show("Please select a department", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
@@ -91,32 +86,29 @@ namespace EmployeeManagamentSystem
                 }
 
                 int departmentID = Convert.ToInt32(cboDepartments.SelectedValue);
-                int? newManagerID = null;  // Default to null
+                int? newManagerID = cboNewManager.SelectedIndex != -1 && cboNewManager.SelectedValue != DBNull.Value
+                    ? Convert.ToInt32(cboNewManager.SelectedValue)
+                    : (int?)null;
 
-                // Check if a manager is selected and assign the ID
-                if (cboNewManager.SelectedIndex != -1 && cboNewManager.SelectedValue != DBNull.Value)
-                {
-                    newManagerID = Convert.ToInt32(cboNewManager.SelectedValue);
-                }
+                // Choose strategy dynamically
+                _strategy = newManagerID == null ? new RemoveManagerStrategy() : new AssignManagerStrategy();
 
-                // Call the service to update the manager
-                if (_departmentService.AssignManager(departmentID, newManagerID))
+                // Execute the selected strategy
+                if (_strategy.AssignManager(_departmentService, departmentID, newManagerID))
                 {
-                    LoadDepartmentCurrentManager();  // Reload the department's current manager
+                    LoadDepartmentCurrentManager();
+                    //MessageBox.Show("Manager updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-                //else
-                //{
-                //    MessageBox.Show("Failed to update manager", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
+                else
+                {
+                    MessageBox.Show("Failed to update manager", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
-
-
 
         private void cboDepartments_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -134,6 +126,4 @@ namespace EmployeeManagamentSystem
             }
         }
     }
-
-
 }

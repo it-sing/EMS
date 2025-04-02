@@ -24,9 +24,7 @@ D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Debug\net8.0-windows\EmployeeManagamentSystem.frmEmployeeMaintenance.resources
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Debug\net8.0-windows\EmployeeManagamentSystem.frmEmployeeSystemManager.resources
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Debug\net8.0-windows\EmployeeManagamentSystem.frmLogin.resources
-D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Debug\net8.0-windows\EmployeeManagamentSystem.View.frmLogout.resources
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Debug\net8.0-windows\EmployeeManagamentSystem.frmManager.resources
-D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Debug\net8.0-windows\EmployeeManagamentSystem.frmNotification.resources
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Debug\net8.0-windows\EmployeeManagamentSystem.frmRegister.resources
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Debug\net8.0-windows\EmployeeManagamentSystem.frmReport.resources
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Debug\net8.0-windows\EmployeeManagamentSystem.frmSalaries.resources

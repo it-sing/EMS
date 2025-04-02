@@ -32,4 +32,8 @@
     </EmbeddedResource>
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Pattern\User-Factory\" />
+  </ItemGroup>
+
 </Project>

@@ -58,13 +58,12 @@ namespace EmployeeManagamentSystem
             int result = _departmentRepository.DeleteDepartment(departmentId);
             return result == 1;
         }
-        public DataTable GetDepartments()
-        {
-            return _departmentRepository.GetAllDepartments();
-        }
+        public DataTable GetDepartments() => _departmentRepository.GetDepartments();
 
         public DataTable GetCurrentManager(int departmentID) => _departmentRepository.GetDepartmentCurrentManager(departmentID);
-        public bool AssignManager(int departmentID, int? managerID) => _departmentRepository.UpdateManager(departmentID, managerID) == 2;
+
+        public bool AssignManager(int departmentID, int? managerID)
+            => _departmentRepository.UpdateManager(departmentID, managerID) >= 1;
     }
 
 }

@@ -1,7 +1,8 @@
-﻿using System;
+﻿// SalaryRepository.cs
+using System;
 using System.Data;
-using DBProgrammingDemo9;
 using System.Data.SqlClient;
+using DBProgrammingDemo9;
 
 namespace EmployeeManagamentSystem.Repositories
 {
@@ -34,17 +35,16 @@ namespace EmployeeManagamentSystem.Repositories
             return DataAccess.GetByParameter(sql, parameters);
         }
 
-        public int UpdateSalary(int employeeID, decimal salaryBeforeTax, decimal taxAmount)
+        public bool UpdateSalary(int employeeID, decimal salaryBeforeTax, decimal taxAmount)
         {
             string sql = $@"
-                UPDATE Employees
-                SET
-                    SalaryBeforeTax = {salaryBeforeTax},
-                    TaxAmount = {taxAmount}
-                WHERE EmployeeID = {employeeID}";
+            UPDATE Employees
+            SET
+                SalaryBeforeTax = {salaryBeforeTax},
+                TaxAmount = {taxAmount}
+            WHERE EmployeeID = {employeeID}";
 
-            return DataAccess.Send(sql);
+            return DataAccess.Send(sql) > 0; 
         }
-
     }
 }

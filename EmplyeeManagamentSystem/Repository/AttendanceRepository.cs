@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EmployeeManagamentSystem.Pattern
+namespace EmployeeManagamentSystem.Repository
 {
-    internal interface IEmployeeState
+    internal class AttendanceRepository
     {
     }
 }

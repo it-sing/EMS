@@ -1,9 +1,7 @@
-﻿using EmployeeManagamentSystem.Repositories;
+﻿using EmployeeManagamentSystem.Pattern.Salary; // Ensure this is added
 using EmployeeManagamentSystem.Services;
-using EmployeeManagamentSystem.Util;
-using System;
-using System.Data;
-using System.Windows.Forms;
+using EmployeeManagamentSystem.Repositories;
+using System.Data;using EmployeeManagamentSystem.Util;
 
 namespace EmployeeManagamentSystem
 {
@@ -15,7 +13,7 @@ namespace EmployeeManagamentSystem
         public frmSalaries()
         {
             InitializeComponent();
-            _salaryService = new SalaryService(new SalaryRepository()); 
+            _salaryService = new SalaryService(new SalaryRepository());
         }
 
         private void frmSalaries_Load(object sender, EventArgs e)
@@ -97,19 +95,16 @@ namespace EmployeeManagamentSystem
             {
                 try
                 {
-                    if (currentEmployeeID == 0)
-                    {
-                        MessageBox.Show("Please select an employee", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        return;
-                    }
-
                     if (!decimal.TryParse(txtSalaryBeforeTax.Text, out decimal salaryBeforeTax))
                     {
                         MessageBox.Show("Invalid salary input", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         return;
                     }
 
-                    bool salaryUpdated = _salaryService.UpdateSalary(currentEmployeeID, salaryBeforeTax);
+                    // Instantiate the tax strategy here
+                    ITaxCalculationStrategy taxStrategy = new FlatTaxStrategy(); // Use Flat Tax Strategy
+
+                    bool salaryUpdated = _salaryService.UpdateSalary(currentEmployeeID, salaryBeforeTax, taxStrategy);
 
                     if (salaryUpdated)
                     {
@@ -127,6 +122,5 @@ namespace EmployeeManagamentSystem
                 }
             }
         }
-
     }
 }

@@ -10,12 +10,16 @@ namespace EmployeeManagamentSystem.Service
 {
     public class LoginService
     {
-        private UserRepository _userRepository;
+        private static readonly Lazy<LoginService> _instance =
+            new Lazy<LoginService>(() => new LoginService());
+        private readonly UserRepository _userRepository;
 
-        public LoginService()
+        private LoginService()
         {
             _userRepository = new UserRepository();
         }
+
+        public static LoginService Instance => _instance.Value;
 
         public bool ValidateUserCredentials(string username, string password, out int userID, out string role)
         {
@@ -26,12 +30,9 @@ namespace EmployeeManagamentSystem.Service
                 role = _userRepository.GetUserRole(userID);
                 return true;
             }
-            else
-            {
-                userID = 0;
-                role = string.Empty;
-                return false;
-            }
+            userID = 0;
+            role = string.Empty;
+            return false;
         }
     }
 }

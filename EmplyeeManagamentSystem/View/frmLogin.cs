@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows.Forms;
+using EmployeeManagamentSystem.Pattern.Login;
 using EmployeeManagamentSystem.Service;
 using EmployeeManagamentSystem.Util;
 
@@ -7,61 +8,43 @@ namespace EmployeeManagamentSystem
 {
     public partial class frmLogin : Form
     {
-        private LoginService _loginService;
+        private readonly LoginFacade _loginFacade;
 
         public frmLogin()
         {
             InitializeComponent();
-            _loginService = new LoginService();
+            _loginFacade = new LoginFacade(LoginService.Instance);
         }
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            try
+            string username = txtUsername.Text;
+            string password = txtPassword.Text;
+
+            if (_loginFacade.ProcessLogin(username, password, out int userId, out string role, out string message))
             {
-                string username = txtUsername.Text;
-                string password = txtPassword.Text;
-
-                if (_loginService.ValidateUserCredentials(username, password, out int userID, out string role))
-                {
-                    if (role == "4")
-                    {
-                        MessageBox.Show("Please wait for admin approval.", " ", MessageBoxButtons.OK);
-                    }
-                    else
-                    {
-                        // Save the current user ID and show the manager dashboard
-                        UIUtilities.CurrentUserID = userID;
-                        UIUtilities.CurrentUserName = username;
-                        UIUtilities.CurrentUserRole = role;
-
-
-                        frmEmployeeSystemManager frmEmployeeSystemManager = new frmEmployeeSystemManager();
-                        frmEmployeeSystemManager.Show();
-                        this.Hide();
-                    }
-                }
-                else
-                {
-                    MessageBox.Show("Invalid username or password.", "Login Failed", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                frmEmployeeSystemManager frm = (frmEmployeeSystemManager)LoginFormFactory.CreateEmployeeSystemManagerForm();
+                frm.Show();
+                this.Hide();
             }
-            catch (Exception ex)
+            else
             {
-                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                MessageBox.Show(message,
+                    role == "5" ? " " : "Login Failed",
+                    MessageBoxButtons.OK,
+                    role == "5" ? MessageBoxIcon.Information : MessageBoxIcon.Error);
             }
         }
 
         private void lnkRegisterLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            frmRegister frmRegister = new frmRegister();
-            frmRegister.Show();
+            Form frm = LoginFormFactory.CreateRegisterForm();
+            frm.Show();
             this.Hide();
         }
 
         private void frmLogin_Load(object sender, EventArgs e)
         {
-            // Set default values
             txtUsername.Text = "admin";
             txtPassword.Text = "admin";
         }

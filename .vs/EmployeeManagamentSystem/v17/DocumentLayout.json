@@ -1,12 +1,71 @@
 {
   "Version": 1,
   "WorkspaceRootPath": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\",
-  "Documents": [],
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\view\\frmmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\view\\frmmanager.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\pattern\\manager-strategy\\imanagerassignmentstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\pattern\\manager-strategy\\imanagerassignmentstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|d:\\rupp\\y4\\c#\\semester2\\op2\\employee-management-system\\employeemanagamentsystem\\emplyeemanagamentsystem\\pattern\\manager-strategy\\assignmanagerstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{CAC2AFE0-7AE3-492D-9DE5-8DC6B50FBAE0}|EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj|solutionrelative:emplyeemanagamentsystem\\pattern\\manager-strategy\\assignmanagerstrategy.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
   "DocumentGroupContainers": [
     {
       "Orientation": 1,
       "VerticalTabListWidth": 256,
-      "DocumentGroups": []
+      "DocumentGroups": [
+        {
+          "DockedHeight": 200,
+          "SelectedChildIndex": 0,
+          "Children": [
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "frmManager.cs",
+              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmManager.cs",
+              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\View\\frmManager.cs",
+              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\View\\frmManager.cs",
+              "RelativeToolTip": "EmplyeeManagamentSystem\\View\\frmManager.cs",
+              "ViewState": "AgIAAEsAAAAAAAAAAAAQwIAAAAABAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T01:21:42.264Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "IManagerAssignmentStrategy.cs",
+              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Pattern\\Manager-Strategy\\IManagerAssignmentStrategy.cs",
+              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\Pattern\\Manager-Strategy\\IManagerAssignmentStrategy.cs",
+              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Pattern\\Manager-Strategy\\IManagerAssignmentStrategy.cs",
+              "RelativeToolTip": "EmplyeeManagamentSystem\\Pattern\\Manager-Strategy\\IManagerAssignmentStrategy.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAA4AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T01:20:32.172Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "AssignManagerStrategy.cs",
+              "DocumentMoniker": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Pattern\\Manager-Strategy\\AssignManagerStrategy.cs",
+              "RelativeDocumentMoniker": "EmplyeeManagamentSystem\\Pattern\\Manager-Strategy\\AssignManagerStrategy.cs",
+              "ToolTip": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\Pattern\\Manager-Strategy\\AssignManagerStrategy.cs",
+              "RelativeToolTip": "EmplyeeManagamentSystem\\Pattern\\Manager-Strategy\\AssignManagerStrategy.cs",
+              "ViewState": "AgIAAAIAAAAAAAAAAAAkwA8AAAAdAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-03T01:20:30.054Z",
+              "EditorCaption": ""
+            }
+          ]
+        }
+      ]
     }
   ]
 }

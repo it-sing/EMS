@@ -94,7 +94,8 @@ namespace EmployeeManagamentSystem
                 _strategy = newManagerID == null ? new RemoveManagerStrategy() : new AssignManagerStrategy();
 
                 // Execute the selected strategy
-                if (_strategy.AssignManager(_departmentService, departmentID, newManagerID))
+
+                if (_strategy.AssignManager(_departmentService, departmentID, newManagerID) > 0)
                 {
                     LoadDepartmentCurrentManager();
                     //MessageBox.Show("Manager updated successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);

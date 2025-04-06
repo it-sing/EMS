@@ -3,6 +3,7 @@ using System.Data;
 using System.Diagnostics;
 using DBProgrammingDemo9;
 using EmployeeManagamentSystem.Pattern;
+using EmployeeManagamentSystem.Pattern.Profile__Factory;
 using EmployeeManagamentSystem.Repository;
 using EmployeeManagamentSystem.Util;
 using EmployeeManagementSystem.Pattern;
@@ -16,7 +17,6 @@ namespace EmployeeManagamentSystem
         {
             _userRepository = new UserRepository();
         }
-
 
         // for user management
         public DataTable GetRoles()
@@ -66,7 +66,7 @@ namespace EmployeeManagamentSystem
         }
 
         // 1. Factory Method for Creating User Actions update profile
-        public bool ExecuteUserAction(string actionType, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int userId)
+        public int ExecuteUserAction(string actionType, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int userId)
         {
             var userAction = UserActionFactory.GetUserAction(actionType);
             return userAction.Execute(_userRepository, firstName, lastName, email, dateOfBirth, employmentDate, userId);

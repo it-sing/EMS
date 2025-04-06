@@ -8,7 +8,6 @@ namespace EmployeeManagamentSystem.Pattern.Manager_Strategy
 {
     public interface IManagerAssignmentStrategy
     {
-        bool AssignManager(DepartmentService departmentService, int departmentID, int? managerID);
+        int AssignManager(DepartmentService departmentService, int departmentID, int? managerID);
     }
-
 }

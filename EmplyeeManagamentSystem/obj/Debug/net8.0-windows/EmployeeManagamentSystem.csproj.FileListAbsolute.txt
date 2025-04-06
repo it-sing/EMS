@@ -4,10 +4,12 @@ D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\EmployeeManagamentSystem.runtimeconfig.json
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\EmployeeManagamentSystem.dll
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\EmployeeManagamentSystem.pdb
+D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\QRCoder.dll
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\System.Configuration.ConfigurationManager.dll
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\System.Data.SqlClient.dll
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\System.Diagnostics.EventLog.dll
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\System.Security.Cryptography.ProtectedData.dll
+D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\zxing.dll
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\runtimes\win-arm64\native\sni.dll
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\runtimes\win-x64\native\sni.dll
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\bin\Debug\net8.0-windows\runtimes\win-x86\native\sni.dll

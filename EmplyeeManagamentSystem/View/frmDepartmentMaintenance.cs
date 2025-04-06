@@ -207,9 +207,9 @@ namespace EmployeeManagamentSystem
                 return;
             }
 
-            bool success = _departmentService.CreateDepartment(departmentName, description);
+            int success = _departmentService.CreateDepartment(departmentName, description);
 
-            if (success)
+            if (success > 0 )
             {
                 //MessageBox.Show("Department created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadViewDepartments(); // Refresh department list
@@ -239,9 +239,9 @@ namespace EmployeeManagamentSystem
                 return;
             }
 
-            bool success = _departmentService.SaveDepartmentChanges(departmentId, departmentName, description);
+            int  success = _departmentService.SaveDepartmentChanges(departmentId, departmentName, description);
 
-            if (success)
+            if (success > 0)
             {       
                 LoadViewDepartments(); // Refresh department list
                 ClearControls(grpDepartments.Controls);

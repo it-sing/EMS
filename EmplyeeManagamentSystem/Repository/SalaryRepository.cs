@@ -35,7 +35,7 @@ namespace EmployeeManagamentSystem.Repositories
             return DataAccess.GetByParameter(sql, parameters);
         }
 
-        public bool UpdateSalary(int employeeID, decimal salaryBeforeTax, decimal taxAmount)
+        public int UpdateSalary(int employeeID, decimal salaryBeforeTax, decimal taxAmount)
         {
             string sql = $@"
             UPDATE Employees
@@ -44,7 +44,7 @@ namespace EmployeeManagamentSystem.Repositories
                 TaxAmount = {taxAmount}
             WHERE EmployeeID = {employeeID}";
 
-            return DataAccess.Send(sql) > 0; 
+            return DataAccess.Send(sql); 
         }
     }
 }

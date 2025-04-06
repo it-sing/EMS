@@ -16,7 +16,7 @@ namespace EmployeeManagamentSystem.Services
         }
 
         // Using Strategy Pattern to calculate salary
-        public bool UpdateSalary(int employeeID, decimal salaryBeforeTax, ITaxCalculationStrategy taxCalculationStrategy)
+        public int UpdateSalary(int employeeID, decimal salaryBeforeTax, ITaxCalculationStrategy taxCalculationStrategy)
         {
             decimal taxAmount = taxCalculationStrategy.CalculateTax(salaryBeforeTax);
             return _salaryRepository.UpdateSalary(employeeID, salaryBeforeTax, taxAmount);

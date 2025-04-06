@@ -120,7 +120,7 @@ namespace EmployeeManagamentSystem.Repository
         }
 
         // for update user profile 
-        public bool CreateEmployee(string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int userId)
+        public int CreateEmployee(string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int userId)
         {
             string query = @"
                             INSERT INTO Employees (FirstName, LastName, Email, DateOfBirth, EmploymentDate, UserID)
@@ -136,9 +136,9 @@ namespace EmployeeManagamentSystem.Repository
                 new SqlParameter("@UserID", userId)
             };
 
-            return DataAccess.SendData(query, parameters) > 0;
+            return DataAccess.SendData(query, parameters);
         }
-        public bool SaveEmployeeChanges(int userId, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate)
+        public int SaveEmployeeChanges(int userId, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate)
         {
             string query = @"
                     UPDATE Employees 
@@ -160,7 +160,7 @@ namespace EmployeeManagamentSystem.Repository
                 new SqlParameter("@EmploymentDate", employmentDate)
             };
 
-            return DataAccess.SendData(query, parameters) > 0;
+            return DataAccess.SendData(query, parameters);
         }
         public int GetUserId(string username)
         {

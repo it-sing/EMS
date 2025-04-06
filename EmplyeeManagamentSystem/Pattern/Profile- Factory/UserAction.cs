@@ -1,17 +1,21 @@
-﻿using EmployeeManagamentSystem;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 using EmployeeManagamentSystem.Repository;
 
-namespace EmployeeManagementSystem.Pattern
+namespace EmployeeManagamentSystem.Pattern.Profile__Factory
 {
     // 2. Factory Method for Creating User Actions
     public abstract class UserAction
     {
-        public abstract bool Execute(UserRepository userRepository, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int userId);
+        public abstract int Execute(UserRepository userRepository, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int userId);
     }
 
     public class CreateUserAction : UserAction
     {
-        public override bool Execute(UserRepository userRepository, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int userId)
+        public override int Execute(UserRepository userRepository, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int userId)
         {
             return userRepository.CreateEmployee(firstName, lastName, email, dateOfBirth, employmentDate, userId);
         }
@@ -19,7 +23,7 @@ namespace EmployeeManagementSystem.Pattern
 
     public class UpdateUserAction : UserAction
     {
-        public override bool Execute(UserRepository userRepository, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int userId)
+        public override int  Execute(UserRepository userRepository, string firstName, string lastName, string email, DateTime dateOfBirth, DateTime employmentDate, int userId)
         {
             return userRepository.SaveEmployeeChanges(userId, firstName, lastName, email, dateOfBirth, employmentDate);
         }

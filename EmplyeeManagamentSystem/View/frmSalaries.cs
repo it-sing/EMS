@@ -104,11 +104,11 @@ namespace EmployeeManagamentSystem
                     // Instantiate the tax strategy here
                     ITaxCalculationStrategy taxStrategy = new FlatTaxStrategy(); // Use Flat Tax Strategy
 
-                    bool salaryUpdated = _salaryService.UpdateSalary(currentEmployeeID, salaryBeforeTax, taxStrategy);
+                    int salaryUpdated = _salaryService.UpdateSalary(currentEmployeeID, salaryBeforeTax, taxStrategy);
 
-                    if (salaryUpdated)
+                    if (salaryUpdated > 0)
                     {
-                        MessageBox.Show("Salary updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        //MessageBox.Show("Salary updated successfully", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         LoadSalaries();
                     }
                     else

@@ -1,4 +1,5 @@
 ﻿using EmployeeManagamentSystem.Util;
+using Microsoft.VisualBasic;
 using Microsoft.VisualBasic.ApplicationServices;
 using System;
 using System.Data;
@@ -58,7 +59,8 @@ namespace EmployeeManagamentSystem
             {
                 if (ValidateChildren(ValidationConstraints.Enabled))
                 {
-                    if (!string.IsNullOrEmpty(txtEmployeeID.Text) && int.TryParse(txtEmployeeID.Text, out currentUserId))
+                
+                    if (!string.IsNullOrEmpty(txtEmployeeID.Text))
                     {
                         _userService.ExecuteUserAction("update",
                             txtFirstname.Text,
@@ -66,7 +68,7 @@ namespace EmployeeManagamentSystem
                             txtEmail.Text,
                             dtpDateOfBirth.Value,
                             dtpEmployemntDate.Value,
-                            currentUserId); 
+                            currentUserId);
                     }
                     else
                     {

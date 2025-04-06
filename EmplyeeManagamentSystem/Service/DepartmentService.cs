@@ -32,24 +32,16 @@ namespace EmployeeManagamentSystem
             return _departmentRepository.GetAllDepartments();
         }
 
-        // Get the first department ID
-        public int GetFirstDepartmentId()
-        {
-            return _departmentRepository.GetFirstDepartmentId();
-        }
-
         // Create a new department
-        public bool CreateDepartment(string departmentName, string description)
+        public int CreateDepartment(string departmentName, string description)
         {
-            int result = _departmentRepository.CreateDepartment(departmentName, description);
-            return result == 1;
-        }
+             return _departmentRepository.CreateDepartment(departmentName, description);
 
+        }
         // Save department changes
-        public bool SaveDepartmentChanges(int departmentId, string departmentName, string description)
+        public int SaveDepartmentChanges(int departmentId, string departmentName, string description)
         {
-            int result = _departmentRepository.UpdateDepartment(departmentId, departmentName, description);
-            return result == 1;
+            return _departmentRepository.UpdateDepartment(departmentId, departmentName, description);          
         }
 
         // Delete a department
@@ -62,8 +54,8 @@ namespace EmployeeManagamentSystem
 
         public DataTable GetCurrentManager(int departmentID) => _departmentRepository.GetDepartmentCurrentManager(departmentID);
 
-        public bool AssignManager(int departmentID, int? managerID)
-            => _departmentRepository.UpdateManager(departmentID, managerID) >= 1;
+        public int AssignManager(int departmentID, int? managerID)
+            => _departmentRepository.UpdateManager(departmentID, managerID);
     }
 
 }

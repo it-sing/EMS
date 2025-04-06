@@ -8,24 +8,17 @@ namespace EmployeeManagamentSystem.Pattern.Manager_Strategy
 {
     public class AssignManagerStrategy : IManagerAssignmentStrategy
     {
-        public bool AssignManager(DepartmentService departmentService, int departmentID, int? managerID)
+        public int AssignManager(DepartmentService departmentService, int departmentID, int? managerID)
         {
             if (managerID == null)
             {
                 MessageBox.Show("Please select a manager.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return false;
+                return 0;
             }
 
             return departmentService.AssignManager(departmentID, managerID);
         }
     }
 
-    public class RemoveManagerStrategy : IManagerAssignmentStrategy
-    {
-        public bool AssignManager(DepartmentService departmentService, int departmentID, int? managerID)
-        {
-            return departmentService.AssignManager(departmentID, null);
-        }
-    }
 
 }

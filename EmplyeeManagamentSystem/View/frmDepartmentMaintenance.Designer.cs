@@ -31,6 +31,7 @@ namespace EmployeeManagamentSystem
         private void InitializeComponent()
         {
             components = new Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             grpDepartments = new GroupBox();
             btnSave = new Button();
             btnCancel = new Button();
@@ -65,30 +66,34 @@ namespace EmployeeManagamentSystem
             grpDepartments.Controls.Add(txtDepartmentName);
             grpDepartments.Controls.Add(label1);
             grpDepartments.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpDepartments.Location = new Point(25, 35);
+            grpDepartments.ForeColor = Color.FromArgb(64, 64, 64);
+            grpDepartments.Location = new Point(21, 12);
             grpDepartments.Name = "grpDepartments";
-            grpDepartments.Size = new Size(651, 536);
+            grpDepartments.Size = new Size(651, 569);
             grpDepartments.TabIndex = 0;
             grpDepartments.TabStop = false;
-            grpDepartments.Text = "Department Details";
             // 
             // btnSave
             // 
-            btnSave.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSave.Location = new Point(30, 452);
+            btnSave.BackColor = SystemColors.HotTrack;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(30, 475);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(94, 29);
+            btnSave.Size = new Size(141, 50);
             btnSave.TabIndex = 12;
             btnSave.Text = "Save";
-            btnSave.UseVisualStyleBackColor = true;
+            btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancel.Location = new Point(141, 452);
+            btnCancel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            btnCancel.ForeColor = SystemColors.HotTrack;
+            btnCancel.Location = new Point(197, 475);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(94, 29);
+            btnCancel.Size = new Size(141, 50);
             btnCancel.TabIndex = 11;
             btnCancel.Text = "Cancel";
             btnCancel.UseVisualStyleBackColor = true;
@@ -96,67 +101,79 @@ namespace EmployeeManagamentSystem
             // 
             // txtDepartmentID
             // 
-            txtDepartmentID.Location = new Point(30, 72);
+            txtDepartmentID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtDepartmentID.ForeColor = Color.FromArgb(64, 64, 64);
+            txtDepartmentID.Location = new Point(30, 79);
+            txtDepartmentID.Multiline = true;
             txtDepartmentID.Name = "txtDepartmentID";
             txtDepartmentID.ReadOnly = true;
-            txtDepartmentID.Size = new Size(564, 38);
+            txtDepartmentID.Size = new Size(564, 50);
             txtDepartmentID.TabIndex = 5;
             txtDepartmentID.Tag = "Department ID";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label3.ForeColor = Color.FromArgb(64, 64, 64);
             label3.Location = new Point(30, 46);
             label3.Name = "label3";
-            label3.Size = new Size(28, 23);
+            label3.Size = new Size(32, 28);
             label3.TabIndex = 4;
             label3.Text = "ID";
             // 
             // txtDescription
             // 
-            txtDescription.Location = new Point(30, 222);
+            txtDescription.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            txtDescription.ForeColor = Color.FromArgb(64, 64, 64);
+            txtDescription.Location = new Point(30, 275);
             txtDescription.Multiline = true;
             txtDescription.Name = "txtDescription";
-            txtDescription.Size = new Size(564, 200);
+            txtDescription.Size = new Size(564, 166);
             txtDescription.TabIndex = 3;
             txtDescription.Tag = "Department Description";
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(30, 196);
+            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
+            label2.Location = new Point(30, 244);
             label2.Name = "label2";
-            label2.Size = new Size(205, 23);
+            label2.Size = new Size(115, 28);
             label2.TabIndex = 2;
-            label2.Text = "Department Description";
+            label2.Text = "Description";
+            label2.Click += label2_Click;
             // 
             // txtDepartmentName
             // 
-            txtDepartmentName.Location = new Point(30, 146);
+            txtDepartmentName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            txtDepartmentName.ForeColor = Color.FromArgb(64, 64, 64);
+            txtDepartmentName.Location = new Point(30, 180);
+            txtDepartmentName.Multiline = true;
             txtDepartmentName.Name = "txtDepartmentName";
-            txtDepartmentName.Size = new Size(564, 38);
+            txtDepartmentName.Size = new Size(564, 50);
             txtDepartmentName.TabIndex = 1;
             txtDepartmentName.Tag = "Department Name";
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(30, 120);
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
+            label1.Location = new Point(30, 149);
             label1.Name = "label1";
-            label1.Size = new Size(160, 23);
+            label1.Size = new Size(66, 28);
             label1.TabIndex = 0;
-            label1.Text = "Department Name";
+            label1.Text = "Name";
             // 
             // statusStrip1
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2, prgBar, toolStripStatusLabel3 });
-            statusStrip1.Location = new Point(0, 590);
+            statusStrip1.Location = new Point(0, 607);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1443, 26);
+            statusStrip1.Size = new Size(1546, 26);
             statusStrip1.TabIndex = 1;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -189,36 +206,50 @@ namespace EmployeeManagamentSystem
             // 
             dgvDepartments.AllowUserToAddRows = false;
             dgvDepartments.AllowUserToDeleteRows = false;
-            dgvDepartments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvDepartments.Location = new Point(710, 107);
+            dgvDepartments.BackgroundColor = Color.White;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(70, 70, 70);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvDepartments.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvDepartments.ColumnHeadersHeight = 40;
+            dgvDepartments.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvDepartments.EnableHeadersVisualStyles = false;
+            dgvDepartments.GridColor = Color.FromArgb(64, 64, 64);
+            dgvDepartments.Location = new Point(687, 58);
             dgvDepartments.Name = "dgvDepartments";
             dgvDepartments.ReadOnly = true;
-            dgvDepartments.RowHeadersWidth = 51;
-            dgvDepartments.Size = new Size(716, 464);
+            dgvDepartments.RowHeadersWidth = 61;
+            dgvDepartments.RowTemplate.Height = 40;
+            dgvDepartments.Size = new Size(852, 523);
             dgvDepartments.TabIndex = 2;
             dgvDepartments.CellClick += dgvDepartments_CellClick;
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(710, 47);
+            label4.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label4.ForeColor = Color.FromArgb(64, 64, 64);
+            label4.Location = new Point(687, 17);
             label4.Name = "label4";
-            label4.Size = new Size(213, 46);
+            label4.Size = new Size(179, 28);
             label4.TabIndex = 3;
-            label4.Text = "Department";
+            label4.Text = "View Department";
             // 
             // frmDepartmentMaintenance
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1443, 616);
+            ClientSize = new Size(1546, 633);
             Controls.Add(label4);
             Controls.Add(dgvDepartments);
             Controls.Add(statusStrip1);
             Controls.Add(grpDepartments);
             Name = "frmDepartmentMaintenance";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Tag = "Departments";
             Text = "Department Maintenance";
             Load += frmDepartmentMaintenance_Load;

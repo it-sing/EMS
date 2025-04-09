@@ -31,6 +31,7 @@ namespace EmployeeManagamentSystem
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             grpEmployees = new GroupBox();
             cboDepartments = new ComboBox();
             label7 = new Label();
@@ -82,27 +83,32 @@ namespace EmployeeManagamentSystem
             grpEmployees.Controls.Add(label2);
             grpEmployees.Controls.Add(txtEmployeeID);
             grpEmployees.Controls.Add(label1);
+            grpEmployees.FlatStyle = FlatStyle.Flat;
             grpEmployees.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
             grpEmployees.Location = new Point(12, 12);
             grpEmployees.Name = "grpEmployees";
-            grpEmployees.Size = new Size(1062, 439);
+            grpEmployees.Size = new Size(1144, 474);
             grpEmployees.TabIndex = 1;
             grpEmployees.TabStop = false;
-            grpEmployees.Text = "Employee Details";
             // 
             // cboDepartments
             // 
+            cboDepartments.Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            cboDepartments.ForeColor = Color.FromArgb(64, 64, 64);
             cboDepartments.FormattingEnabled = true;
-            cboDepartments.Location = new Point(538, 67);
+            cboDepartments.IntegralHeight = false;
+            cboDepartments.ItemHeight = 41;
+            cboDepartments.Location = new Point(646, 68);
             cboDepartments.Name = "cboDepartments";
-            cboDepartments.Size = new Size(412, 39);
+            cboDepartments.Size = new Size(412, 49);
             cboDepartments.TabIndex = 35;
             // 
             // label7
             // 
             label7.AutoSize = true;
             label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(538, 42);
+            label7.ForeColor = Color.FromArgb(64, 64, 64);
+            label7.Location = new Point(646, 42);
             label7.Name = "label7";
             label7.Size = new Size(108, 23);
             label7.TabIndex = 32;
@@ -111,17 +117,18 @@ namespace EmployeeManagamentSystem
             // dtpEmployemntDate
             // 
             dtpEmployemntDate.CalendarFont = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dtpEmployemntDate.Font = new Font("Segoe UI", 13.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            dtpEmployemntDate.Location = new Point(538, 236);
+            dtpEmployemntDate.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpEmployemntDate.Location = new Point(646, 245);
             dtpEmployemntDate.Name = "dtpEmployemntDate";
-            dtpEmployemntDate.Size = new Size(412, 38);
+            dtpEmployemntDate.Size = new Size(412, 47);
             dtpEmployemntDate.TabIndex = 31;
             // 
             // label6
             // 
             label6.AutoSize = true;
             label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(538, 210);
+            label6.ForeColor = Color.FromArgb(64, 64, 64);
+            label6.Location = new Point(646, 219);
             label6.Name = "label6";
             label6.Size = new Size(155, 23);
             label6.TabIndex = 30;
@@ -130,17 +137,18 @@ namespace EmployeeManagamentSystem
             // dtpDateOfBirth
             // 
             dtpDateOfBirth.CalendarFont = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dtpDateOfBirth.Font = new Font("Segoe UI", 13.8F);
-            dtpDateOfBirth.Location = new Point(538, 141);
+            dtpDateOfBirth.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            dtpDateOfBirth.Location = new Point(646, 154);
             dtpDateOfBirth.Name = "dtpDateOfBirth";
-            dtpDateOfBirth.Size = new Size(412, 38);
+            dtpDateOfBirth.Size = new Size(412, 47);
             dtpDateOfBirth.TabIndex = 29;
             // 
             // label5
             // 
             label5.AutoSize = true;
             label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(538, 115);
+            label5.ForeColor = Color.FromArgb(64, 64, 64);
+            label5.Location = new Point(646, 128);
             label5.Name = "label5";
             label5.Size = new Size(115, 23);
             label5.TabIndex = 28;
@@ -148,9 +156,12 @@ namespace EmployeeManagamentSystem
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(41, 313);
+            txtEmail.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtEmail.ForeColor = Color.FromArgb(64, 64, 64);
+            txtEmail.Location = new Point(41, 335);
+            txtEmail.Multiline = true;
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(398, 38);
+            txtEmail.Size = new Size(398, 50);
             txtEmail.TabIndex = 27;
             txtEmail.Tag = "Email";
             // 
@@ -158,7 +169,8 @@ namespace EmployeeManagamentSystem
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(41, 287);
+            label4.ForeColor = Color.FromArgb(64, 64, 64);
+            label4.Location = new Point(41, 309);
             label4.Name = "label4";
             label4.Size = new Size(54, 23);
             label4.TabIndex = 26;
@@ -166,21 +178,25 @@ namespace EmployeeManagamentSystem
             // 
             // btnSave
             // 
-            btnSave.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnSave.Location = new Point(44, 377);
+            btnSave.BackColor = SystemColors.HotTrack;
+            btnSave.FlatStyle = FlatStyle.Flat;
+            btnSave.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSave.ForeColor = Color.White;
+            btnSave.Location = new Point(680, 335);
             btnSave.Name = "btnSave";
-            btnSave.Size = new Size(94, 29);
+            btnSave.Size = new Size(141, 50);
             btnSave.TabIndex = 24;
             btnSave.Text = "Save";
-            btnSave.UseVisualStyleBackColor = true;
+            btnSave.UseVisualStyleBackColor = false;
             btnSave.Click += btnSave_Click;
             // 
             // btnCancel
             // 
-            btnCancel.Font = new Font("Segoe UI", 10.2F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            btnCancel.Location = new Point(174, 377);
+            btnCancel.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnCancel.ForeColor = SystemColors.HotTrack;
+            btnCancel.Location = new Point(869, 335);
             btnCancel.Name = "btnCancel";
-            btnCancel.Size = new Size(94, 29);
+            btnCancel.Size = new Size(141, 50);
             btnCancel.TabIndex = 23;
             btnCancel.Tag = "Cancel";
             btnCancel.Text = "Cancel";
@@ -189,10 +205,12 @@ namespace EmployeeManagamentSystem
             // 
             // txtFirstname
             // 
-            txtFirstname.Location = new Point(41, 141);
+            txtFirstname.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtFirstname.ForeColor = Color.FromArgb(64, 64, 64);
+            txtFirstname.Location = new Point(41, 154);
             txtFirstname.Multiline = true;
             txtFirstname.Name = "txtFirstname";
-            txtFirstname.Size = new Size(398, 38);
+            txtFirstname.Size = new Size(398, 50);
             txtFirstname.TabIndex = 17;
             txtFirstname.Tag = "First Name";
             // 
@@ -200,7 +218,8 @@ namespace EmployeeManagamentSystem
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(41, 115);
+            label3.ForeColor = Color.FromArgb(64, 64, 64);
+            label3.Location = new Point(41, 128);
             label3.Name = "label3";
             label3.Size = new Size(97, 23);
             label3.TabIndex = 16;
@@ -208,9 +227,12 @@ namespace EmployeeManagamentSystem
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(41, 236);
+            txtLastName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtLastName.ForeColor = Color.FromArgb(64, 64, 64);
+            txtLastName.Location = new Point(41, 242);
+            txtLastName.Multiline = true;
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(398, 38);
+            txtLastName.Size = new Size(398, 50);
             txtLastName.TabIndex = 15;
             txtLastName.Tag = "Last Name";
             // 
@@ -218,7 +240,8 @@ namespace EmployeeManagamentSystem
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(41, 199);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
+            label2.Location = new Point(41, 216);
             label2.Name = "label2";
             label2.Size = new Size(94, 23);
             label2.TabIndex = 14;
@@ -226,16 +249,20 @@ namespace EmployeeManagamentSystem
             // 
             // txtEmployeeID
             // 
+            txtEmployeeID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtEmployeeID.ForeColor = Color.FromArgb(64, 64, 64);
             txtEmployeeID.Location = new Point(41, 68);
+            txtEmployeeID.Multiline = true;
             txtEmployeeID.Name = "txtEmployeeID";
             txtEmployeeID.ReadOnly = true;
-            txtEmployeeID.Size = new Size(398, 38);
+            txtEmployeeID.Size = new Size(398, 50);
             txtEmployeeID.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
             label1.Location = new Point(41, 42);
             label1.Name = "label1";
             label1.Size = new Size(106, 23);
@@ -246,9 +273,9 @@ namespace EmployeeManagamentSystem
             // 
             statusStrip1.ImageScalingSize = new Size(20, 20);
             statusStrip1.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel1, toolStripStatusLabel2, prgBar, toolStripStatusLabel3 });
-            statusStrip1.Location = new Point(0, 868);
+            statusStrip1.Location = new Point(0, 910);
             statusStrip1.Name = "statusStrip1";
-            statusStrip1.Size = new Size(1106, 26);
+            statusStrip1.Size = new Size(1168, 26);
             statusStrip1.TabIndex = 2;
             statusStrip1.Text = "statusStrip1";
             // 
@@ -281,17 +308,17 @@ namespace EmployeeManagamentSystem
             // 
             grpDepartment.Controls.Add(cboDepartmentFillter);
             grpDepartment.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpDepartment.Location = new Point(25, 457);
+            grpDepartment.Location = new Point(12, 492);
             grpDepartment.Name = "grpDepartment";
-            grpDepartment.Size = new Size(446, 77);
+            grpDepartment.Size = new Size(358, 97);
             grpDepartment.TabIndex = 6;
             grpDepartment.TabStop = false;
-            grpDepartment.Text = "Choose A Department";
+            grpDepartment.Text = "Choose Department";
             // 
             // cboDepartmentFillter
             // 
             cboDepartmentFillter.FormattingEnabled = true;
-            cboDepartmentFillter.Location = new Point(91, 33);
+            cboDepartmentFillter.Location = new Point(16, 37);
             cboDepartmentFillter.Name = "cboDepartmentFillter";
             cboDepartmentFillter.Size = new Size(322, 36);
             cboDepartmentFillter.TabIndex = 0;
@@ -301,25 +328,41 @@ namespace EmployeeManagamentSystem
             // 
             dgvEmployees.AllowUserToAddRows = false;
             dgvEmployees.AllowUserToDeleteRows = false;
-            dgvEmployees.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvEmployees.Location = new Point(25, 540);
+            dgvEmployees.BackgroundColor = Color.White;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(70, 70, 70);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvEmployees.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvEmployees.ColumnHeadersHeight = 40;
+            dgvEmployees.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvEmployees.EnableHeadersVisualStyles = false;
+            dgvEmployees.GridColor = Color.FromArgb(64, 64, 64);
+            dgvEmployees.Location = new Point(12, 595);
             dgvEmployees.Name = "dgvEmployees";
             dgvEmployees.ReadOnly = true;
-            dgvEmployees.RowHeadersWidth = 51;
-            dgvEmployees.Size = new Size(1049, 325);
+            dgvEmployees.RowHeadersWidth = 61;
+            dgvEmployees.RowTemplate.Height = 40;
+            dgvEmployees.Size = new Size(1144, 310);
             dgvEmployees.TabIndex = 5;
             dgvEmployees.CellClick += dataGridView1_CellClick;
+            dgvEmployees.CellContentClick += dgvEmployees_CellContentClick;
             // 
             // frmEmployeeMaintenance
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1106, 894);
+            BackColor = Color.White;
+            ClientSize = new Size(1168, 936);
             Controls.Add(grpDepartment);
             Controls.Add(dgvEmployees);
             Controls.Add(statusStrip1);
             Controls.Add(grpEmployees);
             Name = "frmEmployeeMaintenance";
+            StartPosition = FormStartPosition.CenterParent;
             Tag = "Employee";
             Text = "Employee Maintenance";
             Load += frmEmployeeMaintenance_Load;

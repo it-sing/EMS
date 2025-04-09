@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Drawing.Drawing2D;
 using System.Windows.Forms;
 using EmployeeManagamentSystem.Pattern.Login;
 using EmployeeManagamentSystem.Service;
@@ -35,6 +36,12 @@ namespace EmployeeManagamentSystem
                     role == "5" ? MessageBoxIcon.Information : MessageBoxIcon.Error);
             }
         }
+        private void btnsignup_Click(object sender, EventArgs e)
+        {
+            Form frm = LoginFormFactory.CreateRegisterForm();
+            frm.Show();
+            this.Hide();
+        }
 
         private void lnkRegisterLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
@@ -48,5 +55,7 @@ namespace EmployeeManagamentSystem
             txtUsername.Text = "admin";
             txtPassword.Text = "admin";
         }
+
+
     }
 }

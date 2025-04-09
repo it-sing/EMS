@@ -44,8 +44,8 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(81, 119);
+            label3.ForeColor = Color.FromArgb(64, 64, 64);
+            label3.Location = new Point(81, 133);
             label3.Name = "label3";
             label3.Size = new Size(166, 28);
             label3.TabIndex = 10;
@@ -53,17 +53,19 @@
             // 
             // cboNewManager
             // 
+            cboNewManager.Font = new Font("Segoe UI", 18F);
+            cboNewManager.ForeColor = Color.FromArgb(64, 64, 64);
             cboNewManager.FormattingEnabled = true;
-            cboNewManager.Location = new Point(81, 241);
+            cboNewManager.Location = new Point(81, 268);
             cboNewManager.Name = "cboNewManager";
-            cboNewManager.Size = new Size(343, 28);
+            cboNewManager.Size = new Size(343, 49);
             cboNewManager.TabIndex = 11;
             // 
             // label1
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
             label1.Location = new Point(81, 30);
             label1.Name = "label1";
             label1.Size = new Size(122, 28);
@@ -72,10 +74,11 @@
             // 
             // btnSubmit
             // 
-            btnSubmit.BackColor = Color.Black;
+            btnSubmit.BackColor = SystemColors.HotTrack;
+            btnSubmit.FlatStyle = FlatStyle.Flat;
             btnSubmit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSubmit.ForeColor = Color.White;
-            btnSubmit.Location = new Point(131, 325);
+            btnSubmit.Location = new Point(150, 347);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(197, 52);
             btnSubmit.TabIndex = 14;
@@ -85,27 +88,33 @@
             // 
             // cboDepartments
             // 
+            cboDepartments.Font = new Font("Segoe UI", 18F);
+            cboDepartments.ForeColor = Color.FromArgb(64, 64, 64);
             cboDepartments.FormattingEnabled = true;
             cboDepartments.Location = new Point(80, 71);
             cboDepartments.Name = "cboDepartments";
-            cboDepartments.Size = new Size(344, 28);
+            cboDepartments.Size = new Size(344, 49);
             cboDepartments.TabIndex = 15;
             cboDepartments.SelectedIndexChanged += cboDepartments_SelectedIndexChanged;
             // 
             // txtCurrentManager
             // 
+            txtCurrentManager.BackColor = Color.White;
+            txtCurrentManager.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtCurrentManager.ForeColor = Color.FromArgb(64, 64, 64);
             txtCurrentManager.Location = new Point(81, 164);
+            txtCurrentManager.Multiline = true;
             txtCurrentManager.Name = "txtCurrentManager";
             txtCurrentManager.ReadOnly = true;
-            txtCurrentManager.Size = new Size(333, 27);
+            txtCurrentManager.Size = new Size(333, 50);
             txtCurrentManager.TabIndex = 17;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(81, 210);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
+            label2.Location = new Point(81, 228);
             label2.Name = "label2";
             label2.Size = new Size(139, 28);
             label2.TabIndex = 18;
@@ -119,7 +128,7 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(66, 135, 245);
+            BackColor = Color.White;
             ClientSize = new Size(502, 427);
             Controls.Add(label2);
             Controls.Add(txtCurrentManager);
@@ -129,6 +138,7 @@
             Controls.Add(cboNewManager);
             Controls.Add(label3);
             Name = "frmManager";
+            StartPosition = FormStartPosition.CenterParent;
             Text = "Set Manager";
             Load += frmManager_Load;
             ((System.ComponentModel.ISupportInitialize)errProvider).EndInit();

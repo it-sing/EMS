@@ -13,6 +13,7 @@ namespace EmployeeManagamentSystem
         private int currentEmployeeId;
         private readonly DepartmentRepository departmentRepository = new DepartmentRepository();
 
+
         public frmEmployeeMaintenance()
         {
             InitializeComponent();
@@ -43,7 +44,7 @@ namespace EmployeeManagamentSystem
                     LoadEmployeeToForm(e.RowIndex);
                 }
             }
-      
+
         }
         private void LoadEmployeeToForm(int rowIndex)
         {
@@ -137,7 +138,7 @@ namespace EmployeeManagamentSystem
                 int departmentId = Convert.ToInt32(cboDepartmentFillter.SelectedValue);
 
                 DataTable dtEmployees = departmentId == 0
-                    ? _employeeService.Employees  
+                    ? _employeeService.Employees
                     : _employeeService.GetEmployeesByDepartment(departmentId);
 
                 dgvEmployees.DataSource = dtEmployees;
@@ -247,5 +248,9 @@ namespace EmployeeManagamentSystem
             this.toolStripStatusLabel3.Text = "Processed";
         }
 
+        private void dgvEmployees_CellContentClick(object sender, DataGridViewCellEventArgs e)
+        {
+
+        }
     }
 }

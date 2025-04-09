@@ -31,7 +31,7 @@ namespace EmployeeManagamentSystem
         /// </summary>
         private void InitializeComponent()
         {
-            label1 = new Label();
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             dgvUsers = new DataGridView();
             grpDepartment = new GroupBox();
             cmbFilterByRoles = new ComboBox();
@@ -39,36 +39,41 @@ namespace EmployeeManagamentSystem
             grpDepartment.SuspendLayout();
             SuspendLayout();
             // 
-            // label1
-            // 
-            label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 19.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(39, 20);
-            label1.Name = "label1";
-            label1.Size = new Size(92, 46);
-            label1.TabIndex = 6;
-            label1.Text = "User";
-            // 
             // dgvUsers
             // 
             dgvUsers.AllowUserToAddRows = false;
             dgvUsers.AutoSizeColumnsMode = DataGridViewAutoSizeColumnsMode.Fill;
-            dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dgvUsers.Location = new Point(27, 148);
+            dgvUsers.BackgroundColor = Color.White;
+            dgvUsers.BorderStyle = BorderStyle.Fixed3D;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 12F, FontStyle.Bold);
+            dataGridViewCellStyle1.ForeColor = Color.FromArgb(70, 70, 70);
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dgvUsers.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
+            dgvUsers.ColumnHeadersHeight = 50;
+            dgvUsers.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.DisableResizing;
+            dgvUsers.EnableHeadersVisualStyles = false;
+            dgvUsers.GridColor = Color.FromArgb(64, 64, 64);
+            dgvUsers.Location = new Point(4, 174);
             dgvUsers.Name = "dgvUsers";
             dgvUsers.ReadOnly = true;
-            dgvUsers.RowHeadersWidth = 51;
-            dgvUsers.SelectionMode = DataGridViewSelectionMode.FullRowSelect;
-            dgvUsers.Size = new Size(1042, 435);
+            dgvUsers.RowHeadersWidth = 60;
+            dgvUsers.RowTemplate.Height = 40;
+            dgvUsers.SelectionMode = DataGridViewSelectionMode.CellSelect;
+            dgvUsers.Size = new Size(1388, 508);
             dgvUsers.TabIndex = 46;
             // 
             // grpDepartment
             // 
             grpDepartment.Controls.Add(cmbFilterByRoles);
             grpDepartment.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            grpDepartment.Location = new Point(713, 36);
+            grpDepartment.ForeColor = Color.FromArgb(64, 64, 64);
+            grpDepartment.Location = new Point(1000, 32);
             grpDepartment.Name = "grpDepartment";
-            grpDepartment.Size = new Size(356, 93);
+            grpDepartment.Size = new Size(383, 97);
             grpDepartment.TabIndex = 47;
             grpDepartment.TabStop = false;
             grpDepartment.Text = "Fillter By Role";
@@ -76,8 +81,9 @@ namespace EmployeeManagamentSystem
             // cmbFilterByRoles
             // 
             cmbFilterByRoles.DropDownStyle = ComboBoxStyle.DropDownList;
+            cmbFilterByRoles.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             cmbFilterByRoles.FormattingEnabled = true;
-            cmbFilterByRoles.Location = new Point(18, 34);
+            cmbFilterByRoles.Location = new Point(31, 42);
             cmbFilterByRoles.Name = "cmbFilterByRoles";
             cmbFilterByRoles.Size = new Size(322, 36);
             cmbFilterByRoles.TabIndex = 0;
@@ -87,23 +93,21 @@ namespace EmployeeManagamentSystem
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1105, 609);
+            BackColor = Color.White;
+            ClientSize = new Size(1395, 682);
             Controls.Add(grpDepartment);
             Controls.Add(dgvUsers);
-            Controls.Add(label1);
             Name = "frmUserManagement";
-            StartPosition = FormStartPosition.CenterScreen;
+            StartPosition = FormStartPosition.CenterParent;
             Tag = "User";
-            Text = "UserManagement";
+            Text = "User Management";
             Load += frmUserManagement_Load;
             ((System.ComponentModel.ISupportInitialize)dgvUsers).EndInit();
             grpDepartment.ResumeLayout(false);
             ResumeLayout(false);
-            PerformLayout();
         }
 
         #endregion
-        private Label label1;
         private ErrorProvider errProvider;
         private DataGridView dgvUsers;
         private GroupBox grpDepartment;

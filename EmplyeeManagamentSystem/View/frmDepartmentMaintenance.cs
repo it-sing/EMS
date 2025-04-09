@@ -36,7 +36,7 @@ namespace EmployeeManagamentSystem
         {
             try
             {
-                if (e.RowIndex < 0 || e.RowIndex >= dgvDepartments.Rows.Count) return; 
+                if (e.RowIndex < 0 || e.RowIndex >= dgvDepartments.Rows.Count) return;
 
                 string columnName = dgvDepartments.Columns[e.ColumnIndex].Name;
 
@@ -137,7 +137,7 @@ namespace EmployeeManagamentSystem
                 {
                     AddDeleteButton();
                 }
-              
+
                 dgvDepartments.Columns[0].HeaderText = "ID";
                 dgvDepartments.AutoResizeColumns();
                 toolStripStatusLabel1.Text = "Total Department: " + dgvDepartments.Rows.Count;
@@ -209,7 +209,7 @@ namespace EmployeeManagamentSystem
 
             int success = _departmentService.CreateDepartment(departmentName, description);
 
-            if (success > 0 )
+            if (success > 0)
             {
                 //MessageBox.Show("Department created successfully.", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 LoadViewDepartments(); // Refresh department list
@@ -227,23 +227,11 @@ namespace EmployeeManagamentSystem
             string departmentName = txtDepartmentName.Text;
             string description = txtDescription.Text;
 
-            if (string.IsNullOrWhiteSpace(departmentName))
-            {
-                MessageBox.Show("Department name cannot be empty!", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            if (_departmentService.IsDepartmentName(departmentName))
-            {
-                MessageBox.Show("Department name already exists. Please choose a different name.", "Duplicate Entry", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return;
-            }
-
-            int  success = _departmentService.SaveDepartmentChanges(departmentId, departmentName, description);
+            int success = _departmentService.SaveDepartmentChanges(departmentId, departmentName, description);
 
             if (success > 0)
-            {       
-                LoadViewDepartments(); // Refresh department list
+            {
+                LoadViewDepartments(); 
                 ClearControls(grpDepartments.Controls);
             }
             else
@@ -288,5 +276,10 @@ namespace EmployeeManagamentSystem
         }
 
         #endregion
+
+        private void label2_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

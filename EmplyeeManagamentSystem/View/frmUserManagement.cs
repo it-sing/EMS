@@ -35,8 +35,8 @@ namespace EmployeeManagamentSystem
         {
             try
             {
-                GetRoles(); 
-                GetUsers();  
+                GetRoles();
+                GetUsers();
             }
             catch (Exception ex)
             {
@@ -127,7 +127,7 @@ namespace EmployeeManagamentSystem
                 int userID = Convert.ToInt32(dgvUsers.Rows[e.RowIndex].Cells["UserID"].Value);
                 string username = dgvUsers.Rows[e.RowIndex].Cells["Username"].Value.ToString();
                 string roleName = dgvUsers.Rows[e.RowIndex].Cells["RoleName"].Value.ToString();
-                int? employeeId = null; 
+                int? employeeId = null;
 
                 if (dgvUsers.Rows[e.RowIndex].Cells["EmployeeID"].Value != DBNull.Value)
                 {
@@ -135,6 +135,7 @@ namespace EmployeeManagamentSystem
                 }
 
                 ContextMenuStrip actionMenu = new ContextMenuStrip();
+
 
                 // Promote option
                 if (roleName != "Guest")
@@ -156,7 +157,7 @@ namespace EmployeeManagamentSystem
                 {
                     ToolStripMenuItem deleteOption = new ToolStripMenuItem("Delete");
                     deleteOption.Click += (s, args) =>
-                    {                   
+                    {
                         int empIdToDelete = employeeId ?? -1;
 
                         DeleteUser(userID, username, empIdToDelete);
@@ -204,7 +205,7 @@ namespace EmployeeManagamentSystem
                 {
                     _userService.DeleteUser(userID);
                     _employeeService.DeleteEmployee(employeeId);
-                   
+
                     if (_departmentService.IsEmployeeManager(employeeId))
                     {
                         MessageBox.Show("Cannot delete this employee. They are assigned as a department manager.", "Delete Blocked", MessageBoxButtons.OK, MessageBoxIcon.Warning);

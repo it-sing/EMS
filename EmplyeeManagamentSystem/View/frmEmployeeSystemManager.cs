@@ -7,7 +7,57 @@ namespace EmployeeManagamentSystem
         public frmEmployeeSystemManager()
         {
             InitializeComponent();
+            AddMenuHoverEffects();
+            menuStrip.Renderer = new NoBorderRenderer();
+
+
         }
+        private void AddMenuHoverEffects()
+        {
+            foreach (ToolStripItem item in menuStrip.Items)
+            {
+                if (item is ToolStripMenuItem menuItem)
+                {
+                    menuItem.ForeColor = Color.FromArgb(64, 64, 64); // default text color
+
+                    menuItem.MouseEnter += (s, e) =>
+                    {
+                        menuItem.ForeColor = SystemColors.HotTrack; // Hover color
+                    };
+
+                    menuItem.MouseLeave += (s, e) =>
+                    {
+                        menuItem.ForeColor = Color.FromArgb(64, 64, 64); // Back to normal
+                    };
+                }
+            }
+        }
+
+        // Custom renderer that removes background and borders
+        private class NoBorderRenderer : ToolStripProfessionalRenderer
+        {
+            public NoBorderRenderer() : base(new NoBordersColorTable()) { }
+
+            protected override void OnRenderMenuItemBackground(ToolStripItemRenderEventArgs e)
+            {
+                // Do nothing — prevents the background from being drawn
+            }
+
+            protected override void OnRenderToolStripBorder(ToolStripRenderEventArgs e)
+            {
+                // Do nothing — removes border around the menu
+            }
+        }
+
+        private class NoBordersColorTable : ProfessionalColorTable
+        {
+            public override Color MenuItemSelected => Color.Transparent;
+            public override Color MenuItemBorder => Color.Transparent;
+            public override Color ToolStripBorder => Color.Transparent;
+            public override Color MenuItemSelectedGradientBegin => Color.Transparent;
+            public override Color MenuItemSelectedGradientEnd => Color.Transparent;
+        }
+
 
         private void ShowNewForm(object sender, EventArgs e)
         {
@@ -96,8 +146,8 @@ namespace EmployeeManagamentSystem
                 // Assign MDI parent only for specific forms
                 if (childForm is frmEditProfile ||
                     childForm is frmAbout)
-                    //childForm is frmViewDepartments ||
-                    //childForm is frmViewEmployees)
+                //childForm is frmViewDepartments ||
+                //childForm is frmViewEmployees)
                 {
                     childForm.MdiParent = this;
                 }
@@ -252,5 +302,14 @@ namespace EmployeeManagamentSystem
 
         }
 
+        private void menuStrip_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+
+        }
+
+        private void toolStripStatusLabel_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

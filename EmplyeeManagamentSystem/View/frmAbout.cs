@@ -14,5 +14,10 @@
             lblVersion.Text = Application.ProductVersion;
             lblProductName.Text = Application.ProductName;
         }
+
+        private void lblProductName_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }

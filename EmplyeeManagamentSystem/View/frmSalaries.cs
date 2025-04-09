@@ -13,6 +13,7 @@ namespace EmployeeManagamentSystem
         public frmSalaries()
         {
             InitializeComponent();
+            this.StartPosition = FormStartPosition.CenterScreen; //
             _salaryService = new SalaryService(new SalaryRepository());
         }
 
@@ -20,6 +21,8 @@ namespace EmployeeManagamentSystem
         {
             try
             {
+                frmSalaries salaryForm = new frmSalaries();
+                salaryForm.StartPosition = FormStartPosition.CenterParent;
                 LoadEmployees();
                 LoadSalaries();
             }

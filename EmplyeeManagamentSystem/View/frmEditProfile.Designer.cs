@@ -68,152 +68,170 @@
             grpEmployees.Controls.Add(txtEmployeeID);
             grpEmployees.Controls.Add(label1);
             grpEmployees.Font = new Font("Segoe UI", 13.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            grpEmployees.ForeColor = Color.FromArgb(64, 64, 64);
             grpEmployees.Location = new Point(23, 12);
             grpEmployees.Name = "grpEmployees";
-            grpEmployees.Size = new Size(996, 590);
+            grpEmployees.Size = new Size(1026, 630);
             grpEmployees.TabIndex = 2;
             grpEmployees.TabStop = false;
             grpEmployees.Text = "Profile Detail";
+            grpEmployees.Enter += grpEmployees_Enter;
             // 
             // btnSubmit
             // 
-            btnSubmit.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            btnSubmit.Location = new Point(406, 506);
+            btnSubmit.BackColor = SystemColors.HotTrack;
+            btnSubmit.FlatStyle = FlatStyle.Flat;
+            btnSubmit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            btnSubmit.ForeColor = Color.White;
+            btnSubmit.Location = new Point(441, 548);
             btnSubmit.Name = "btnSubmit";
-            btnSubmit.Size = new Size(172, 55);
+            btnSubmit.Size = new Size(141, 50);
             btnSubmit.TabIndex = 34;
             btnSubmit.Text = "Submit";
-            btnSubmit.UseVisualStyleBackColor = true;
+            btnSubmit.UseVisualStyleBackColor = false;
             btnSubmit.Click += btnSubmit_Click;
             // 
             // txtUsername
             // 
-            txtUsername.Location = new Point(41, 173);
+            txtUsername.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtUsername.ForeColor = Color.FromArgb(64, 64, 64);
+            txtUsername.Location = new Point(41, 215);
             txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
             txtUsername.ReadOnly = true;
-            txtUsername.Size = new Size(347, 55);
+            txtUsername.Size = new Size(398, 50);
             txtUsername.TabIndex = 33;
             txtUsername.Tag = "First Name";
             // 
             // label7
             // 
             label7.AutoSize = true;
-            label7.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label7.Location = new Point(41, 147);
+            label7.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label7.Location = new Point(44, 183);
             label7.Name = "label7";
-            label7.Size = new Size(89, 23);
+            label7.Size = new Size(104, 28);
             label7.TabIndex = 32;
             label7.Text = "Username";
             // 
             // dtpEmployemntDate
             // 
             dtpEmployemntDate.CalendarFont = new Font("Segoe UI", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            dtpEmployemntDate.Location = new Point(598, 407);
+            dtpEmployemntDate.Font = new Font("Segoe UI", 18F);
+            dtpEmployemntDate.Location = new Point(598, 411);
             dtpEmployemntDate.Name = "dtpEmployemntDate";
-            dtpEmployemntDate.Size = new Size(347, 38);
+            dtpEmployemntDate.Size = new Size(398, 47);
             dtpEmployemntDate.TabIndex = 31;
             // 
             // label6
             // 
             label6.AutoSize = true;
-            label6.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label6.Location = new Point(598, 355);
+            label6.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label6.Location = new Point(598, 380);
             label6.Name = "label6";
-            label6.Size = new Size(155, 23);
+            label6.Size = new Size(175, 28);
             label6.TabIndex = 30;
             label6.Text = "Employment Date";
             // 
             // dtpDateOfBirth
             // 
-            dtpDateOfBirth.Location = new Point(598, 299);
+            dtpDateOfBirth.Font = new Font("Segoe UI", 18F);
+            dtpDateOfBirth.Location = new Point(598, 312);
             dtpDateOfBirth.Name = "dtpDateOfBirth";
-            dtpDateOfBirth.Size = new Size(347, 38);
+            dtpDateOfBirth.Size = new Size(398, 47);
             dtpDateOfBirth.TabIndex = 29;
             // 
             // label5
             // 
             label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label5.Location = new Point(598, 256);
+            label5.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label5.Location = new Point(598, 281);
             label5.Name = "label5";
-            label5.Size = new Size(115, 23);
+            label5.Size = new Size(129, 28);
             label5.TabIndex = 28;
             label5.Text = "Date of Birth";
             // 
             // txtEmail
             // 
-            txtEmail.Location = new Point(598, 173);
+            txtEmail.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtEmail.ForeColor = Color.FromArgb(64, 64, 64);
+            txtEmail.Location = new Point(598, 215);
             txtEmail.Multiline = true;
             txtEmail.Name = "txtEmail";
-            txtEmail.Size = new Size(347, 55);
+            txtEmail.Size = new Size(398, 50);
             txtEmail.TabIndex = 27;
             txtEmail.Tag = "Email";
             // 
             // label4
             // 
             label4.AutoSize = true;
-            label4.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.Location = new Point(598, 147);
+            label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label4.Location = new Point(598, 183);
             label4.Name = "label4";
-            label4.Size = new Size(54, 23);
+            label4.Size = new Size(60, 28);
             label4.TabIndex = 26;
             label4.Text = "Email";
             // 
             // txtFirstname
             // 
-            txtFirstname.Location = new Point(41, 282);
+            txtFirstname.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtFirstname.ForeColor = Color.FromArgb(64, 64, 64);
+            txtFirstname.Location = new Point(41, 312);
             txtFirstname.Multiline = true;
             txtFirstname.Name = "txtFirstname";
-            txtFirstname.Size = new Size(347, 55);
+            txtFirstname.Size = new Size(398, 50);
             txtFirstname.TabIndex = 17;
             txtFirstname.Tag = "First Name";
             // 
             // label3
             // 
             label3.AutoSize = true;
-            label3.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.Location = new Point(41, 256);
+            label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label3.Location = new Point(41, 286);
             label3.Name = "label3";
-            label3.Size = new Size(97, 23);
+            label3.Size = new Size(110, 28);
             label3.TabIndex = 16;
             label3.Text = "First Name";
             // 
             // txtLastName
             // 
-            txtLastName.Location = new Point(41, 390);
+            txtLastName.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtLastName.ForeColor = Color.FromArgb(64, 64, 64);
+            txtLastName.Location = new Point(41, 411);
             txtLastName.Multiline = true;
             txtLastName.Name = "txtLastName";
-            txtLastName.Size = new Size(347, 55);
+            txtLastName.Size = new Size(398, 50);
             txtLastName.TabIndex = 15;
             txtLastName.Tag = "Last Name";
+            txtLastName.TextChanged += txtLastName_TextChanged;
             // 
             // label2
             // 
             label2.AutoSize = true;
-            label2.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.Location = new Point(44, 355);
+            label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            label2.Location = new Point(44, 385);
             label2.Name = "label2";
-            label2.Size = new Size(94, 23);
+            label2.Size = new Size(108, 28);
             label2.TabIndex = 14;
             label2.Text = "Last Name";
             // 
             // txtEmployeeID
             // 
-            txtEmployeeID.Location = new Point(41, 68);
+            txtEmployeeID.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtEmployeeID.ForeColor = Color.FromArgb(64, 64, 64);
+            txtEmployeeID.Location = new Point(41, 116);
             txtEmployeeID.Multiline = true;
             txtEmployeeID.Name = "txtEmployeeID";
             txtEmployeeID.ReadOnly = true;
-            txtEmployeeID.Size = new Size(904, 55);
+            txtEmployeeID.Size = new Size(904, 50);
             txtEmployeeID.TabIndex = 1;
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.Location = new Point(41, 42);
+            label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.Location = new Point(44, 80);
             label1.Name = "label1";
-            label1.Size = new Size(106, 23);
+            label1.Size = new Size(121, 28);
             label1.TabIndex = 0;
             label1.Text = "EmployeeID";
             // 
@@ -225,9 +243,10 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(1050, 623);
+            ClientSize = new Size(1067, 654);
             Controls.Add(grpEmployees);
             Name = "frmEditProfile";
+            StartPosition = FormStartPosition.CenterParent;
             Tag = "Edit Profile";
             Text = "Edit Profile";
             Load += frmEditProfile_Load;

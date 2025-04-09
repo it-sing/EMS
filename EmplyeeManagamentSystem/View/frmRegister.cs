@@ -44,6 +44,13 @@ namespace EmployeeManagamentSystem
             }
         }
 
+        private void btnSignIn_Click(object sender, EventArgs e)
+        {
+            frmLogin frmLogin = new frmLogin();
+            frmLogin.Show();
+            this.Hide();
+        }
+
         private void txtValidation(object sender)
         {
             TextBox txt = (TextBox)sender;
@@ -72,5 +79,6 @@ namespace EmployeeManagamentSystem
                 }
             }
         }
+
     }
 }

@@ -54,7 +54,7 @@
             label2.AutoSize = true;
             label2.BackColor = Color.Transparent;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
             label2.Location = new Point(206, 286);
             label2.Name = "label2";
             label2.Size = new Size(122, 28);
@@ -66,7 +66,7 @@
             lblProgress.AutoSize = true;
             lblProgress.BackColor = Color.Transparent;
             lblProgress.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lblProgress.ForeColor = Color.White;
+            lblProgress.ForeColor = Color.FromArgb(64, 64, 64);
             lblProgress.Location = new Point(334, 286);
             lblProgress.Name = "lblProgress";
             lblProgress.Size = new Size(70, 28);
@@ -77,32 +77,32 @@
             // 
             lblVersion.AutoSize = true;
             lblVersion.BackColor = Color.Transparent;
-            lblVersion.Font = new Font("Segoe UI", 10.8F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lblVersion.ForeColor = Color.White;
+            lblVersion.Font = new Font("Segoe UI Semibold", 10.8F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lblVersion.ForeColor = Color.FromArgb(64, 64, 64);
             lblVersion.Location = new Point(271, 234);
             lblVersion.Name = "lblVersion";
-            lblVersion.Size = new Size(80, 25);
+            lblVersion.Size = new Size(87, 25);
             lblVersion.TabIndex = 5;
-            lblVersion.Text = "[Version]";
+            lblVersion.Text = "Version 1";
             // 
             // lblProductName
             // 
             lblProductName.AutoSize = true;
             lblProductName.BackColor = Color.Transparent;
             lblProductName.Font = new Font("Segoe UI", 18F, FontStyle.Bold);
-            lblProductName.ForeColor = Color.White;
+            lblProductName.ForeColor = SystemColors.HotTrack;
             lblProductName.Location = new Point(94, 32);
             lblProductName.Name = "lblProductName";
-            lblProductName.Size = new Size(234, 41);
+            lblProductName.Size = new Size(458, 41);
             lblProductName.TabIndex = 4;
-            lblProductName.Text = "[ProductName]";
+            lblProductName.Text = "Employee Management System";
             lblProductName.TextAlign = ContentAlignment.MiddleLeft;
             // 
             // frmSplashScreen
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(66, 135, 245);
+            BackColor = Color.White;
             ClientSize = new Size(616, 450);
             Controls.Add(lblVersion);
             Controls.Add(lblProductName);

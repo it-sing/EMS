@@ -12,7 +12,7 @@ namespace EmployeeManagamentSystem
     {
         private UserService _userService;
         private int currentUserId = UIUtilities.CurrentUserID;
-        
+
         public frmEditProfile()
         {
             InitializeComponent();
@@ -59,7 +59,7 @@ namespace EmployeeManagamentSystem
             {
                 if (ValidateChildren(ValidationConstraints.Enabled))
                 {
-                
+
                     if (!string.IsNullOrEmpty(txtEmployeeID.Text))
                     {
                         _userService.ExecuteUserAction("update",
@@ -78,7 +78,7 @@ namespace EmployeeManagamentSystem
                             txtEmail.Text,
                             dtpDateOfBirth.Value,
                             dtpEmployemntDate.Value,
-                            currentUserId); 
+                            currentUserId);
                     }
 
                     GetCurrentUser();
@@ -90,5 +90,14 @@ namespace EmployeeManagamentSystem
             }
         }
 
+        private void grpEmployees_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void txtLastName_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
 }

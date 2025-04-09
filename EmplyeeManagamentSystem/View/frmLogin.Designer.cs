@@ -22,28 +22,29 @@
             txtUsername = new TextBox();
             txtPassword = new TextBox();
             label3 = new Label();
-            btnLogin = new Button();
+            btnsignin = new Button();
             lnkRegisterLink = new LinkLabel();
+            btnsignup = new Button();
             SuspendLayout();
             // 
             // label1
             // 
             label1.AutoSize = true;
-            label1.Font = new Font("Segoe UI", 24F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.FromArgb(255, 255, 255);
-            label1.Location = new Point(177, 20);
+            label1.Font = new Font("Segoe UI", 25.8000011F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            label1.ForeColor = SystemColors.HotTrack;
+            label1.Location = new Point(212, 42);
             label1.Name = "label1";
-            label1.Size = new Size(236, 54);
+            label1.Size = new Size(203, 60);
             label1.TabIndex = 0;
-            label1.Text = "Login Form";
+            label1.Text = "SIGN IN ";
             label1.TextAlign = ContentAlignment.MiddleCenter;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(102, 121);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
+            label2.Location = new Point(87, 153);
             label2.Name = "label2";
             label2.Size = new Size(104, 28);
             label2.TabIndex = 1;
@@ -52,77 +53,93 @@
             // txtUsername
             // 
             txtUsername.BackColor = Color.White;
-            txtUsername.BorderStyle = BorderStyle.None;
             txtUsername.Font = new Font("Segoe UI", 12F);
             txtUsername.ForeColor = Color.Gray;
-            txtUsername.Location = new Point(102, 152);
+            txtUsername.Location = new Point(80, 195);
+            txtUsername.Multiline = true;
             txtUsername.Name = "txtUsername";
-            txtUsername.Size = new Size(357, 27);
+            txtUsername.Size = new Size(461, 46);
             txtUsername.TabIndex = 2;
             // 
             // txtPassword
             // 
             txtPassword.BackColor = Color.White;
-            txtPassword.BorderStyle = BorderStyle.None;
             txtPassword.Font = new Font("Segoe UI", 12F);
             txtPassword.ForeColor = Color.Gray;
-            txtPassword.Location = new Point(102, 238);
+            txtPassword.Location = new Point(80, 297);
+            txtPassword.Multiline = true;
             txtPassword.Name = "txtPassword";
             txtPassword.PasswordChar = '•';
-            txtPassword.Size = new Size(357, 27);
+            txtPassword.Size = new Size(461, 45);
             txtPassword.TabIndex = 4;
             // 
             // label3
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(102, 207);
+            label3.ForeColor = Color.FromArgb(64, 64, 64);
+            label3.Location = new Point(87, 256);
             label3.Name = "label3";
             label3.Size = new Size(97, 28);
             label3.TabIndex = 3;
             label3.Text = "Password";
             // 
-            // btnLogin
+            // btnsignin
             // 
-            btnLogin.BackColor = Color.FromArgb(66, 135, 245);
-            btnLogin.FlatStyle = FlatStyle.Flat;
-            btnLogin.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
-            btnLogin.ForeColor = Color.White;
-            btnLogin.Location = new Point(156, 348);
-            btnLogin.Name = "btnLogin";
-            btnLogin.Size = new Size(217, 46);
-            btnLogin.TabIndex = 5;
-            btnLogin.Text = "Login";
-            btnLogin.UseVisualStyleBackColor = false;
-            btnLogin.Click += btnLogin_Click;
+            btnsignin.BackColor = SystemColors.HotTrack;
+            btnsignin.FlatStyle = FlatStyle.Flat;
+            btnsignin.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnsignin.ForeColor = Color.White;
+            btnsignin.Location = new Point(115, 445);
+            btnsignin.Name = "btnsignin";
+            btnsignin.Size = new Size(188, 46);
+            btnsignin.TabIndex = 5;
+            btnsignin.Text = "Sign in";
+            btnsignin.UseVisualStyleBackColor = false;
+            btnsignin.Click += btnLogin_Click;
             // 
             // lnkRegisterLink
             // 
             lnkRegisterLink.AutoSize = true;
-            lnkRegisterLink.Font = new Font("Segoe UI", 10F, FontStyle.Regular, GraphicsUnit.Point, 0);
-            lnkRegisterLink.LinkColor = Color.FromArgb(66, 135, 245);
-            lnkRegisterLink.Location = new Point(177, 307);
+            lnkRegisterLink.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lnkRegisterLink.LinkColor = SystemColors.HotTrack;
+            lnkRegisterLink.Location = new Point(240, 388);
             lnkRegisterLink.Name = "lnkRegisterLink";
-            lnkRegisterLink.Size = new Size(175, 23);
+            lnkRegisterLink.Size = new Size(138, 23);
             lnkRegisterLink.TabIndex = 17;
             lnkRegisterLink.TabStop = true;
-            lnkRegisterLink.Text = "No Account? Register";
+            lnkRegisterLink.Text = "Forgot Password";
             lnkRegisterLink.LinkClicked += lnkRegisterLink_LinkClicked;
+            // 
+            // btnsignup
+            // 
+            btnsignup.BackColor = Color.White;
+            btnsignup.Font = new Font("Segoe UI Semibold", 11F, FontStyle.Bold);
+            btnsignup.ForeColor = SystemColors.HotTrack;
+            btnsignup.Location = new Point(322, 445);
+            btnsignup.Name = "btnsignup";
+            btnsignup.Size = new Size(188, 46);
+            btnsignup.TabIndex = 18;
+            btnsignup.Text = "Sign up";
+            btnsignup.UseVisualStyleBackColor = false;
+            btnsignup.Click += btnsignup_Click;
             // 
             // frmLogin
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(34, 34, 34);
-            ClientSize = new Size(580, 470);
+            BackColor = SystemColors.Window;
+            BackgroundImageLayout = ImageLayout.Center;
+            ClientSize = new Size(633, 553);
+            Controls.Add(btnsignup);
             Controls.Add(lnkRegisterLink);
-            Controls.Add(btnLogin);
+            Controls.Add(btnsignin);
             Controls.Add(txtPassword);
             Controls.Add(label3);
             Controls.Add(txtUsername);
             Controls.Add(label2);
             Controls.Add(label1);
+            ForeColor = Color.White;
             Name = "frmLogin";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Login Form";
@@ -138,7 +155,8 @@
         private TextBox txtUsername;
         private TextBox txtPassword;
         private Label label3;
-        private Button btnLogin;
+        private Button btnsignin;
         private LinkLabel lnkRegisterLink;
+        private Button btnsignup;
     }
 }

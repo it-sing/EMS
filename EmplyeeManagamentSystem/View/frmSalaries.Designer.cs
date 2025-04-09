@@ -44,10 +44,13 @@
             // 
             // cboEmployees
             // 
+            cboEmployees.Font = new Font("Segoe UI", 18F, FontStyle.Regular, GraphicsUnit.Point, 0);
+            cboEmployees.ForeColor = Color.FromArgb(64, 64, 64);
             cboEmployees.FormattingEnabled = true;
-            cboEmployees.Location = new Point(120, 70);
+            cboEmployees.ItemHeight = 41;
+            cboEmployees.Location = new Point(120, 84);
             cboEmployees.Name = "cboEmployees";
-            cboEmployees.Size = new Size(343, 28);
+            cboEmployees.Size = new Size(336, 49);
             cboEmployees.TabIndex = 13;
             cboEmployees.SelectedIndexChanged += cboEmployees_SelectedIndexChanged;
             // 
@@ -55,8 +58,8 @@
             // 
             label3.AutoSize = true;
             label3.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label3.ForeColor = Color.White;
-            label3.Location = new Point(120, 39);
+            label3.ForeColor = Color.FromArgb(64, 64, 64);
+            label3.Location = new Point(120, 44);
             label3.Name = "label3";
             label3.Size = new Size(101, 28);
             label3.TabIndex = 12;
@@ -64,10 +67,11 @@
             // 
             // btnSubmit
             // 
-            btnSubmit.BackColor = Color.Black;
+            btnSubmit.BackColor = SystemColors.HotTrack;
+            btnSubmit.FlatStyle = FlatStyle.Flat;
             btnSubmit.Font = new Font("Segoe UI", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
             btnSubmit.ForeColor = Color.White;
-            btnSubmit.Location = new Point(160, 211);
+            btnSubmit.Location = new Point(186, 289);
             btnSubmit.Name = "btnSubmit";
             btnSubmit.Size = new Size(197, 52);
             btnSubmit.TabIndex = 15;
@@ -79,8 +83,8 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label1.ForeColor = Color.White;
-            label1.Location = new Point(120, 125);
+            label1.ForeColor = Color.FromArgb(64, 64, 64);
+            label1.Location = new Point(120, 165);
             label1.Name = "label1";
             label1.Size = new Size(72, 28);
             label1.TabIndex = 16;
@@ -88,26 +92,32 @@
             // 
             // txtSalaryBeforeTax
             // 
-            txtSalaryBeforeTax.Location = new Point(120, 156);
+            txtSalaryBeforeTax.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtSalaryBeforeTax.ForeColor = Color.FromArgb(64, 64, 64);
+            txtSalaryBeforeTax.Location = new Point(120, 208);
+            txtSalaryBeforeTax.Multiline = true;
             txtSalaryBeforeTax.Name = "txtSalaryBeforeTax";
-            txtSalaryBeforeTax.Size = new Size(331, 27);
+            txtSalaryBeforeTax.Size = new Size(336, 50);
             txtSalaryBeforeTax.TabIndex = 17;
-            //txtSalaryBeforeTax.Validating += NumericTextBox_Validating;
             // 
             // txtTaxAmount
             // 
-            txtTaxAmount.Location = new Point(100, 315);
+            txtTaxAmount.BackColor = Color.White;
+            txtTaxAmount.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtTaxAmount.ForeColor = Color.FromArgb(64, 64, 64);
+            txtTaxAmount.Location = new Point(100, 429);
+            txtTaxAmount.Multiline = true;
             txtTaxAmount.Name = "txtTaxAmount";
             txtTaxAmount.ReadOnly = true;
-            txtTaxAmount.Size = new Size(107, 27);
+            txtTaxAmount.Size = new Size(120, 40);
             txtTaxAmount.TabIndex = 19;
             // 
             // label2
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label2.ForeColor = Color.White;
-            label2.Location = new Point(100, 284);
+            label2.ForeColor = Color.FromArgb(64, 64, 64);
+            label2.Location = new Point(100, 378);
             label2.Name = "label2";
             label2.Size = new Size(121, 28);
             label2.TabIndex = 18;
@@ -115,19 +125,22 @@
             // 
             // txtSalaryAfterTax
             // 
-            txtSalaryAfterTax.BackColor = SystemColors.ButtonFace;
-            txtSalaryAfterTax.Location = new Point(292, 315);
+            txtSalaryAfterTax.BackColor = Color.White;
+            txtSalaryAfterTax.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold);
+            txtSalaryAfterTax.ForeColor = Color.FromArgb(64, 64, 64);
+            txtSalaryAfterTax.Location = new Point(338, 429);
+            txtSalaryAfterTax.Multiline = true;
             txtSalaryAfterTax.Name = "txtSalaryAfterTax";
             txtSalaryAfterTax.ReadOnly = true;
-            txtSalaryAfterTax.Size = new Size(138, 27);
+            txtSalaryAfterTax.Size = new Size(120, 40);
             txtSalaryAfterTax.TabIndex = 21;
             // 
             // label4
             // 
             label4.AutoSize = true;
             label4.Font = new Font("Segoe UI Semibold", 12F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            label4.ForeColor = Color.White;
-            label4.Location = new Point(302, 284);
+            label4.ForeColor = Color.FromArgb(64, 64, 64);
+            label4.Location = new Point(338, 378);
             label4.Name = "label4";
             label4.Size = new Size(128, 28);
             label4.TabIndex = 20;
@@ -142,8 +155,8 @@
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
-            BackColor = Color.FromArgb(66, 135, 245);
-            ClientSize = new Size(582, 456);
+            BackColor = Color.White;
+            ClientSize = new Size(582, 505);
             Controls.Add(txtSalaryAfterTax);
             Controls.Add(label4);
             Controls.Add(txtTaxAmount);
@@ -154,7 +167,7 @@
             Controls.Add(cboEmployees);
             Controls.Add(label3);
             Name = "frmSalaries";
-            Tag = "Salary";
+            StartPosition = FormStartPosition.CenterScreen; // Updated line            Tag = "Salary";
             Text = "Salary";
             Load += frmSalaries_Load;
             ((System.ComponentModel.ISupportInitialize)errProvider).EndInit();
@@ -163,8 +176,6 @@
         }
 
         #endregion
-
-        private ComboBox cboEmployees;
         private Label label3;
         private Button btnSubmit;
         private Label label1;
@@ -174,5 +185,6 @@
         private TextBox txtSalaryAfterTax;
         private Label label4;
         private ErrorProvider errProvider;
+        public ComboBox cboEmployees;
     }
 }

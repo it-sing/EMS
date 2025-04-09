@@ -54,140 +54,146 @@ namespace EmployeeManagamentSystem
             // 
             // menuStrip
             // 
+            menuStrip.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold);
             menuStrip.ImageScalingSize = new Size(40, 40);
             menuStrip.Items.AddRange(new ToolStripItem[] { userToolStripMenuItem, employeesToolStripMenuItem, departmentsToolStripMenuItem, editProfileToolStripMenuItem, setManagerToolStripMenuItem, attendanceToolStripMenuItem, setSalaToolStripMenuItem, reportToolStripMenuItem, aboutToolStripMenuItem, logoutToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
-            menuStrip.Padding = new Padding(8, 3, 0, 3);
-            menuStrip.Size = new Size(1283, 33);
+            menuStrip.Padding = new Padding(30, 20, 100, 20);
+            menuStrip.Size = new Size(1817, 82);
             menuStrip.TabIndex = 0;
             menuStrip.Text = "MenuStrip";
+            menuStrip.ItemClicked += menuStrip_ItemClicked;
+            menuStrip.MouseHover += toolStripMenuItem1_Click;
             // 
             // userToolStripMenuItem
             // 
-            userToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            userToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
+            userToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            userToolStripMenuItem.ForeColor = Color.FromArgb(64, 64, 64);
             userToolStripMenuItem.Name = "userToolStripMenuItem";
-            userToolStripMenuItem.Size = new Size(64, 27);
+            userToolStripMenuItem.Size = new Size(88, 42);
             userToolStripMenuItem.Tag = "User";
             userToolStripMenuItem.Text = "User";
             userToolStripMenuItem.Click += ShowNewForm;
             // 
             // employeesToolStripMenuItem
             // 
-            employeesToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            employeesToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
+            employeesToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            employeesToolStripMenuItem.ForeColor = Color.FromArgb(64, 64, 64);
             employeesToolStripMenuItem.Name = "employeesToolStripMenuItem";
-            employeesToolStripMenuItem.Size = new Size(107, 27);
+            employeesToolStripMenuItem.Size = new Size(156, 42);
             employeesToolStripMenuItem.Tag = "Employees";
             employeesToolStripMenuItem.Text = "Employee";
             employeesToolStripMenuItem.Click += ShowNewForm;
             // 
             // departmentsToolStripMenuItem
             // 
-            departmentsToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            departmentsToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
+            departmentsToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            departmentsToolStripMenuItem.ForeColor = Color.FromArgb(64, 64, 64);
             departmentsToolStripMenuItem.Name = "departmentsToolStripMenuItem";
-            departmentsToolStripMenuItem.Size = new Size(125, 27);
+            departmentsToolStripMenuItem.Size = new Size(185, 42);
             departmentsToolStripMenuItem.Tag = "Departments";
             departmentsToolStripMenuItem.Text = "Department";
             departmentsToolStripMenuItem.Click += ShowNewForm;
             // 
             // editProfileToolStripMenuItem
             // 
-            editProfileToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            editProfileToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
+            editProfileToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            editProfileToolStripMenuItem.ForeColor = Color.FromArgb(64, 64, 64);
             editProfileToolStripMenuItem.Name = "editProfileToolStripMenuItem";
-            editProfileToolStripMenuItem.Size = new Size(116, 27);
+            editProfileToolStripMenuItem.Size = new Size(162, 42);
             editProfileToolStripMenuItem.Tag = "Edit Profile";
             editProfileToolStripMenuItem.Text = "EditProfile";
             editProfileToolStripMenuItem.Click += ShowNewForm;
             // 
             // setManagerToolStripMenuItem
             // 
-            setManagerToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            setManagerToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
+            setManagerToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            setManagerToolStripMenuItem.ForeColor = Color.FromArgb(64, 64, 64);
             setManagerToolStripMenuItem.Name = "setManagerToolStripMenuItem";
-            setManagerToolStripMenuItem.Size = new Size(100, 27);
+            setManagerToolStripMenuItem.Size = new Size(145, 42);
             setManagerToolStripMenuItem.Tag = "Manager";
             setManagerToolStripMenuItem.Text = "Manager";
             setManagerToolStripMenuItem.Click += ShowNewForm;
             // 
             // attendanceToolStripMenuItem
             // 
-            attendanceToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            attendanceToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
+            attendanceToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            attendanceToolStripMenuItem.ForeColor = Color.FromArgb(64, 64, 64);
             attendanceToolStripMenuItem.Name = "attendanceToolStripMenuItem";
-            attendanceToolStripMenuItem.Size = new Size(121, 27);
+            attendanceToolStripMenuItem.Size = new Size(177, 42);
             attendanceToolStripMenuItem.Tag = "Attendance";
             attendanceToolStripMenuItem.Text = "Attendance";
             attendanceToolStripMenuItem.Click += ShowNewForm;
             // 
             // setSalaToolStripMenuItem
             // 
-            setSalaToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            setSalaToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
+            setSalaToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            setSalaToolStripMenuItem.ForeColor = Color.FromArgb(64, 64, 64);
             setSalaToolStripMenuItem.Name = "setSalaToolStripMenuItem";
-            setSalaToolStripMenuItem.Size = new Size(84, 27);
+            setSalaToolStripMenuItem.Size = new Size(116, 42);
             setSalaToolStripMenuItem.Tag = "Salary";
             setSalaToolStripMenuItem.Text = "Payroll";
             setSalaToolStripMenuItem.Click += ShowNewForm;
             // 
             // reportToolStripMenuItem
             // 
-            reportToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            reportToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
+            reportToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            reportToolStripMenuItem.ForeColor = Color.FromArgb(64, 64, 64);
             reportToolStripMenuItem.Name = "reportToolStripMenuItem";
-            reportToolStripMenuItem.Size = new Size(83, 27);
+            reportToolStripMenuItem.Size = new Size(117, 42);
             reportToolStripMenuItem.Tag = "Report";
             reportToolStripMenuItem.Text = "Report";
             reportToolStripMenuItem.Click += ShowNewForm;
             // 
             // aboutToolStripMenuItem
             // 
-            aboutToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            aboutToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
+            aboutToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            aboutToolStripMenuItem.ForeColor = Color.FromArgb(64, 64, 64);
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(75, 27);
+            aboutToolStripMenuItem.Size = new Size(110, 42);
             aboutToolStripMenuItem.Tag = "About";
             aboutToolStripMenuItem.Text = "About";
             aboutToolStripMenuItem.Click += ShowNewForm;
             // 
             // logoutToolStripMenuItem
             // 
-            logoutToolStripMenuItem.Font = new Font("Times New Roman", 12F, FontStyle.Bold);
-            logoutToolStripMenuItem.ForeColor = Color.FromArgb(84, 84, 84);
+            logoutToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
+            logoutToolStripMenuItem.ForeColor = Color.FromArgb(64, 64, 64);
             logoutToolStripMenuItem.Name = "logoutToolStripMenuItem";
-            logoutToolStripMenuItem.Size = new Size(84, 27);
+            logoutToolStripMenuItem.Size = new Size(122, 42);
             logoutToolStripMenuItem.Tag = "Logout";
             logoutToolStripMenuItem.Text = "Logout";
             logoutToolStripMenuItem.Click += ShowNewForm;
-
             // 
             // statusStrip
             // 
             statusStrip.ImageScalingSize = new Size(20, 20);
             statusStrip.Items.AddRange(new ToolStripItem[] { toolStripStatusLabel });
-            statusStrip.Location = new Point(0, 795);
+            statusStrip.Location = new Point(0, 900);
             statusStrip.Name = "statusStrip";
-            statusStrip.Padding = new Padding(1, 0, 19, 0);
-            statusStrip.Size = new Size(1283, 26);
+            statusStrip.Padding = new Padding(3, 0, 40, 0);
+            statusStrip.Size = new Size(1817, 26);
             statusStrip.TabIndex = 2;
             statusStrip.Text = "StatusStrip";
             // 
             // toolStripStatusLabel
             // 
+            toolStripStatusLabel.BackColor = Color.White;
+            toolStripStatusLabel.ForeColor = Color.Black;
             toolStripStatusLabel.Name = "toolStripStatusLabel";
             toolStripStatusLabel.Size = new Size(49, 20);
             toolStripStatusLabel.Text = "Status";
+            toolStripStatusLabel.Click += toolStripStatusLabel_Click;
             // 
             // toolStrip1
             // 
             toolStrip1.ImageScalingSize = new Size(20, 20);
-            toolStrip1.Items.AddRange(new ToolStripItem[] { departmentToolStripButton, employeesToolStripButton, toolStripButton3 });
-            toolStrip1.Location = new Point(0, 33);
+            toolStrip1.Items.AddRange(new ToolStripItem[] { employeesToolStripButton, departmentToolStripButton, toolStripButton3 });
+            toolStrip1.Location = new Point(0, 82);
             toolStrip1.Name = "toolStrip1";
-            toolStrip1.Size = new Size(1283, 27);
+            toolStrip1.Padding = new Padding(10, 5, 3, 5);
+            toolStrip1.Size = new Size(1817, 37);
             toolStrip1.TabIndex = 4;
             toolStrip1.Text = "toolStrip1";
             // 
@@ -209,7 +215,9 @@ namespace EmployeeManagamentSystem
             employeesToolStripButton.ImageTransparentColor = Color.Magenta;
             employeesToolStripButton.Name = "employeesToolStripButton";
             employeesToolStripButton.Size = new Size(29, 24);
+            employeesToolStripButton.Tag = "Employees";
             employeesToolStripButton.Text = "toolStripButton2";
+            employeesToolStripButton.ToolTipText = "Employee";
             employeesToolStripButton.Click += ShowNewForm;
             // 
             // toolStripButton3
@@ -225,16 +233,19 @@ namespace EmployeeManagamentSystem
             // 
             // frmEmployeeSystemManager
             // 
-            AutoScaleDimensions = new SizeF(8F, 20F);
+            AutoScaleDimensions = new SizeF(17F, 41F);
             AutoScaleMode = AutoScaleMode.Font;
             AutoSize = true;
-            ClientSize = new Size(1283, 821);
+            BackColor = Color.White;
+            ClientSize = new Size(1817, 926);
             Controls.Add(toolStrip1);
             Controls.Add(statusStrip);
             Controls.Add(menuStrip);
+            Font = new Font("Segoe UI Semibold", 18F, FontStyle.Bold);
+            ForeColor = Color.FromArgb(64, 64, 64);
             IsMdiContainer = true;
             MainMenuStrip = menuStrip;
-            Margin = new Padding(4, 5, 4, 5);
+            Margin = new Padding(7, 11, 7, 11);
             Name = "frmEmployeeSystemManager";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Employee System Manager";

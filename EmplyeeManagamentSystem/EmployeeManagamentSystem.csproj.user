@@ -20,6 +20,9 @@
     <Compile Update="View\frmEmployeeSystemManager.cs">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Update="View\frmForgotPassword.cs">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Update="View\frmLogin.cs">
       <SubType>Form</SubType>
     </Compile>

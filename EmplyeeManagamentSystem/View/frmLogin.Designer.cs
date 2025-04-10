@@ -23,7 +23,7 @@
             txtPassword = new TextBox();
             label3 = new Label();
             btnsignin = new Button();
-            lnkRegisterLink = new LinkLabel();
+            lnkForgotPasswordLink = new LinkLabel();
             btnsignup = new Button();
             SuspendLayout();
             // 
@@ -98,18 +98,18 @@
             btnsignin.UseVisualStyleBackColor = false;
             btnsignin.Click += btnLogin_Click;
             // 
-            // lnkRegisterLink
+            // lnkForgotPasswordLink
             // 
-            lnkRegisterLink.AutoSize = true;
-            lnkRegisterLink.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
-            lnkRegisterLink.LinkColor = SystemColors.HotTrack;
-            lnkRegisterLink.Location = new Point(240, 388);
-            lnkRegisterLink.Name = "lnkRegisterLink";
-            lnkRegisterLink.Size = new Size(138, 23);
-            lnkRegisterLink.TabIndex = 17;
-            lnkRegisterLink.TabStop = true;
-            lnkRegisterLink.Text = "Forgot Password";
-            lnkRegisterLink.LinkClicked += lnkRegisterLink_LinkClicked;
+            lnkForgotPasswordLink.AutoSize = true;
+            lnkForgotPasswordLink.Font = new Font("Segoe UI Semibold", 10.2F, FontStyle.Bold, GraphicsUnit.Point, 0);
+            lnkForgotPasswordLink.LinkColor = SystemColors.HotTrack;
+            lnkForgotPasswordLink.Location = new Point(240, 388);
+            lnkForgotPasswordLink.Name = "lnkForgotPasswordLink";
+            lnkForgotPasswordLink.Size = new Size(138, 23);
+            lnkForgotPasswordLink.TabIndex = 17;
+            lnkForgotPasswordLink.TabStop = true;
+            lnkForgotPasswordLink.Text = "Forgot Password";
+            lnkForgotPasswordLink.LinkClicked += lnkForgotPassword_LinkClicked;
             // 
             // btnsignup
             // 
@@ -132,7 +132,7 @@
             BackgroundImageLayout = ImageLayout.Center;
             ClientSize = new Size(633, 553);
             Controls.Add(btnsignup);
-            Controls.Add(lnkRegisterLink);
+            Controls.Add(lnkForgotPasswordLink);
             Controls.Add(btnsignin);
             Controls.Add(txtPassword);
             Controls.Add(label3);
@@ -156,7 +156,7 @@
         private TextBox txtPassword;
         private Label label3;
         private Button btnsignin;
-        private LinkLabel lnkRegisterLink;
+        private LinkLabel lnkForgotPasswordLink;
         private Button btnsignup;
     }
 }

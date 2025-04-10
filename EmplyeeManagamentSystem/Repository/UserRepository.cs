@@ -13,7 +13,7 @@ namespace EmployeeManagamentSystem.Repository
 
         public DataTable GetUserById(int userId)
         {
-           
+
             string sql = @"
             SELECT
                 EmployeeID,
@@ -190,6 +190,16 @@ namespace EmployeeManagamentSystem.Repository
             string sql = $"INSERT INTO Users (Username, Password, Email, Role, CreatedAt) VALUES ('{username}', '{password}', '{email}', {roleID}, '{createdAt}');";
 
             return DataAccess.Send(sql);
+        }
+
+        public int ResetPassword(string email, string newPassword)
+        {
+            string sql = "UPDATE Users SET Password = @Password WHERE Email = @Email;";
+            SqlParameter[] parameters = {
+                new SqlParameter("@Email", email),
+                new SqlParameter("@Password", newPassword)
+            };
+            return DataAccess.SendData(sql, parameters);
         }
 
     }

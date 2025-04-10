@@ -43,9 +43,9 @@ namespace EmployeeManagamentSystem
             this.Hide();
         }
 
-        private void lnkRegisterLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
+        private void lnkForgotPassword_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
-            Form frm = LoginFormFactory.CreateRegisterForm();
+            Form frm = LoginFormFactory.CreateForgotPasswordForm();
             frm.Show();
             this.Hide();
         }

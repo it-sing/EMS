@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using EmployeeManagamentSystem.View;
 
 namespace EmployeeManagamentSystem.Pattern.Login
 {
@@ -22,6 +23,10 @@ namespace EmployeeManagamentSystem.Pattern.Login
         public static Form CreateEmployeeSystemManagerForm()
         {
             return new frmEmployeeSystemManager();
+        }
+        public static Form CreateForgotPasswordForm()
+        {
+            return new frmForgotPassword();
         }
     }
 }

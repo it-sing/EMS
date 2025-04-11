@@ -635,11 +635,11 @@
   "project": {
     "version": "1.0.1",
     "restore": {
-      "projectUniqueName": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj",
+      "projectUniqueName": "D:\\rupp\\EMS\\EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj",
       "projectName": "EmployeeManagamentSystem",
-      "projectPath": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj",
+      "projectPath": "D:\\rupp\\EMS\\EmplyeeManagamentSystem\\EmployeeManagamentSystem.csproj",
       "packagesPath": "C:\\Users\\MSI\\.nuget\\packages\\",
-      "outputPath": "D:\\rupp\\Y4\\C#\\Semester2\\op2\\Employee-Management-System\\EmployeeManagamentSystem\\EmplyeeManagamentSystem\\obj\\",
+      "outputPath": "D:\\rupp\\EMS\\EmplyeeManagamentSystem\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

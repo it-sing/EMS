@@ -17,9 +17,8 @@ namespace EmployeeManagamentSystem.Service
             attendanceRepository = new AttendanceRepository();
         }
 
-        public string GetEmployeeName(int userID)
+        public string GetEmployeeName(int employeeId)
         {
-            int employeeId = attendanceRepository.GetEmployeeId(userID);
             return attendanceRepository.GetEmployeeName(employeeId);
         }
 
@@ -28,15 +27,13 @@ namespace EmployeeManagamentSystem.Service
             return attendanceRepository.GetEmployeeId(userID);
         }
 
-        public DataTable GetAttendanceData(int userID, int month, int year)
+        public DataTable GetAttendanceData(int employeeID, int month, int year)
         {
-            int employeeID = attendanceRepository.GetEmployeeId(userID);
             return attendanceRepository.GetAttendanceData(employeeID, month, year);
         }
 
-        public string CheckInOut(int userID)
+        public string CheckInOut(int employeeID)
         {
-            int employeeID = attendanceRepository.GetEmployeeId(userID);
             return attendanceRepository.InsertOrUpdateAttendance(employeeID);
         }
     }

@@ -22,6 +22,7 @@ namespace EmployeeManagamentSystem
         private bool isFormClosing = false;
 
         int userID = Util.UIUtilities.CurrentUserID;
+
         private readonly AttendanceService _attendanceService;
 
         public frmAttendance()
@@ -44,6 +45,7 @@ namespace EmployeeManagamentSystem
             PopulateComboBoxes();
 
             int employeeID = _attendanceService.GetEmployeeId(userID);
+
             if (employeeID == 0)
             {
                 MessageBox.Show("Please update your profile first before scan attendance.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

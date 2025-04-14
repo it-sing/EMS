@@ -42,3 +42,4 @@ D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Release\net8.0-windows\EmployeeManagamentSystem.pdb
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Release\net8.0-windows\EmployeeManagamentSystem.genruntimeconfig.cache
 D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Release\net8.0-windows\ref\EmployeeManagamentSystem.dll
+D:\rupp\Y4\C#\Semester2\op2\Employee-Management-System\EmployeeManagamentSystem\EmplyeeManagamentSystem\obj\Release\net8.0-windows\EmployeeManagamentSystem.View.frmForgotPassword.resources

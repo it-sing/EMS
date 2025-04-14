@@ -31,6 +31,8 @@
             lblProductName = new Label();
             lblCompany = new Label();
             lblVersion = new Label();
+            pictureBox1 = new PictureBox();
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             SuspendLayout();
             // 
             // lblProductName
@@ -41,10 +43,9 @@
             lblProductName.ForeColor = SystemColors.HotTrack;
             lblProductName.Location = new Point(50, 31);
             lblProductName.Name = "lblProductName";
-            lblProductName.Size = new Size(617, 54);
+            lblProductName.Size = new Size(628, 54);
             lblProductName.TabIndex = 0;
-            lblProductName.Text = "Employee Management System";
-            lblProductName.Click += lblProductName_Click;
+            lblProductName.Text = "Employee Management System ";
             // 
             // lblCompany
             // 
@@ -72,12 +73,23 @@
             lblVersion.TabIndex = 2;
             lblVersion.Text = "Version 1";
             // 
+            // pictureBox1
+            // 
+            pictureBox1.Image = Properties.Resources.EMS_11;
+            pictureBox1.Location = new Point(32, 163);
+            pictureBox1.Name = "pictureBox1";
+            pictureBox1.Size = new Size(456, 170);
+            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox1.TabIndex = 3;
+            pictureBox1.TabStop = false;
+            // 
             // frmAbout
             // 
             AutoScaleDimensions = new SizeF(8F, 20F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = Color.White;
             ClientSize = new Size(837, 469);
+            Controls.Add(pictureBox1);
             Controls.Add(lblVersion);
             Controls.Add(lblCompany);
             Controls.Add(lblProductName);
@@ -85,7 +97,7 @@
             Name = "frmAbout";
             StartPosition = FormStartPosition.CenterParent;
             Text = "About";
-            Load += frmAbout_Load;
+            ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -95,5 +107,6 @@
         private Label lblProductName;
         private Label lblCompany;
         private Label lblVersion;
+        private PictureBox pictureBox1;
     }
 }

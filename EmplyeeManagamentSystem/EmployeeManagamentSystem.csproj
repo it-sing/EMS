@@ -10,7 +10,12 @@
 	  <Version>1.0.1</Version>
     <Company>StaffSync</Company>
     <Product>Employee Management System</Product>
+    <ApplicationIcon>EMS-logo.ico</ApplicationIcon>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="EMS-logo.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <PackageReference Include="MaterialSkin.2" Version="2.3.1" />

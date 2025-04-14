@@ -63,26 +63,6 @@ namespace EmployeeManagamentSystem.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap EMS_1 {
-            get {
-                object obj = ResourceManager.GetObject("EMS-1", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap EMS_11 {
-            get {
-                object obj = ResourceManager.GetObject("EMS-11", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap icons8_department_24 {
             get {
                 object obj = ResourceManager.GetObject("icons8-department-24", resourceCulture);

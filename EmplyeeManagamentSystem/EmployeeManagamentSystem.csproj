@@ -10,6 +10,7 @@
 	  <Version>1.0.1</Version>
     <Company>StaffSync</Company>
     <Product>Employee Management System</Product>
+    <ApplicationIcon>EMS-logo.ico</ApplicationIcon>
   </PropertyGroup>
 
   <ItemGroup>

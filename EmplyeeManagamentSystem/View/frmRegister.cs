@@ -1,5 +1,6 @@
-﻿using EmployeeManagamentSystem.Service;
-using EmployeeManagamentSystem.Repository;
+﻿
+using EmployeeManagamentSystem.Pattern.Register_Facade;
+using EmployeeManagamentSystem.Service;
 
 namespace EmployeeManagamentSystem
 {
@@ -10,11 +11,8 @@ namespace EmployeeManagamentSystem
         public frmRegister()
         {
             InitializeComponent();
-
-            // Initialize the facade with service and repository
-            _registrationFacade = new RegistrationFacade(new RegisterService(), new UserRepository());
+            _registrationFacade = new RegistrationFacade();
         }
-
         private void lnkLoginLink_LinkClicked(object sender, LinkLabelLinkClickedEventArgs e)
         {
             frmLogin frmLogin = new frmLogin();
@@ -28,14 +26,13 @@ namespace EmployeeManagamentSystem
             {
                 if (ValidateChildren(ValidationConstraints.Enabled))
                 {
-                    bool userCreated = _registrationFacade.ValidateAndRegisterUser(txtUsername.Text, txtPassword.Text, txtEmail.Text);
-
-                    if (userCreated)
-                    {
-                        MessageBox.Show("Welcome! Waiting for admin approval.", "Approval Pending", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    bool userCreated = _registrationFacade.ValidateUser(txtUsername.Text, txtPassword.Text, txtEmail.Text);
+                    if (userCreated) {
+                        _registrationFacade.CreateUser(txtUsername.Text, txtPassword.Text, txtEmail.Text);
+                        MessageBox.Show("Registration successful! Please wait for admin approval.", "Registration Successful", MessageBoxButtons.OK, MessageBoxIcon.Information);
                         new frmLogin().Show();
                         this.Hide();
-                    }
+                    }       
                 }
             }
             catch (Exception ex)

@@ -39,13 +39,12 @@ namespace EmployeeManagamentSystem
             attendanceToolStripMenuItem = new ToolStripMenuItem();
             setSalaToolStripMenuItem = new ToolStripMenuItem();
             reportToolStripMenuItem = new ToolStripMenuItem();
-            aboutToolStripMenuItem = new ToolStripMenuItem();
             logoutToolStripMenuItem = new ToolStripMenuItem();
             statusStrip = new StatusStrip();
             toolStripStatusLabel = new ToolStripStatusLabel();
             toolStrip1 = new ToolStrip();
-            departmentToolStripButton = new ToolStripButton();
             employeesToolStripButton = new ToolStripButton();
+            departmentToolStripButton = new ToolStripButton();
             toolStripButton3 = new ToolStripButton();
             menuStrip.SuspendLayout();
             statusStrip.SuspendLayout();
@@ -56,7 +55,7 @@ namespace EmployeeManagamentSystem
             // 
             menuStrip.Font = new Font("Segoe UI Semibold", 13.8F, FontStyle.Bold);
             menuStrip.ImageScalingSize = new Size(40, 40);
-            menuStrip.Items.AddRange(new ToolStripItem[] { userToolStripMenuItem, employeesToolStripMenuItem, departmentsToolStripMenuItem, editProfileToolStripMenuItem, setManagerToolStripMenuItem, attendanceToolStripMenuItem, setSalaToolStripMenuItem, reportToolStripMenuItem, aboutToolStripMenuItem, logoutToolStripMenuItem });
+            menuStrip.Items.AddRange(new ToolStripItem[] { userToolStripMenuItem, employeesToolStripMenuItem, departmentsToolStripMenuItem, editProfileToolStripMenuItem, setManagerToolStripMenuItem, attendanceToolStripMenuItem, setSalaToolStripMenuItem, reportToolStripMenuItem, logoutToolStripMenuItem });
             menuStrip.Location = new Point(0, 0);
             menuStrip.Name = "menuStrip";
             menuStrip.Padding = new Padding(30, 20, 100, 20);
@@ -146,16 +145,6 @@ namespace EmployeeManagamentSystem
             reportToolStripMenuItem.Text = "Report";
             reportToolStripMenuItem.Click += ShowNewForm;
             // 
-            // aboutToolStripMenuItem
-            // 
-            aboutToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
-            aboutToolStripMenuItem.ForeColor = Color.FromArgb(64, 64, 64);
-            aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
-            aboutToolStripMenuItem.Size = new Size(110, 42);
-            aboutToolStripMenuItem.Tag = "About";
-            aboutToolStripMenuItem.Text = "About";
-            aboutToolStripMenuItem.Click += ShowNewForm;
-            // 
             // logoutToolStripMenuItem
             // 
             logoutToolStripMenuItem.Font = new Font("Segoe UI Semibold", 16.2F, FontStyle.Bold);
@@ -197,17 +186,6 @@ namespace EmployeeManagamentSystem
             toolStrip1.TabIndex = 4;
             toolStrip1.Text = "toolStrip1";
             // 
-            // departmentToolStripButton
-            // 
-            departmentToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
-            departmentToolStripButton.Image = Properties.Resources.icons8_department_24;
-            departmentToolStripButton.ImageTransparentColor = Color.Magenta;
-            departmentToolStripButton.Name = "departmentToolStripButton";
-            departmentToolStripButton.Size = new Size(29, 24);
-            departmentToolStripButton.Tag = "Departments";
-            departmentToolStripButton.Text = "Departments";
-            departmentToolStripButton.Click += ShowNewForm;
-            // 
             // employeesToolStripButton
             // 
             employeesToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
@@ -219,6 +197,17 @@ namespace EmployeeManagamentSystem
             employeesToolStripButton.Text = "toolStripButton2";
             employeesToolStripButton.ToolTipText = "Employee";
             employeesToolStripButton.Click += ShowNewForm;
+            // 
+            // departmentToolStripButton
+            // 
+            departmentToolStripButton.DisplayStyle = ToolStripItemDisplayStyle.Image;
+            departmentToolStripButton.Image = Properties.Resources.icons8_department_24;
+            departmentToolStripButton.ImageTransparentColor = Color.Magenta;
+            departmentToolStripButton.Name = "departmentToolStripButton";
+            departmentToolStripButton.Size = new Size(29, 24);
+            departmentToolStripButton.Tag = "Departments";
+            departmentToolStripButton.Text = "Departments";
+            departmentToolStripButton.Click += ShowNewForm;
             // 
             // toolStripButton3
             // 
@@ -272,7 +261,6 @@ namespace EmployeeManagamentSystem
         private ToolStripButton departmentToolStripButton;
         private ToolStripButton employeesToolStripButton;
         private ToolStripButton toolStripButton3;
-        private ToolStripMenuItem aboutToolStripMenuItem;
         private ToolStripMenuItem setManagerToolStripMenuItem;
         private ToolStripMenuItem setSalaToolStripMenuItem;
         private ToolStripMenuItem userToolStripMenuItem;

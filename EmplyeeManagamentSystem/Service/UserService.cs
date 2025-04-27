@@ -18,27 +18,6 @@ namespace EmployeeManagamentSystem
             _userRepository = new UserRepository();
         }
 
-        // for user management
-        public DataTable GetRoles()
-        {
-            return _userRepository.GetRoles();
-        }
-        public DataSet GetUsers(string filterByRole = null)
-        {
-            return _userRepository.GetUsers(filterByRole);
-        }
-        public void PromoteUser(int userID, string newRole)
-        {
-            int rowsAffected = _userRepository.PromoteUser(userID, newRole);
-            if (rowsAffected > 0)
-            {
-                // Notify UI to refresh or show success message
-            }
-            else
-            {
-                throw new Exception("Failed to promote user.");
-            }
-        }
         public bool DeleteUser(int userId)
         {
             try
@@ -48,20 +27,7 @@ namespace EmployeeManagamentSystem
             }
             catch (Exception ex)
             {
-                // Handle and log exception
                 throw new Exception("Failed to delete user.", ex);
-            }
-        }
-        public void ApproveUser(int userID)
-        {
-            int rowsAffected = _userRepository.ApproveUser(userID);
-            if (rowsAffected > 0)
-            {
-                // Notify UI to refresh or show success message
-            }
-            else
-            {
-                throw new Exception("Failed to approve user.");
             }
         }
 

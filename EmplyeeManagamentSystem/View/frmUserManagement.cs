@@ -3,13 +3,15 @@ using System.Collections.Generic;
 using System.Data;
 using System.Windows.Forms;
 using EmployeeManagamentSystem.Pattern;
+using EmployeeManagamentSystem.Pattern.User_Proxy;
+using EmployeeManagamentSystem.Service;
 using EmployeeManagamentSystem.Util;
 
 namespace EmployeeManagamentSystem
 {
     public partial class frmUserManagement : Form
     {
-        private readonly UserService _userService;
+        private readonly IUserService _userService;
         private readonly EmployeeService _employeeService;
         private readonly DepartmentService _departmentService;
         private readonly Dictionary<string, string> roleMap;
@@ -18,7 +20,9 @@ namespace EmployeeManagamentSystem
         {
             InitializeComponent();
             errProvider = new ErrorProvider();
-            _userService = new UserService();
+
+            // Use the proxy instead of direct service
+            _userService = new UserServiceProxy();
             _employeeService = new EmployeeService();
             _departmentService = new DepartmentService();
 
@@ -40,10 +44,9 @@ namespace EmployeeManagamentSystem
             }
             catch (Exception ex)
             {
-                MessageBox.Show(ex.Message);
+                MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
 
         private void cmbFilterByRoles_SelectedIndexChanged(object sender, EventArgs e)
         {
@@ -80,34 +83,44 @@ namespace EmployeeManagamentSystem
                     AddActionButtonColumn();
                 }
             }
+            catch (UnauthorizedAccessException ex)
+            {
+                // Handle specifically unauthorized access exceptions
+                MessageBox.Show(ex.Message, "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+            }
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
-
         private void GetRoles()
         {
-            DataTable dtRoles = _userService.GetRoles();
-
-            if (dtRoles != null)
+            try
             {
-                // Optional: if you want to still show "All Roles" for later usage
-                DataRow dr = dtRoles.NewRow();
-                dr["RoleID"] = 0;
-                dr["RoleName"] = "All Roles";
-                dtRoles.Rows.InsertAt(dr, 0);
+                DataTable dtRoles = _userService.GetRoles();
+
+                if (dtRoles != null)
+                {
+                    // Optional: if you want to still show "All Roles" for later usage
+                    DataRow dr = dtRoles.NewRow();
+                    dr["RoleID"] = 0;
+                    dr["RoleName"] = "All Roles";
+                    dtRoles.Rows.InsertAt(dr, 0);
+                }
+
+                cmbFilterByRoles.DisplayMember = "RoleName";
+                cmbFilterByRoles.ValueMember = "RoleName";
+                cmbFilterByRoles.DataSource = dtRoles;
+
+                // Make it unselected
+                cmbFilterByRoles.SelectedIndex = -1;
             }
-
-            cmbFilterByRoles.DisplayMember = "RoleName";
-            cmbFilterByRoles.ValueMember = "RoleName";
-            cmbFilterByRoles.DataSource = dtRoles;
-
-            // ✅ Make it unselected
-            cmbFilterByRoles.SelectedIndex = -1;  // <- This keeps it blank
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message, "Error Loading Roles", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
-
 
         private void AddActionButtonColumn()
         {
@@ -136,18 +149,16 @@ namespace EmployeeManagamentSystem
 
                 ContextMenuStrip actionMenu = new ContextMenuStrip();
 
-
                 // Promote option
                 if (roleName != "Guest")
                 {
                     ToolStripMenuItem promoteOption = new ToolStripMenuItem("Promote");
                     promoteOption.DropDownItems.AddRange(new ToolStripMenuItem[]
                     {
-                        new ToolStripMenuItem("Admin", null, (s, args) => PromoteUser(userID, "1")),
-                        new ToolStripMenuItem("HR", null, (s, args) => PromoteUser(userID, "2")),
-                        new ToolStripMenuItem("Employee", null, (s, args) => PromoteUser(userID, "3")),
-                        new ToolStripMenuItem("Account", null, (s, args) => PromoteUser(userID, "4"))
-
+                        new ToolStripMenuItem(roleMap["1"], null, (s, args) => PromoteUser(userID, "1")),
+                        new ToolStripMenuItem(roleMap["2"], null, (s, args) => PromoteUser(userID, "2")),
+                        new ToolStripMenuItem(roleMap["3"], null, (s, args) => PromoteUser(userID, "3")),
+                        new ToolStripMenuItem(roleMap["4"], null, (s, args) => PromoteUser(userID, "4"))
                     });
                     actionMenu.Items.Add(promoteOption);
                 }
@@ -159,7 +170,6 @@ namespace EmployeeManagamentSystem
                     deleteOption.Click += (s, args) =>
                     {
                         int empIdToDelete = employeeId ?? -1;
-
                         DeleteUser(userID, username, empIdToDelete);
                     };
 
@@ -174,6 +184,11 @@ namespace EmployeeManagamentSystem
                     actionMenu.Items.Add(approveOption);
                 }
 
+                // View Log option (new functionality enabled by the proxy)
+                //ToolStripMenuItem viewLogOption = new ToolStripMenuItem("View Action Log");
+                //viewLogOption.Click += (s, args) => ViewActionLog(userID);
+                //actionMenu.Items.Add(viewLogOption);
+
                 actionMenu.Show(Cursor.Position);
             }
         }
@@ -182,11 +197,17 @@ namespace EmployeeManagamentSystem
         {
             try
             {
+                string roleName = roleMap.ContainsKey(newRole) ? roleMap[newRole] : newRole;
                 _userService.PromoteUser(userID, newRole);
 
                 // Refresh filtered user list automatically
                 string selectedRole = cmbFilterByRoles.SelectedValue?.ToString();
                 GetUsers(string.IsNullOrEmpty(selectedRole) || selectedRole == "All Roles" ? null : selectedRole);
+
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show(ex.Message, "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
@@ -198,23 +219,44 @@ namespace EmployeeManagamentSystem
         {
             try
             {
+                // First check if employee is a department manager
+                if (_departmentService.IsEmployeeManager(employeeId))
+                {
+                    MessageBox.Show("Cannot delete this employee. They are assigned as a department manager.",
+                        "Delete Blocked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    return;
+                }
+
                 DialogResult result = MessageBox.Show($"Are you sure you want to delete user '{username}'?",
                     "Confirm Delete", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
 
                 if (result == DialogResult.Yes)
                 {
-                    _userService.DeleteUser(userID);
-                    _employeeService.DeleteEmployee(employeeId);
+                    bool deleted = _userService.DeleteUser(userID);
 
-                    if (_departmentService.IsEmployeeManager(employeeId))
+                    if (deleted)
                     {
-                        MessageBox.Show("Cannot delete this employee. They are assigned as a department manager.", "Delete Blocked", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                        return;
+                        // Only attempt to delete employee record if user deletion was successful
+                        if (employeeId > 0)
+                        {
+                            _employeeService.DeleteEmployee(employeeId);
+                        }
+
+                        //MessageBox.Show("User deleted successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                        // Refresh filtered user list automatically
+                        string selectedRole = cmbFilterByRoles.SelectedValue?.ToString();
+                        GetUsers(string.IsNullOrEmpty(selectedRole) || selectedRole == "All Roles" ? null : selectedRole);
                     }
-                    // Refresh filtered user list automatically
-                    string selectedRole = cmbFilterByRoles.SelectedValue?.ToString();
-                    GetUsers(string.IsNullOrEmpty(selectedRole) || selectedRole == "All Roles" ? null : selectedRole);
+                    else
+                    {
+                        MessageBox.Show("Failed to delete user.", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
                 }
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show(ex.Message, "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {
@@ -227,10 +269,15 @@ namespace EmployeeManagamentSystem
             try
             {
                 _userService.ApproveUser(userID);
+                //MessageBox.Show("User approved successfully!", "Success", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
                 // Refresh filtered user list automatically
                 string selectedRole = cmbFilterByRoles.SelectedValue?.ToString();
                 GetUsers(string.IsNullOrEmpty(selectedRole) || selectedRole == "All Roles" ? null : selectedRole);
+            }
+            catch (UnauthorizedAccessException ex)
+            {
+                MessageBox.Show(ex.Message, "Access Denied", MessageBoxButtons.OK, MessageBoxIcon.Warning);
             }
             catch (Exception ex)
             {

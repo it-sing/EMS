@@ -185,7 +185,7 @@ namespace EmployeeManagamentSystem.Repository
             DataTable dt = DataAccess.GetByParameter(sql, parameters);
             return dt.Rows.Count > 0 && Convert.ToInt32(dt.Rows[0][0]) > 0;
         }
-        public int CreateUser(string username, string password, string email, int roleID, DateTime createdAt)
+        public int Create(string username, string password, string email, int roleID, DateTime createdAt)
         {
             string sql = $"INSERT INTO Users (Username, Password, Email, Role, CreatedAt) VALUES ('{username}', '{password}', '{email}', {roleID}, '{createdAt}');";
 

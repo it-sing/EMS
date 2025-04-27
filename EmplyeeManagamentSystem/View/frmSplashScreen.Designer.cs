@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(frmSplashScreen));
             pgrLoadProgress = new ProgressBar();
             tmrProgressBar = new System.Windows.Forms.Timer(components);
             label2 = new Label();
@@ -102,11 +103,11 @@
             // 
             // pictureBox1
             // 
-            pictureBox1.Image = Properties.Resources.EMS_1;
-            pictureBox1.Location = new Point(44, 104);
+            pictureBox1.Image = (Image)resources.GetObject("pictureBox1.Image");
+            pictureBox1.Location = new Point(48, 112);
             pictureBox1.Name = "pictureBox1";
             pictureBox1.Size = new Size(517, 156);
-            pictureBox1.SizeMode = PictureBoxSizeMode.CenterImage;
+            pictureBox1.SizeMode = PictureBoxSizeMode.StretchImage;
             pictureBox1.TabIndex = 6;
             pictureBox1.TabStop = false;
             // 

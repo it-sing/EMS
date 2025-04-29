@@ -1,40 +1,42 @@
-﻿using EmployeeManagamentSystem.Service;
-using EmployeeManagamentSystem.Repository;
+﻿using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using EmployeeManagamentSystem.Service;
 
-namespace EmployeeManagamentSystem
+namespace EmployeeManagamentSystem.Pattern.Register_Facade
 {
     public class RegistrationFacade
     {
-        private readonly RegisterService _registerService;
-        private readonly UserRepository _userRepository;
+        private UserValidationService _validationService;
+        private UserRegistrationService _userRegistrationService;
+        private SessionService _sessionService;
 
-        public RegistrationFacade(RegisterService registerService, UserRepository userRepository)
+        public RegistrationFacade()
         {
-            _registerService = registerService;
-            _userRepository = userRepository;
+            _validationService = new UserValidationService();
+            _userRegistrationService = new UserRegistrationService();
+            _sessionService = new SessionService();
         }
 
-        public bool ValidateAndRegisterUser(string username, string password, string email)
+        public bool ValidateUser(string username, string password, string email)
         {
-            if (string.IsNullOrEmpty(username) || string.IsNullOrEmpty(password) || string.IsNullOrEmpty(email))
-            {
-                MessageBox.Show("All fields are required.", "Validation Error", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
-            }
+            return _validationService.Validate(username, password, email);
+        }
 
-            if (_userRepository.IsUserNameExists(username))
+        public void CreateUser(string username, string password, string email)
+        {
+            int rowsAffected = _userRegistrationService.CreateUser(username, password, email);
+            if (rowsAffected == 1)
             {
-                MessageBox.Show("Username already exists.", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                int userId = _userRegistrationService.GetUserId(username);
+                _sessionService.SetCurrentUser(userId);
             }
-
-            if (_userRepository.IsUserEmailExists(email))
+            else
             {
-                MessageBox.Show("Email already exists.", "Registration Failed", MessageBoxButtons.OK, MessageBoxIcon.Warning);
-                return false;
+                MessageBox.Show("User creation failed", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-
-            return _registerService.RegisterUser(username, password, email);
         }
     }
 }

@@ -98,13 +98,13 @@ BEGIN
 END
 GO
 
-DBCC CHECKIDENT('Roles', RESEED, 0);
-DBCC CHECKIDENT('Users', RESEED, 0);
-DBCC CHECKIDENT('Departments', RESEED, 0);
-DBCC CHECKIDENT('Employees', RESEED, 0);
-DBCC CHECKIDENT('Attendance', RESEED, 0);
+-- DBCC CHECKIDENT('Roles', RESEED, 0);
+-- DBCC CHECKIDENT('Users', RESEED, 0);
+-- DBCC CHECKIDENT('Departments', RESEED, 0);
+-- DBCC CHECKIDENT('Employees', RESEED, 0);
+-- DBCC CHECKIDENT('Attendance', RESEED, 0);
 
-GO
+-- GO
 
 INSERT INTO Roles 
 (RoleName, Description, Permission) VALUES 

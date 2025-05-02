@@ -1,4 +1,5 @@
 ﻿using EmployeeManagamentSystem.Util;
+using EmployeeManagamentSystem.View;
 
 namespace EmployeeManagamentSystem
 {
@@ -102,7 +103,17 @@ namespace EmployeeManagamentSystem
                     childForm = new frmAttendance();
                     break;
                 case "Report":
-                    childForm = new frmReport();
+                    try
+                    {
+                        var repository = new EmployeeRepository();
+                        var salaryReportForm = new SalaryReportForm(repository);
+                        childForm = new frmReport(salaryReportForm);
+                        childForm.Show(); // Test direct show
+                    }
+                    catch (Exception ex)
+                    {
+                        MessageBox.Show($"Error: {ex.Message}");
+                    }
                     break;
                 case "Logout":
                     DialogResult result = MessageBox.Show("Are you sure you want to logout?", "Logout", MessageBoxButtons.YesNo, MessageBoxIcon.Question);

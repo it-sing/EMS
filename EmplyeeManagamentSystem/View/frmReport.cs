@@ -44,8 +44,8 @@ namespace EmployeeManagamentSystem.View
 
             try
             {
-                _reportForm.SetReportStrategy(new DateRangeReportStrategy(dateTimePicker1.Value, dateTimePicker2.Value));
-                var (textReport, _) = _reportForm.GenerateReport();
+                //_reportForm.SetReportStrategy(new DateRangeReportStrategy(dateTimePicker1.Value, dateTimePicker2.Value));
+                //var (textReport, _) = _reportForm.GenerateReport();
                 var employees = _reportForm.GetEmployees();
 
                 dgvAttendance.Rows.Clear();

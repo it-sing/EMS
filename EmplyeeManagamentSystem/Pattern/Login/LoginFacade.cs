@@ -8,7 +8,6 @@ using EmployeeManagamentSystem.Util;
 
 namespace EmployeeManagamentSystem.Pattern.Login
 {
-    // Login Facade (Facade Pattern)s
     public class LoginFacade
     {
         private readonly LoginService _loginService;
@@ -20,6 +19,9 @@ namespace EmployeeManagamentSystem.Pattern.Login
 
         public bool ProcessLogin(string username, string password, out int userId, out string role, out string message)
         {
+            username = username.Trim();
+            password = password.Trim();
+
             try
             {
                 if (_loginService.ValidateUserCredentials(username, password, out userId, out role))

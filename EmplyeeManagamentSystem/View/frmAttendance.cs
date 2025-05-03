@@ -69,7 +69,16 @@ namespace EmployeeManagamentSystem
                 }
 
                 StartHttpServer();
-                LoadAttendanceData(employeeID);
+
+                // 🔽 Set selected month and year to current month and year
+                int currentMonth = DateTime.Now.Month;
+                int currentYear = DateTime.Now.Year;
+
+                cmbMonth.SelectedIndex = currentMonth; // Index 1-12
+                cmbYear.SelectedItem = currentYear.ToString();
+
+                // 🔽 Load attendance data for current month and year
+                LoadAttendanceData(employeeID, currentMonth, currentYear);
             }
             catch (Exception ex)
             {
@@ -98,8 +107,9 @@ namespace EmployeeManagamentSystem
             int lastMonth = lastMonthDate.Month;
             int lastYear = lastMonthDate.Year;
 
-            cmbMonth.SelectedIndex = lastMonth;
-            cmbYear.SelectedItem = lastYear.ToString();
+            cmbMonth.SelectedIndex = 0; // Default to blank initially
+            cmbYear.SelectedIndex = 0;
+
         }
 
         private void cmbMonth_SelectedIndexChanged(object sender, EventArgs e)

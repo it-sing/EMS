@@ -19,8 +19,8 @@ namespace EmployeeManagamentSystem
 
         private void btnLogin_Click(object sender, EventArgs e)
         {
-            string username = txtUsername.Text;
-            string password = txtPassword.Text;
+            string username = txtUsername.Text.Trim();  // <-- trim here
+            string password = txtPassword.Text.Trim();  // <-- and here
 
             if (_loginFacade.ProcessLogin(username, password, out int userId, out string role, out string message))
             {
@@ -36,6 +36,7 @@ namespace EmployeeManagamentSystem
                     role == "5" ? MessageBoxIcon.Information : MessageBoxIcon.Error);
             }
         }
+
         private void btnsignup_Click(object sender, EventArgs e)
         {
             Form frm = LoginFormFactory.CreateRegisterForm();
@@ -54,8 +55,8 @@ namespace EmployeeManagamentSystem
         {
             txtUsername.Text = "admin";
             txtPassword.Text = "admin";
-        }
 
+        }
 
     }
 }

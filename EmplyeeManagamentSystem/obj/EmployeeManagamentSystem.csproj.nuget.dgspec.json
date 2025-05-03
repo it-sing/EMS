@@ -58,6 +58,10 @@
               "target": "Package",
               "version": "[1.6.0, )"
             },
+            "Reo.Core.DataImport.ClosedXml.Report": {
+              "target": "Package",
+              "version": "[6.0.30411, )"
+            },
             "System.Configuration.ConfigurationManager": {
               "target": "Package",
               "version": "[9.0.3, )"
